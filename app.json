@@ -1,0 +1,58 @@
+{
+  "pages": [
+    "pages/index/index",
+    "pages/main/main",
+    "pages/demands/demands",
+    "pages/source/source",
+    "pages/mine/mine",
+    "pages/makeDemand/makeDemand",
+    "pages/myDemands/myDemands",
+    "pages/makeApply/makeApply",
+    "pages/myApply/myApply"
+  ],
+  "window": {
+    "navigationBarBackgroundColor": "#ffffff",
+    "navigationBarTextStyle": "black",
+    "navigationBarTitleText": "青云之上社区云公益服务中心",
+    "backgroundColor": "#eeeeee",
+    "backgroundTextStyle": "light"
+  },
+  "tabBar": {
+    "list": [
+      {
+        "pagePath": "pages/main/main",
+        "text": "首页",
+        "iconPath": "image/index.png",
+        "selectedIconPath": "image/selected_index.png"
+      },
+      {
+        "pagePath": "pages/demands/demands",
+        "text": "需求",
+        "iconPath": "image/demands.png",
+        "selectedIconPath": "image/selected_demands.png"
+      },
+      {
+        "pagePath": "pages/source/source",
+        "text": "资源",
+        "iconPath": "image/source.png",
+        "selectedIconPath": "image/selected_source.png"
+      },
+      {
+        "pagePath": "pages/mine/mine",
+        "text": "我的",
+        "iconPath": "image/mine.png",
+        "selectedIconPath": "image/selected_mine.png"
+      }
+    ]
+  },
+  "component": true,
+  "usingComponents": {
+    "mp-toptips": "libs/weui-miniprogram/components/toptips/toptips",
+    "mp-cells": "libs/weui-miniprogram/components/cells/cells",
+    "mp-cell": "libs/weui-miniprogram/components/cell/cell",
+    "mp-checkbox": "libs/weui-miniprogram/components/checkbox/checkbox",
+    "mp-checkbox-group": "libs/weui-miniprogram/components/checkbox-group/checkbox-group",
+    "mp-form": "libs/weui-miniprogram/components/form/form"
+  },
+  "sitemapLocation": "sitemap.json"
+}

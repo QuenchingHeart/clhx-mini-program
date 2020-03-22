@@ -1,0 +1,35 @@
+<view class="page-body">
+  <view class="page-section page-section-gap">
+    <map
+      id="myMap"
+      style="width: 100%; height: 600px;"
+      latitude="{{latitude}}"
+      longitude="{{longtitude}}"
+      markers="{{markers}}"
+      covers="{{covers}}"
+      show-location
+      scale="18"
+      bindmarkertap="tapUm"
+    >
+    <cover-view class='map-contor'>
+      <cover-view class='contor-input'>
+      <cover-view catchtap="toggleEmojis" class='emojisWarp'>
+        <cover-image  src="/image/search.png" style='height:26px;width:26px;margin:0 auto;'></cover-image></cover-view>
+        <cover-view class="input-info" bindtap='chooseLocation'>
+              {{inputInfo}}
+              <!-- <input class="hide" value="{{searchText}}" focus="{{inputFocus}}"  bindinput="blurInput" value="{{inputInfo}}" maxlength='13'></input> -->
+          </cover-view>
+        </cover-view>
+        <cover-view class="btn-group">
+<button class="btn-need" style="background-color:red;"type="primary" size="{{primarySize}}" loading="{{loading}}" plain="{{plain}}"
+        disabled="{{disabled}}" bindtap="primary"> 我有需求 </button>
+        <button class="btn-offer" type="primary" size="{{primarySize}}" loading="{{loading}}" plain="{{plain}}"
+        disabled="{{disabled}}" bindtap="primary"> 我能提供 </button>
+        </cover-view>
+        <!-- <cover-view  class='share-huihua' catchtap="toggleAddjzq">加入家长群</cover-view> -->
+    </cover-view>
+    </map>
+    
+  </view>
+ 
+</view>

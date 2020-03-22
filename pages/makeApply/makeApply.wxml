@@ -1,0 +1,40 @@
+<!-- 
+  <view class="weui-cells__title">对接方</view>
+  <view class="weui-cells weui-cells_after-title">
+      <view class="weui-cell">
+          <view class="weui-cell__bd">
+              <input class="weui-input" disabled="{{disabled}}" data-field="applyerID" bindinput="formInputChange" placeholder="请输入对接方" value="{{formData.contactName}}"/>
+          </view>
+      </view>
+  </view> -->
+  <view class="weui-cells__title">联系人</view>
+  <view class="weui-cells weui-cells_after-title">
+      <view class="weui-cell">
+          <view class="weui-cell__bd">
+              <input class="weui-input" disabled="{{disabled}}" data-field="contactName" bindinput="formInputChange" placeholder="请输入联系人" value="{{formData.contactName}}"/>
+          </view>
+      </view>
+  </view>
+
+      <view class="weui-cells__title">联系方式</view>
+  <view class="weui-cells weui-cells_after-title">
+      <view class="weui-cell">
+          <view class="weui-cell__bd">
+              <input class="weui-input" disabled="{{disabled}}" data-field="contactPhone" bindinput="formInputChange" placeholder="输入号码" value="{{formData.contactPhone}}"/>
+          </view>
+      </view>
+  </view>
+
+    <view class="weui-cells__title">详细内容</view>
+    <view class="weui-cells weui-cells_after-title">
+        <view class="weui-cell">
+            <view class="weui-cell__bd">
+                <textarea class="weui-textarea" data-field="detail" bindinput="formInputChange" value="{{formData.detail}}" placeholder="请输入文本" style="height: 3.3em" />
+                <view class="weui-textarea-counter">0/200</view>
+            </view>
+        </view>
+    </view>
+		<view class="button-sp-area">
+			<a class="weui-btn weui-btn_warn" disabled='{{disabled}}' type="primary" bindtap="cancelForm">取消</a>
+			<a class="weui-btn weui-btn_default" disabled='{{disabled}}' type="primary" bindtap="submitForm">申请对接</a>
+		</view>

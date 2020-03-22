@@ -1,0 +1,68 @@
+/* pages/main/main.wxss */
+.map-contor{
+  position: absolute;
+  width: 94%;
+  left: 3%;
+  border-radius:4px;
+  background-color: inherit;
+}
+.contor-input{
+  width: 100%;
+  height:100rpx;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+}
+.emojisWarp{
+  width: 10%;
+  color: #666;
+  text-align: left;
+  font-size:36rpx;
+}
+.input-info {
+  width: 75%;
+  height: 30px;
+  line-height: 30px;
+  background:#efefef;
+  border-radius: 50rpx;
+  padding: 0px 15px;
+  color: #999;
+  position: relative;
+
+}
+
+.input-info .hide {
+  position: absolute;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  color: #999;
+}
+
+.button-cover{
+  background-color: rgba(255, 255, 255, 0.9);
+  width: 15%;
+}
+
+.save-button{
+  background-color: rgba(255, 255, 255, 0.9);
+  height: 40px;
+  line-height: 40px;
+  color: #666;
+  border-radius: 20px;
+  font-size: 13px;
+}
+.save-button::after{
+  border: none; 
+}
+
+.btn-need,.btn-offer{
+  width: 46%;
+  float: left;
+  height: 80%;
+  margin-left: 2%;
+  margin-right: 2%;
+}
+.btn-need {
+  background-color: red;
+}

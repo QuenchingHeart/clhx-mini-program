@@ -1,0 +1,54 @@
+<!--pages/demands/demands.wxml-->
+<wxs src="../../utils/tools.wxs" module="tools" />
+ <view class="search_place">
+      <view class="df search_arr">
+        <icon class="searchcion" size='20' type='search'></icon>
+         <picker mode="region" bindchange="bindRegionChange" value="{{region}}" custom-item="{{customItem}}">
+            <input class="" disabled placeholder="定位" value="{{region[2]}}"/>
+          </picker>
+      </view>
+    </view>
+    <view class="search_key">
+      <view class="df search_arr">
+        <icon class="searchcion" size='20' type='search'></icon>
+        <input class="" bindchange="bindSearchKeywordChange" placeholder="搜索关键字" value="{{tools.filter(filterInfo.keyword,'%','')}}"/>
+      </view>
+    </view>
+
+    <view class="add" bindtap='adddetial'>
+
+      <image class="add_icon" src="../../image/add.png"  ></image>
+      <view  class="add_icon_txt">我有需求</view>
+      
+    </view>
+
+<scroll-view scroll-x class="scroll-x">
+  <view wx:for="{{categoryA}}" wx:key="{{index}}" class="view-parent">
+    <view class="view-item" bindtap="bindCategoryAChange">
+      <view class="icon_im">
+        <image src="{{filterHelpInfo.categoryA==index?item.selected_url:item.url}}" data-id="{{index}}" class="im"></image>
+      </view>
+      <view class="icon_txt">
+      {{item.txt}}
+      </view>
+    </view>
+  </view>
+</scroll-view>
+
+<view class="list_all">
+  <scroll-view scroll-y class="categoryB">
+    <view class="categoryB_list list_head">全部</view>
+    <view wx:for="{{categoryB}}" wx:key="{{index}}" >
+      <view bindtap="bindCategoryBChange"  data-id="{{index}}" class="categoryB_list">{{item}}</view>
+    </view>
+
+  </scroll-view>
+  <scroll-view scroll-y class="demands_list">
+    <view class="demands_list_item list_head">全部</view>
+    <view wx:for="{{demands}}" wx:key="{{index}}" bindtap="navigateToDemandDatail">
+      <view class="demands_list_item" data-demandID="{{item.demandID}}">{{item.category}} {{item.title}}</view>
+    </view>
+  </scroll-view>
+</view>
+
+

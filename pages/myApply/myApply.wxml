@@ -1,0 +1,14 @@
+<!--pages/myApply/myApply.wxml-->
+<view class="weui-cells weui-cells_after-title">
+
+    <view wx:for="{{applies}}" class="weui-cell" data-demandid="{{item.demandID}}" wx:key="{{index}}" bindtap="navigateToDemandDatail">
+      <!-- <view class="weui-cell" data-obj="{{item}}" bindtap="navigateToDemandDatail"> -->
+        
+      <!-- </view> -->
+
+          <view class="weui-cell__bd" data-demandid="{{item.demandID}}">{{item.demandTitle}}</view>
+          <view class="weui-cell__ft" data-demandid="{{item.demandID}}">{{item.detail}}</view>
+          <view class="weui-cell__rt" data-demandid="{{item.demandID}}">{{item.status}}</view>
+
+    </view>
+</view>

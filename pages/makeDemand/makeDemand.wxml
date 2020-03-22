@@ -1,0 +1,146 @@
+<!--pages/makeDemand/makeDemand.wxml-->
+<wxs src="../../utils/tools.wxs" module="tools" />
+
+ <mp-form id="form" rules="{{rules}}" models="{{formData}}">
+    
+  <view class="weui-cells__title">地点</view>
+  <view class="weui-cells weui-cells_after-title">
+      <view class="weui-cell">
+          <view class="weui-cell__bd">
+            <input disabled="{{disabled}}"  bindtap="{{disabled==false?'chooseLocation':''}}" class="weui-input" placeholder="请选择地点" data-field="district" bindinput="formInputChange" value="{{tools.filter(formData.district,':','')}}"/>
+
+          </view>
+      </view>
+  </view>
+
+
+
+  <view class="section">
+    <picker
+      mode="multiSelector"
+      bindchange="bindMultiPickerChange"
+      bindcolumnchange="bindMultiPickerColumnChange"
+      value="{{multiIndex}}"
+      range="{{categoryArray}}"
+      disabled="{{disabled}}"
+    >
+
+      <view class="weui-cells__title">需求类型</view>
+      <view class="weui-cells weui-cells_after-title" >
+        <view class="weui-cell">
+          <view class="weui-cell__bd">
+            <input bindinput="formInputChange" disabled="{{disabled}}" data-field="demandCategory" bindinput="formInputChange" class="weui-input" placeholder="需求分类" value="{{formData.demandCategory}}"/>
+
+          </view>
+        </view>
+      </view>
+    </picker>
+  </view>
+
+  <!-- <mp-cells title="需求发起方" footer="">
+  </mp-cells> -->
+    <view class="weui-cells__title">需求标题</view>
+    <view class="weui-cells weui-cells_after-title">
+        <view class="weui-cell">
+            <view class="weui-cell__bd">
+                <input  disabled="{{disabled}}" class="weui-input" data-field="title" bindinput="formInputChange" placeholder="请输入标题" value="{{formData.title}}" />
+            </view>
+        </view>
+    </view>
+
+    <view class="weui-cells__title">个人/组织</view>
+      <view class="weui-cells weui-cells_after-title">
+      <picker mode="selector"
+        bindchange="bindPickerChange"
+        range="{{personorandganization}}"
+        value="{{personorandganizationIndex}}"
+        disabled="{{disabled}}"
+        >
+
+        <view class="weui-cell">
+          <view class="weui-cell__bd">
+            <input  data-field="personOrorganization" bindinput="formInputChange" class="weui-input" placeholder="请选择" value="{{personorandganization[personorandganizationIndex]}}"/>
+
+          </view>
+        </view>
+
+    </picker>
+    </view>
+
+
+    <view class="weui-cells__title">详细内容</view>
+    <view class="weui-cells weui-cells_after-title">
+        <view class="weui-cell">
+            <view class="weui-cell__bd">
+                <textarea class="weui-textarea" data-field="detail" bindinput="formInputChange" value="{{formData.detail}}" placeholder="请输入文本" style="height: 3.3em" />
+                <view class="weui-textarea-counter">0/200</view>
+            </view>
+        </view>
+    </view>
+
+      <view class="weui-cells__title">联系人</view>
+  <view class="weui-cells weui-cells_after-title">
+      <view class="weui-cell">
+          <view class="weui-cell__bd">
+              <input class="weui-input" disabled="{{disabled}}" data-field="contactName" bindinput="formInputChange" placeholder="请输入联系人" value="{{formData.contactName}}"/>
+          </view>
+      </view>
+  </view>
+  <view class="weui-cells__title">联系方式</view>
+  <view class="weui-cells weui-cells_after-title">
+      <view class="weui-cell weui-cell_select">
+          <view class="weui-cell__hd" style="width: 105px">
+
+              <picker bindchange="bindCountryCodeChange" disabled="{{disabled}}" value="{{countryCodeIndex}}" range="{{countryCodes}}">
+                  <view class="weui-select">{{countryCodes[countryCodeIndex]}}</view>
+              </picker>
+          </view>
+          <view class="weui-cell__bd weui-cell__bd_in-select-before">
+              <input class="weui-input" data-field="contactPhone" disabled="{{disabled}}" bindinput="formInputChange" value="{{formData.contactPhone}}" placeholder="请输入号码" />
+          </view>
+      </view>
+  </view>
+
+  <view class="section">
+    <picker  disabled="{{disabled}}" mode="date" value="{{formData.startTime}}" data-field="startTime" start="2020-03-17" end="2030-09-01" bindchange="formInputChange">
+        <view class="weui-cells__title">开始时间</view>
+        <view class="weui-cells weui-cells_after-title">
+          <view class="weui-cell">
+            <view class="weui-cell__bd">
+              <input class="weui-input" placeholder="2015-09-01" value="{{formData.startTime}}"/>
+            </view>
+          </view>
+        </view>
+    </picker>
+  </view>
+
+  <view class="section">
+
+    <picker  disabled="{{disabled}}" mode="date" value="{{formData.endTim}}"  data-field="endTime" start="2020-03-17" end="2030-09-01" bindchange="formInputChange">
+      <view class="weui-cells__title">结束时间</view>
+      <view class="weui-cells weui-cells_after-title">
+        <view class="weui-cell">
+          <view class="weui-cell__bd">
+            <input class="weui-input" placeholder="2015-09-01" value="{{formData.endTime}}"/>
+          </view>
+        </view>
+      </view>
+    </picker>
+  </view>
+
+
+
+  <view class="weui-btn-area"  wx:if="{{type=='add' }}">
+      <button class="weui-btn" disabled='{{disabled}}' type="primary" bindtap="submitForm">确定</button>
+  </view>
+  <view class="weui-btn-area"  wx:if="{{ type=='edit' }}">
+   <button class="weui-btn" disabled='{{disabled}}' type="primary" bindtap="submitForm">确定修改</button>
+      <button class="weui-btn" disabled='{{disabled}}' type="primary" bindtap="cancelDemand">撤销需求</button>
+  </view>
+ <view class="weui-btn-area"  wx:if="{{type=='check'}}">
+    <button wx:if="{{!applied}}" class="weui-btn" type="primary" bindtap="apply" data-demandid="{{demandDetail.demandID}}">申请对接</button>
+    <button wx:if="{{applied}}" class="weui-btn" type="primary" bindtap="toMyapply" data-myapplyid="{{myApplyID}}" data-demandid="{{demandDetail.demandID}}">查看我的对接</button>
+    <button wx:if="{{applied}}" class="weui-btn" type="primary" bindtap="toMyapply" data-myapplyid="{{myApplyID}}" data-demandid="{{demandDetail.demandID}}">查看我的对接</button>
+  
+  </view>
+</mp-form>
