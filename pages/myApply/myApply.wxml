@@ -1,14 +1,18 @@
 <!--pages/myApply/myApply.wxml-->
-<view class="weui-cells weui-cells_after-title">
+<template name="myApply">
+  <view class="weui-cells weui-cells_after-title">
 
-    <view wx:for="{{applies}}" class="weui-cell" data-demandid="{{item.demandID}}" wx:key="{{index}}" bindtap="navigateToDemandDatail">
-      <!-- <view class="weui-cell" data-obj="{{item}}" bindtap="navigateToDemandDatail"> -->
-        
-      <!-- </view> -->
+      <view wx:for="{{applies}}" class="weui-cell" data-applyid="{{item.applyID}}" data-demandid="{{item.demandID}}" wx:key="{{index}}" bindtap="navigateToApplyDatail">
+        <!-- <view class="weui-cell" data-obj="{{item}}" bindtap="navigateToDemandDatail"> -->
+          
+        <!-- </view> -->
 
-          <view class="weui-cell__bd" data-demandid="{{item.demandID}}">{{item.demandTitle}}</view>
-          <view class="weui-cell__ft" data-demandid="{{item.demandID}}">{{item.detail}}</view>
-          <view class="weui-cell__rt" data-demandid="{{item.demandID}}">{{item.status}}</view>
+            <view class="weui-cell__bd" data-demandid="{{item.demandID}}" data-applyid="{{item.applyID}}">{{item.demandTitle}}</view>
+            <view class="weui-cell__ft" data-demandid="{{item.demandID}}" data-applyid="{{item.applyID}}">{{item.detail}}</view>
+            <view class="weui-cell__rt" data-demandid="{{item.demandID}}" data-applyid="{{item.applyID}}">{{item.status}}</view>
 
-    </view>
-</view>
+      </view>
+  </view>
+</template>
+
+<template is="myApply"  data="{{applies: applies}}"/>

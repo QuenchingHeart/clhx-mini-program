@@ -78,5 +78,33 @@ function applyDel(data) {
   })
 }
 
-export { login, demandsAll, demandsPost, demandOne, demandPut, demandDel, 
-        applyPost, applyGet, applyPut, applyDel};
+function connectApprove(data) {
+  return http({
+    url: '/connect/approve?applyID=' + data.applyID + '&demandID=' + data.demandID,
+    method: 'PUT',
+    data: data,
+  })
+}
+
+function connectComplete(data) {
+  return http({
+    url: '/connect/complete?applyID=' + data.applyID + '&demandID=' + data.demandID,
+    method: 'PUT',
+    data: data
+  })
+}
+
+function connectDel(data) {
+  return http({
+    url: '/connect/cancel?applyID=' + data.applyID,
+    method: 'DELETE',
+    data: data
+  })
+}
+
+export { 
+  login,
+  demandsAll, demandsPost, demandOne, demandPut, demandDel, 
+  applyPost, applyGet, applyPut, applyDel, 
+  connectApprove, connectComplete, connectDel
+  };

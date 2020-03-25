@@ -16,7 +16,7 @@
       </view>
   </view>
 
-      <view class="weui-cells__title">联系方式</view>
+  <view class="weui-cells__title">联系方式</view>
   <view class="weui-cells weui-cells_after-title">
       <view class="weui-cell">
           <view class="weui-cell__bd">
@@ -34,7 +34,30 @@
             </view>
         </view>
     </view>
-		<view class="button-sp-area">
-			<a class="weui-btn weui-btn_warn" disabled='{{disabled}}' type="primary" bindtap="cancelForm">取消</a>
+    <view class="weui-cells__title">状态</view>
+     <view class="weui-cells weui-cells_after-title">
+      <view class="weui-cell">
+          <view class="weui-cell__bd">
+             {{formData.status}}
+          </view>
+      </view>
+  </view>
+    <view class="button-sp-area">
+			<a class="weui-btn weui-btn_warn"  type="primary" bindtap="cancelForm">取消</a>
+		</view>
+		<view class="button-sp-area" wx:if="{{type=='add' }}">
 			<a class="weui-btn weui-btn_default" disabled='{{disabled}}' type="primary" bindtap="submitForm">申请对接</a>
+		</view>
+    <view class="button-sp-area" wx:if="{{type=='edit' }}">
+			<a class="weui-btn weui-btn_warn" disabled='{{disabled}}' type="primary" bindtap="cancelApply">撤销</a>
+			<a class="weui-btn weui-btn_default" disabled='{{disabled}}' type="primary" bindtap="submitForm">确认修改</a>
+		</view>
+    <view class="button-sp-area" wx:if="{{type=='check' & checkDemandsApply }}">
+      <block wx:if="{{formData.status=='待审核'}}">
+        <a class="weui-btn weui-btn_default" disabled='{{disabled}}' type="primary" data-type="approve" bindtap="connectOp">确认对接</a>
+      </block>
+       <block wx:if="{{formData.status=='对接中'}}">
+          <a class="weui-btn weui-btn_default" disabled='{{disabled}}' type="primary" data-type="complete" bindtap="connectOp">对接完成</a>
+          <a class="weui-btn weui-btn_default" disabled='{{disabled}}' type="primary" data-type="delete" bindtap="connectOp">撤销对接</a>
+      </block>
 		</view>

@@ -23,7 +23,7 @@ Page({
         }
         util.api('imagei.ByStuId', { stuid: '031630226' }, byid)
   */
-    // this.login();
+    this.login();
     if (app.globalData.userInfo) {
       this.setData({
         userInfo: app.globalData.userInfo,

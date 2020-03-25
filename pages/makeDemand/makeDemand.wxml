@@ -131,6 +131,7 @@
 
 
   <view class="weui-btn-area"  wx:if="{{type=='add' }}">
+      <button class="weui-btn weui-btn_warn" disabled='{{disabled}}' type="primary" bindtap="cancelForm">取消</button>
       <button class="weui-btn" disabled='{{disabled}}' type="primary" bindtap="submitForm">确定</button>
   </view>
   <view class="weui-btn-area"  wx:if="{{ type=='edit' }}">
@@ -140,7 +141,8 @@
  <view class="weui-btn-area"  wx:if="{{type=='check'}}">
     <button wx:if="{{!applied}}" class="weui-btn" type="primary" bindtap="apply" data-demandid="{{demandDetail.demandID}}">申请对接</button>
     <button wx:if="{{applied}}" class="weui-btn" type="primary" bindtap="toMyapply" data-myapplyid="{{myApplyID}}" data-demandid="{{demandDetail.demandID}}">查看我的对接</button>
-    <button wx:if="{{applied}}" class="weui-btn" type="primary" bindtap="toMyapply" data-myapplyid="{{myApplyID}}" data-demandid="{{demandDetail.demandID}}">查看我的对接</button>
   
   </view>
 </mp-form>
+<import src="../myApply/myApply.wxml"/>
+<template is="myApply"  data="{{applies: applies}}"/>

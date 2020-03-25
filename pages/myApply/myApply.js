@@ -19,6 +19,12 @@ Page({
       console.log(res)
     })
   },
+  navigateToApplyDatail: function (e) {
+    console.log(e.target)
+    wx.navigateTo({
+      url: '/pages/makeApply/makeApply?type=edit&' + 'applyID=' + e.target.dataset.applyid + '&' + 'demandID=' + e.target.dataset.demandid
+    })
+  },
   /**
    * 生命周期函数--监听页面加载
    */

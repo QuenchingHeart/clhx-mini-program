@@ -255,7 +255,7 @@ Page({
     console.log(e.target.dataset.demandid)
     var demandID = e.target.dataset.demandid
     wx.navigateTo({
-      url: '/pages/makeApply/makeApply?demandID=' + demandID,
+      url: '/pages/makeApply/makeApply?type=add&demandID=' + demandID,
     })
   },
   toMyapply:function(e){
@@ -270,6 +270,17 @@ Page({
       url: '/pages/makeDemand/makeDemand?type=delete&demandID=' + this.data.demandDetail.demandID,
     })
 
+  },
+  cancelForm: function () {
+    wx.navigateBack({
+
+    })
+  },
+  navigateToApplyDatail: function (e) {
+    console.log(e.target)
+    wx.navigateTo({
+      url: '/pages/makeApply/makeApply?type=check&checkDemandsApply=True&' + 'applyID=' + e.target.dataset.applyid + '&' + 'demandID=' + e.target.dataset.demandid
+    })
   },
   /**
    * 生命周期函数--监听页面加载
