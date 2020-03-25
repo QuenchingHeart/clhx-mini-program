@@ -15,9 +15,9 @@
 
 .scroll-x{
   position: relative;
-    height: 15%;
-    white-space:nowrap;
-    display:inline-block;
+  height: 15%;
+  white-space:nowrap;
+  display:inline-block;
 }
 
 .search_arr {
@@ -51,18 +51,19 @@
 .view-parent{
     position: relative;
     display:inline-block;
+    font-size: 5rpx;
     height: 100%;
-    width: 140rpx;
+    width: 125rpx;
+    margin-top:10px;
 }
 .view-item{
    position: relative;
-    width:110rpx;
-    height:110rpx;
+    width:100%;
+    height:100%;
     display:flex;
     align-items:center;
     justify-content:center;
     font-size:12px;
-    margin:10px;
 }
 
 .list_all{
@@ -112,24 +113,25 @@
 
 .icon_im{
   top:0rpx;
-  height: 100rpx;
+  height: 60%;
   width: 100%;
   border-radius:50%;
   position: absolute;
 }
 .im{
-  height: 100rpx;
+  height: 100%;
   width: 100%;
   border-radius:50%;
   position: absolute;
 
 }
 .icon_txt{
-  top:100rpx; 
-  height: 50rpx;
+  top: 60%; 
+  height: 30%;
   width: 100%;
   text-align: center;
   position: absolute;
+  font-size: 30rpx;
 
 }
 
