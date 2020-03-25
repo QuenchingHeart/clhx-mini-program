@@ -15,9 +15,9 @@
 
 .scroll-x{
   position: relative;
-    height: 20%;
+    height: 15%;
     white-space:nowrap;
-    display:flex;
+    display:inline-block;
 }
 
 .search_arr {
@@ -42,12 +42,6 @@
   text-align: center;
 }
 
-
-.scroll-x{
-    height:15%;
-    white-space:nowrap;
-    display:flex;
-}
 /* 隐藏scrollbar */
 ::-webkit-scrollbar{
     width: 0;
@@ -56,9 +50,9 @@
 }
 .view-parent{
     position: relative;
-    float: left;
+    display:inline-block;
     height: 100%;
-    width: 150rpx;
+    width: 140rpx;
 }
 .view-item{
    position: relative;

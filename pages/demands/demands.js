@@ -6,15 +6,20 @@ Page({
    * 页面的初始数据
    */
   data: {
-    categories: [[""],[ "志愿服务", "物资需求", "心理关怀","文化科教","卫生健康","创业就业","便民服务","法律援助","社工帮助"],
-                    [ "关爱儿童", "社区养老", "残疾人服务"],
-                    ['专项项目','活动策划'],
-                    ['家庭困难帮助','社会组织困难帮助','社区组织困难帮助','物业扶贫'],
-                    [""]
-                  ],
-    categoryArray:['党政宣传','社区服务','儿童老人','项目策划','特殊困难','其他'],
+    categories: [["物资援助", "防控宣传", "精准排查", "复工咨询", "感人故事"], [], ["志愿服务", "物资需求", "心理关怀", "文化科教", "卫键服务", "创业就业", "便民通道", "法律援助", "社工帮助"],
+    ["特殊困难帮助", '家庭困难帮助', '社会组织困难帮助', '社区组织困难帮助', '物业扶贫'],
+    ['活动策划', '项目评估', '资金链接'],
+    ["关爱儿童", "社区养老"],
+    ],
+    categoryArray: [['防疫特区', '党建宣传', '社区服务', '特殊困难', '项目策划', '为小为老'], []],
     curCategoryA:0,
     categoryA:[
+      {
+        txt: "防疫特区",
+        url: '../../image/demands.png',
+        selected_url: '../../image/selected_demands.png',
+
+      },
       {
         txt:"党建宣传",
         url:'../../image/demands.png',
@@ -28,25 +33,19 @@ Page({
 
       },
       {
-        txt: "儿童老人",
-        url: '../../image/demands.png',
-        selected_url: '../../image/selected_demands.png',
-
-      },
-      {
-        txt: "行政助理",
-        url: '../../image/demands.png',
-        selected_url: '../../image/selected_demands.png',
-
-      },
-      {
         txt: "特殊困难",
         url: '../../image/demands.png',
         selected_url: '../../image/selected_demands.png',
 
       },
       {
-        txt: "其他",
+        txt: "项目策划",
+        url: '../../image/demands.png',
+        selected_url: '../../image/selected_demands.png',
+
+      },
+      {
+        txt: "为小为老",
         url: '../../image/demands.png',
         selected_url: '../../image/selected_demands.png',
 
