@@ -16,38 +16,38 @@ Page({
     categoryA:[
       {
         txt: "防疫特区",
-        url: '../../image/demands.png',
-        selected_url: '../../image/selected_demands.png',
+        url: '../../image/epidemic.png',
+        selected_url: '../../image/selected_epidemic.png',
 
       },
       {
         txt:"党建宣传",
-        url:'../../image/demands.png',
-        selected_url:'../../image/selected_demands.png',
+        url:'../../image/party.png',
+        selected_url:'../../image/selected_party.png',
 
       },
       {
         txt: "社区服务",
-        url: '../../image/demands.png',
-        selected_url: '../../image/selected_demands.png',
+        url: '../../image/community.png',
+        selected_url: '../../image/selected_community.png',
 
       },
       {
         txt: "特殊困难",
-        url: '../../image/demands.png',
-        selected_url: '../../image/selected_demands.png',
+        url: '../../image/special.png',
+        selected_url: '../../image/selected_special.png',
 
       },
       {
         txt: "项目策划",
-        url: '../../image/demands.png',
-        selected_url: '../../image/selected_demands.png',
+        url: '../../image/project.png',
+        selected_url: '../../image/selected_project.png',
 
       },
       {
         txt: "为小为老",
-        url: '../../image/demands.png',
-        selected_url: '../../image/selected_demands.png',
+        url: '../../image/oldandkid.png',
+        selected_url: '../../image/selected_oldandkid.png',
 
       }
     ],
