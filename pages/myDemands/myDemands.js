@@ -20,9 +20,9 @@ Page({
     })
   },
   navigateToDemandDatail: function (e) {
-    console.log(e.target)
+    console.log(e)
     wx.navigateTo({
-      url: '/pages/makeDemand/makeDemand?type=edit&' + 'demandID=' + e.target.dataset.demandid
+      url: '/pages/makeDemand/makeDemand?type=edit&' + 'demandID=' + e.currentTarget.dataset.demandid
     })
   },
   /**

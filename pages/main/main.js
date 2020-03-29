@@ -2,182 +2,145 @@
 const app = getApp();
 const util = require("../../utils/util.js");
 import { damandsAll } from "../../utils/api.js";
-Page({
+Component({
   /**
    * 页面的初始数据
    */
-  data: {
-    markers: [],
-    latitude: "23.54972",
-    longtitude: "116.37271",
-    demands:[],
-    searchText:'选择位置',
-    inputInfo: '选择位置',
-    position:'',
-    mapCtx:{}
+  properties: {
+    markers: {
+      type: Array,
+      value: [],
+      observer: function (newVal, oldVal) { }
+    },
+    latitude: {
+      type:Number,
+      value: 23.54972,
+      observer: function (newVal, oldVal) { }
+    },
+    longtitude: {
+      type: Number,
+      value: 116.37271,
+      observer: function (newVal, oldVal) { }
+    },
+    demands: Array,
+    searchText: { // 属性名
+      type: String, // 类型（必填），目前接受的类型包括：String, Number, Boolean, Object, Array, null（表示任意类型）
+      value: '选择位置', // 属性初始值（可选），如果未指定则会根据类型选择一个
+      observer: function (newVal, oldVal) { } // 属性被改变时执行的函数（可选），也可以写成在methods段中定义的方法名字符串, 如：'_propertyChange'
+    },
+    inputInfo: { // 属性名
+      type: String, // 类型（必填），目前接受的类型包括：String, Number, Boolean, Object, Array, null（表示任意类型）
+      value: '选择位置', // 属性初始值（可选），如果未指定则会根据类型选择一个
+      observer: function (newVal, oldVal) { } // 属性被改变时执行的函数（可选），也可以写成在methods段中定义的方法名字符串, 如：'_propertyChange'
+    },
+    position: String,
+    mapCtx:Object
+  },
+  lifetimes: {
+    // 生命周期函数，可以为函数，或一个在methods段中定义的方法名
+    attached: function () { this.initData()},
+    moved: function () { },
+    detached: function () { },
+  },
+
+  // 生命周期函数，可以为函数，或一个在methods段中定义的方法名
+  attached: function () { }, // 此处attached的声明会被lifetimes字段中的声明覆盖
+  ready: function () { },
+
+  pageLifetimes: {
+    // 组件所在页面的生命周期函数
+    show: function () {  },
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
-  onLoad: function(options) {
-    var that = this;
-    that.mapCtx = wx.createMapContext('myMap')
+  
+  methods:{
+    initData: function (options) {
+      var that = this;
+      that.mapCtx = wx.createMapContext('myMap')
 
-   
-    wx.getLocation({
-      type: "gcj02",
-      success: re => {
-        console.log(re)
 
-        that.setData({
-          markers: [{
+      wx.getLocation({
+        type: "gcj02",
+        success: re => {
+          console.log(re)
+
+          that.setData({
             latitude: re.latitude,
             longitude: re.longitude,
-            iconPath: '/image/location.png'
-          }]
-        })
-        that.setPosition(re.longitude, re.latitude)
-        that.moveToLocation();
-        console.log(app.globalData.position.latitude, app.globalData.position.longitude)
-        util.getLocal(app.globalData.position.latitude, app.globalData.position.longitude)
-      }
-    });
-    
-    //  this.getAroundUm();
+            markers: [{
+              latitude: re.latitude,
+              longitude: re.longitude,
+              iconPath: '/image/location.png'
+            }]
+          })
+          that.setPosition(re.longitude, re.latitude)
+          that.moveToLocation();
 
-  },
-  chooseLocation: function(){
-    var that = this;
-    wx.chooseLocation({
-      success: (re) => {
-        that.position = re.longitude + ',' + re.latitude
-        console.log(that.position)
+          util.getLocal(re.latitude, re.longitude)
+        }
+      });
 
-        this.setData({
-          markers: [{
+      //  this.getAroundUm();
+
+    },
+    chooseLocation: function () {
+      var that = this;
+      wx.chooseLocation({
+        success: (re) => {
+          that.position = re.longitude + ',' + re.latitude
+          console.log(that.position)
+
+          that.setData({
             latitude: re.latitude,
             longitude: re.longitude,
-            iconPath: '/image/location.png'
-          }],
-          inputInfo: re.address,
-        })
-        that.setPosition(re.longitude , re.latitude)
-        that.moveToLocation();
+            markers: [{
+              latitude: re.latitude,
+              longitude: re.longitude,
+              iconPath: '/image/location.png'
+            }],
+            inputInfo: re.address,
+          })
+          // that.setPosition(re.longitude, re.latitude)
+          console.log('setPosition', re.longitude, re.latitude)
+          that.moveToLocation();
 
+        }
+      })
+    },
+    moveToLocation: function () {
+      var that = this;
+      console.log('setPosition2', that.data.longitude, that.data.latitude, that.mapCtx)
+      that.mapCtx.moveToLocation({
+        latitude: that.data.latitude,
+        longitude: that.data.longitude,
+        success: function (res) {
+          console.log(res)
+        },
+        fail:function(res){
+          console.log(res,'failed')
+        },
+        complete: function (res) {
+          console.log(res, 'failed')
+        }
+      })
+      console.log('setPosition2', that.data.longitude, that.data.latitude, that.mapCtx)
+    },
+    NavToMakeDemand() {
+      wx.navigateTo({
+        url: '/pages/makeDemand/makeDemand',
+      })
+    },
+    setPosition: function (longitude, latitude) {
+      app.globalData.position = {
+        latitude: latitude,
+        longitude: longitude
       }
-    })
-  },
-  moveToLocation: function () {
-    var that = this;
-    that.mapCtx.moveToLocation({
-      latitude: app.globalData.position.latitude,
-      longitude: app.globalData.position.longitude,
-      success: function (res) {
-        console.log(res)
-      }
-    })
-  },
-  // getAroundUm() {
-  //   wx.getLocation({
-  //     type: "gcj02",
-  //     success: re => {
-  //       this.setData({
-  //         latitude: re.latitude,
-  //         longitude: re.longitude
-  //       });
-  //     }
-  //   });
-  //   wx.request({
-  //     success: re => {
-  //       if (re.data.ret == 200) {
-  //         let marker = re.data.data;
-  //         marker = marker.map(e => {
-  //           e = {
-  //             iconPath: "",
-  //             ...e
-  //           };
-  //           if (e.sex == "boy") {
-  //             e.iconPath = "/images/green-Umbrella.png";
-  //           } else {
-  //             e.iconPath = "/images/pink-Umbrella.png";
-  //           }
-  //           return e;
-  //         });
-  //         this.setData({
-  //           markers: marker
-  //         });
-  //         console.log(this.data.markers);
+    }
+  }
+  
 
-  //         wx.showToast({
-  //           title: "获取数据成功!请点击地图上的伞来预约",
-  //           duration: 2000,
-  //           icon: "none"
-  //         });
-  //         //引导浮层 点击伞进行叫伞
-  //       } else if (re.data.ret == 201) {
-  //         //绑定手机号/进一步校验学号密码
-  //       } else {
-  //         //error
-  //       }
-  //     },
-  //     ...util.pApi("getAroundUm", {})
-  //   });
-    /*wx.getLocation({
-            type: 'gcj02',
-            success: re => {
-                console.log(re)
-                this.setData({
-                    markers: [{
-                        latitude: re.latitude,
-                        longitude: re.longitude,
-                        iconPath: '/images/location.png'
-                    }],
-                    latitude: re.latitude,
-                    longitude: re.longitude,
-                })
-            }
-        })*/
-  // },
-
-  setPosition: function (longitude,latitude){
-    app.globalData.position = {
-      latitude: latitude,
-      longitude: longitude}
-  },
-  /**
-   * 生命周期函数--监听页面初次渲染完成
-   */
-  onReady: function() {},
-
-  /**
-   * 生命周期函数--监听页面显示
-   */
-  onShow: function() {},
-
-  /**
-   * 生命周期函数--监听页面隐藏
-   */
-  onHide: function() {},
-
-  /**
-   * 生命周期函数--监听页面卸载
-   */
-  onUnload: function() {},
-
-  /**
-   * 页面相关事件处理函数--监听用户下拉动作
-   */
-  onPullDownRefresh: function() {},
-
-  /**
-   * 页面上拉触底事件的处理函数
-   */
-  onReachBottom: function() {},
-
-  /**
-   * 用户点击右上角分享
-   */
-  onShareAppMessage: function() {}
 });
 

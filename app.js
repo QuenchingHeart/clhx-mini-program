@@ -5,7 +5,17 @@ App({
     var logs = wx.getStorageSync("logs") || [];
     logs.unshift(Date.now());
     wx.setStorageSync("logs", logs);
-
+    wx.getSystemInfo({
+      success(res) {
+        console.log(res.model)
+        console.log(res.pixelRatio)
+        console.log(res.windowWidth)
+        console.log(res.windowHeight)
+        console.log(res.language)
+        console.log(res.version)
+        console.log(res.platform)
+      }
+    })
     // 登录
     wx.login({
       success: res => {
@@ -36,8 +46,8 @@ App({
   globalData: {
     userInfo: null,
     token:'',
-    // token:'eyJhbGciOiJSUzI1NiJ9.eyJleHAiOjE1ODQ5MjAyMzgsInVzZXIiOjE0fQ.ZAQNCx8aGubz6sw_CdiAerSDxuxJ72BfTt1NOxdbzck-b4qrOwkRCJ1-pdC00Ggb0E5UgamT81BuBKV04rgujExxvryuc3Evu0txJagjdY9v0E0YSGF7Iql2gyAYCfjR_eNM6aiaVW37r3-6VYAgmIFoKbi7VnA1XJxg-uMpcV5WOpdXsp3bBYr2DFjBEQVtJbgBwAEA9QrXb-H1Du-1XiIbrFnECKSvr_cTV8rWnucq9-vnJDsLxfkzLoxpK7hXW53iWxTeOlx2rZ74s2JjPzDJTz-U2Ghh1Cuap1EakSqnY7aD9tvDfoPPYV0PNn5vY6JZuHBVBQDQDjbgMoEHUA',
-  userID:'14',
+// token:'eyJhbGciOiJSUzI1NiJ9.eyJleHAiOjE1ODU1NzkyMzcsInVzZXIiOjE0fQ.cAKSDLiwuktVShjilZTnEifLEdTw1lIK57BoovveFBbuCy8GqtDnlzAjO4Iur04Rv9FXiWzyUbC_0DVDI1Q9bAvEga-PBUikTPFfbPISyQz-KUqWQaUdNHPTP0uuaOV2RZi3DcfOxhPkgHEWcvQSkYkxVh2vpBCPpOeJ6I5QHu11OOmUveA0_mjxrQYKeRwllfI6Q4nMX7JDL80CuNZhhtfnG9cObEj5oIRKaaT7DLi6kVW8RSkTUZd7upppT59gLgD1TRKrcEPBkfKEYkDb8hkcoYNl_GQRhTTOOrVRhud6_R9hJNEJzdsVO5sxRFP51_xKBXx3gVCdxWYYQ66cJQ',
+  userID:'',
     baseUrl: 'https://api.smartcommunity.mrdrivingduck.cn:8081'
   }
 });

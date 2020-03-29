@@ -1,6 +1,7 @@
 {
   "pages": [
     "pages/index/index",
+    "pages/login/login",
     "pages/main/main",
     "pages/demands/demands",
     "pages/source/source",
@@ -16,34 +17,6 @@
     "navigationBarTitleText": "青云之上社区云公益服务中心",
     "backgroundColor": "#eeeeee",
     "backgroundTextStyle": "light"
-  },
-  "tabBar": {
-    "list": [
-      {
-        "pagePath": "pages/main/main",
-        "text": "首页",
-        "iconPath": "image/index.png",
-        "selectedIconPath": "image/selected_index.png"
-      },
-      {
-        "pagePath": "pages/demands/demands",
-        "text": "需求",
-        "iconPath": "image/demands.png",
-        "selectedIconPath": "image/selected_demands.png"
-      },
-      {
-        "pagePath": "pages/source/source",
-        "text": "资源",
-        "iconPath": "image/source.png",
-        "selectedIconPath": "image/selected_source.png"
-      },
-      {
-        "pagePath": "pages/mine/mine",
-        "text": "我的",
-        "iconPath": "image/mine.png",
-        "selectedIconPath": "image/selected_mine.png"
-      }
-    ]
   },
   "component": true,
   "usingComponents": {

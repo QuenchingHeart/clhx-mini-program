@@ -1,14 +1,17 @@
 <!--pages/myDemands/myDemands.wxml-->
-<view class="weui-cells weui-cells_after-title">
-
-    <view wx:for="{{demands}}" class="weui-cell" data-demandid="{{item.demandID}}" wx:key="{{index}}" bindtap="navigateToDemandDatail">
-      <!-- <view class="weui-cell" data-obj="{{item}}" bindtap="navigateToDemandDatail"> -->
-        
-      <!-- </view> -->
-
-          <view class="weui-cell__bd" data-demandid="{{item.demandID}}">{{item.title}}</view>
-          <view class="weui-cell__ft" data-demandid="{{item.demandID}}">{{item.category}}</view>
-          <view class="weui-cell__rt" data-demandid="{{item.demandID}}">{{item.status}}</view>
-
+<view class="cu-list menu-avatar">
+    <view class="cu-item margin-top" wx:for="{{demands}}" data-demandid="{{item.demandID}}" wx:key="{{index}}" bindtap="navigateToDemandDatail">
+      <view class="content">
+        <view class="text-black">{{item.title}}</view>
+        <view class="text-gray text-sm flex">
+          <text class="text-cut text-green">
+							<text class="cuIcon-infofill text-blue  margin-right-xs"></text> {{item.detail}}
+          </text>
+        </view>
+      </view>
+      <view class="action">
+        <view class="text-grey text-xs">{{item.category}}</view>
+        <view class="cu-tag round bg-green sm">{{item.status}}</view>
+      </view>
     </view>
 </view>

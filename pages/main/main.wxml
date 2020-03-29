@@ -2,12 +2,11 @@
   <view class="page-section page-section-gap">
     <map
       id="myMap"
-      style="width: 100%; height: 600px;"
+      style="width: 100%; height:calc(100vh)"
       latitude="{{latitude}}"
       longitude="{{longtitude}}"
       markers="{{markers}}"
-      covers="{{covers}}"
-      show-location
+      show-location="true"
       scale="18"
       bindmarkertap="tapUm"
     >
@@ -22,7 +21,7 @@
         </cover-view>
         <cover-view class="btn-group">
 <button class="btn-need" style="background-color:red;"type="primary" size="{{primarySize}}" loading="{{loading}}" plain="{{plain}}"
-        disabled="{{disabled}}" bindtap="primary"> 我有需求 </button>
+        disabled="{{disabled}}" bindtap="NavToMakeDemand"> 我有需求 </button>
         <button class="btn-offer" type="primary" size="{{primarySize}}" loading="{{loading}}" plain="{{plain}}"
         disabled="{{disabled}}" bindtap="primary"> 我能提供 </button>
         </cover-view>
@@ -31,5 +30,5 @@
     </map>
     
   </view>
- 
+
 </view>

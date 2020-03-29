@@ -1,7 +1,17 @@
 var myFilter = function (str,pattern,newPattern) {
+  console.log(str, pattern, newPattern) 
   return str.replace(getRegExp(pattern, 'g'), newPattern);
 }
-
+var distanceFormat = function(distance){
+  var distanceStr = ''
+  if(distance<1){
+    distanceStr = '<1km'
+  }else{
+    distanceStr =  distance.toFixed(1) + 'km'
+  }
+  return distanceStr
+}
 module.exports = {
   filter: myFilter,
+  distanceFormat: distanceFormat
 }

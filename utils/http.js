@@ -30,7 +30,7 @@ var Utils = {
       },
       success: res => {
         console.log(res);
-        if (res.statusCode == 200) {
+        if (res.statusCode == 200 || res.statusCode == 201) {
           wx.hideLoading();
           resolve(res.data);
         }

@@ -9,6 +9,13 @@ Page({
    * 页面的初始数据
    */
   data: {
+    markers: [{
+      id: 1,
+      latitude: 23.099994,
+      longitude: 113.324520,
+    }],
+
+  
     multiIndex: [0, 0],
     categories: [["物资援助","防控宣传","精准排查","复工咨询","感人故事"],[],[ "志愿服务", "物资需求", "心理关怀","文化科教","卫键服务","创业就业","便民通道","法律援助","社工帮助"],
       ["特殊困难帮助",'家庭困难帮助', '社会组织困难帮助', '社区组织困难帮助', '物业扶贫'],
@@ -51,9 +58,9 @@ Page({
     formData:{
       district:"广东省:揭阳市:揭西县",
       isOrganization:false,
-      title:"asd",
-      longitude: 0,
-      latitude: 0,
+      title:"",
+      latitude: 23.099994,
+      longitude: 113.324520,
       detail:'内容',
       demandCategory: "防疫特区:物资援助",
       contactName: "甲鱼",
@@ -112,8 +119,15 @@ Page({
             that.setData({
               "formData.latitude": res.latitude,
               "formData.longitude": res.longitude,
-              "formData.district": location.province + ":" + location.city + ":" + location.district
+              "formData.district": location.province + ":" + location.city + ":" + location.district + ":" + (location.business_area == null ? '' : location.business_area),
+              markers: [{
+                latitude: res.latitude,
+                longitude: res.longitude,
+                iconPath: '/image/location.png',
+                id: 1
+              }]
             })
+          that.moveToLocation();
           }
         )
       }
@@ -153,13 +167,29 @@ Page({
     if(that.data.type=='add'){
       demandsPost(demandDetail).then(data=>{
         console.log(data)
+        that.toastAndBack()
+     
       })
+     
     }else if(that.data.type=='edit'){
        demandPut(demandDetail).then(data=>{
         console.log(data)
+         that.toastAndBack()
       })
     }
 
+  },
+  toastAndBack:function(){
+    wx.showToast({
+      title: '成功',
+      icon: 'success',
+      duration: 5000,
+      complete: function () {
+        wx.navigateBack({
+
+        })
+      }
+    })
   },
   formInputChange(e) {
     const { field } = e.currentTarget.dataset
@@ -197,6 +227,7 @@ Page({
     var applied = false
     var myApplyID = 0
     var that = this
+    console.log(options)
     switch (options.type) {
       case 'add':
 
@@ -235,8 +266,9 @@ Page({
       case 'delete':
         demandDel({demandID:options.demandID}).then(res=>{
           console.log(res)
-          applies = res
+          that.toastAndBack()
         })
+        
         break;
 
 
@@ -260,6 +292,7 @@ Page({
   toMyapply:function(e){
     var demandID = e.target.dataset.demandid
     var myapplyID = e.target.dataset.myapplyid
+    console.log('/pages/makeApply/makeApply?type=edit&demandID=' + demandID + '&myapplyID=' + myapplyID)
     wx.navigateTo({
       url: '/pages/makeApply/makeApply?type=edit&demandID=' + demandID + '&myapplyID=' + myapplyID,
     })
@@ -276,17 +309,64 @@ Page({
     })
   },
   navigateToApplyDatail: function (e) {
-    console.log(e.target)
+    console.log(e.currentTarget)
     wx.navigateTo({
-      url: '/pages/makeApply/makeApply?type=check&checkDemandsApply=True&' + 'applyID=' + e.target.dataset.applyid + '&' + 'demandID=' + e.target.dataset.demandid
+      url: '/pages/makeApply/makeApply?type=check&checkDemandsApply=True&' + 'applyID=' + e.currentTarget.dataset.applyid + '&' + 'demandID=' + e.currentTarget.dataset.demandid
     })
+  },
+  initData: function(){
+    var that = this;
+
+    wx.getLocation({
+      type: "gcj02",
+      success: re => {
+        console.log(re)
+
+        that.setData({
+          "formData.latitude": re.latitude,
+          "formData.longitude": re.longitude,
+          markers: [{
+            latitude: re.latitude,
+            longitude: re.longitude,
+            iconPath: '/image/location.png',
+            id:1
+          }]
+        })
+
+      }
+    });
+
+  },
+  moveToLocation: function () {
+    var that = this;
+    console.log('setPosition2', that.data.formData.longitude, that.data.formData.latitude, that.mapCtx)
+    that.mapCtx.moveToLocation({
+      latitude: that.data.formData.latitude,
+      longitude: that.data.formData.longitude,
+      success: function (res) {
+        console.log(res)
+      },
+      fail: function (res) {
+        console.log(res, 'failed')
+      },
+      complete: function (res) {
+        console.log(res, 'failed')
+      }
+    })
+    console.log('setPosition2', that.data.formData.longitude, that.data.formData.latitude, that.mapCtx)
   },
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
     console.log(options)
+    this.initData()
+    this.mapCtx = wx.createMapContext('myMapMakeDemad')
+    // this.initData()
     this.handleOp(options)
+
+    // this.moveToLocation();
+
 
   },
 
@@ -294,14 +374,14 @@ Page({
    * 生命周期函数--监听页面初次渲染完成
    */
   onReady: function () {
-
+   
   },
 
   /**
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
-
+    this.initData()
   },
 
   /**

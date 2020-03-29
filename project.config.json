@@ -42,12 +42,12 @@
 			"list": []
 		},
 		"miniprogram": {
-			"current": 5,
+			"current": 3,
 			"list": [
 				{
-					"id": -1,
+					"id": 0,
 					"name": "首页",
-					"pathName": "pages/index/index",
+					"pathName": "pages/login/login",
 					"query": "",
 					"scene": null
 				},
@@ -69,7 +69,7 @@
 					"id": 3,
 					"name": "makeDemand",
 					"pathName": "pages/makeDemand/makeDemand",
-					"query": "type=check&demandID=45",
+					"query": "type=add",
 					"scene": null
 				},
 				{

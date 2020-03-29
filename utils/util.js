@@ -57,12 +57,15 @@ const getLocal = (latitude, longitude) => {
         let province = res.result.ad_info.province
         let city = res.result.ad_info.city
         let district = res.result.ad_info.district
+        let business_area = res.result.address_reference.business_area == null ? null : res.result.address_reference.business_area.title
+
         locations = {
           province: province,
           city: city,
           district: district,
           latitude: latitude,
-          longitude: longitude
+          longitude: longitude,
+          business_area: business_area
         }
         resolve(locations)
 

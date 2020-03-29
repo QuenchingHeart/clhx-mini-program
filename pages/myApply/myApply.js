@@ -20,9 +20,9 @@ Page({
     })
   },
   navigateToApplyDatail: function (e) {
-    console.log(e.target)
+    console.log(e.currentTarget)
     wx.navigateTo({
-      url: '/pages/makeApply/makeApply?type=edit&' + 'applyID=' + e.target.dataset.applyid + '&' + 'demandID=' + e.target.dataset.demandid
+      url: '/pages/makeApply/makeApply?type=edit&' + 'applyID=' + e.currentTarget.dataset.applyid + '&' + 'demandID=' + e.currentTarget.dataset.demandid
     })
   },
   /**

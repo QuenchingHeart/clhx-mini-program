@@ -1,1 +1,14 @@
 /* pages/myDemands/myDemands.wxss */
+
+.cu-list.menu-avatar>.cu-item .content {
+  left:30rpx;
+  width:calc(100% - 190rpx-20rpx);
+}
+
+.cu-list.menu-avatar>.cu-item .action {
+  width:190rpx;
+}
+
+.margin-top{
+  margin-top: 5rpx;
+}

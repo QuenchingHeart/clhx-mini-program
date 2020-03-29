@@ -21,8 +21,14 @@ Page({
     checkDemandsApply: false,
     connectData:{
       '对接中':[{'完成对接':'complete'},{'撤销对接':'delete'}],
-    }
+    },
     //切换对接状态！！！
+    personorandganization: [
+      '个人',
+      '组织'
+    ],
+
+    personorandganizationIndex: 0,
   },
   initData: function (options) {
     var that = this
@@ -36,6 +42,13 @@ Page({
     var that = this
     
     that.handleOp(options)
+  },
+  bindPickerChange: function (e) {
+    console.log('picker发送选择改变，携带值为', e.detail.value)
+    this.setData({
+      personorandganizationIndex: e.detail.value,
+      "formData.isOrganization": e.detail.value
+    })
   },
   formInputChange(e) {
     const { field } = e.currentTarget.dataset
@@ -53,6 +66,7 @@ Page({
         that.setData({
           formData: res
         })
+        that.toastAndBack()
       })
     } else if (that.data.type == 'edit') {
       applyPut(this.data.formData).then(res => {
@@ -60,6 +74,7 @@ Page({
         that.setData({
           formData: res
         })
+        that.toastAndBack()
       })
     }
   },
@@ -79,16 +94,19 @@ Page({
       case 'approve':
         connectApprove(params).then(res=>{
           console.log(res)
+          that.toastAndBack()
         })
         break;
       case 'complete':
         connectComplete(params).then(res=>{
           console.log(res)
+          that.toastAndBack()
         })
         break;
       case 'delete':
         connectDel(params).then(res=>{
           console.log(res)
+          that.toastAndBack()
         })
         break;
     }
@@ -106,7 +124,7 @@ Page({
         break;
       case 'edit':
         // this.applyGet(options.applyID);
-        var params = { applyID: options.applyID, demandID: options.demandID, userID: app.globalData.userID}
+        var params = { applyID: options.myapplyID, demandID: options.demandID, userID: app.globalData.userID}
         applyGet(params).then(res => {
           that.setData({
             formData: res[0],
@@ -149,7 +167,7 @@ Page({
       case 'delete':
         applyDel({ applyID: options.applyID }).then(res => {
           console.log(res)
-          applies = res
+          that.toastAndBack()
         })
         break;
 
@@ -168,5 +186,17 @@ Page({
       url: '/pages/makeApply/makeApply?type=delete&applyID=' + this.data.formData.applyID,
     })
 
+  },
+  toastAndBack: function () {
+    wx.showToast({
+      title: '成功',
+      icon: 'success',
+      duration: 5000,
+      complete: function () {
+        wx.navigateBack({
+
+        })
+      }
+    })
   },
 })

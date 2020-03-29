@@ -1,3 +1,8 @@
 {
-  "navigationBarTitleText": "青云之上社区公益服务中心~"
+  "usingComponents": {
+    "main": "/pages/main/main",
+    "demands": "/pages/demands/demands",
+    "mine": "/pages/mine/mine"
+
+  }
 }
