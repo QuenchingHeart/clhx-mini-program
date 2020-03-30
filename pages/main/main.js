@@ -96,7 +96,9 @@ Page({
             markers: [{
               latitude: re.latitude,
               longitude: re.longitude,
-              iconPath: '/image/location.png'
+              iconPath: '/image/location.png',
+              width: '34px',
+              height: '34px'
             }]
           })
           that.setPosition(re.longitude, re.latitude)
@@ -126,7 +128,9 @@ Page({
             markers: [{
               latitude: re.latitude,
               longitude: re.longitude,
-              iconPath: '/image/location.png'
+              iconPath: '/image/location.png',
+              width: '34px',
+              height: '34px'
             }]
           })
           // that.setPosition(re.longitude, re.latitude)

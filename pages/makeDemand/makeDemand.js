@@ -140,6 +140,8 @@ Page({
               latitude: res.latitude,
               longitude: res.longitude,
               iconPath: '/image/location.png',
+              width: '34px',
+              height: '34px',
               id: 1
             }]
           })
@@ -218,11 +220,10 @@ Page({
     demandOne({
       demandID: demandID
     }).then(demandDetail => {
-      getLocal(demandDetail.location.latitude, demandDetail.location.longitude).then((res) => {
+      getLocal(demandDetail.location.latitude, demandDetail.location.longitude).then(res => {
         this.setData({
           demandDetail,
           formData: {
-            district: demandDetail.location.district,
             isOrganization: demandDetail.createdBy.isOrganization,
             title: demandDetail.title,
             detail: demandDetail.detail,
@@ -240,12 +241,16 @@ Page({
             latitude: res.latitude,
             longitude: res.longitude,
             iconPath: '/image/location.png',
+            width: '34px',
+            height: '34px',
             id: 1
           }]
         })
+        this.moveToLocation()
       })
-      this.moveToLocation()
+      
     })
+    
   },
   handleOp(options) {
     var disabled = false;
@@ -259,7 +264,7 @@ Page({
     }
     switch (options.type) {
       case 'add':
-
+        this.initData()
         break
       case 'edit':
         this.getOnedemand(options.demandID);
@@ -281,7 +286,7 @@ Page({
           demandID: options.demandID,
           userID: app.globalData.userID
         }).then(res => {
-          console.log(res.length, res[0])
+          // console.log(res.length, res[0])
           if (res.length > 0) {
             applied = true
             myApplyID = res[0].applyID
@@ -291,8 +296,6 @@ Page({
               myApplyID: myApplyID
             })
           }
-
-
         }).then(res => {
 
         })
@@ -306,8 +309,6 @@ Page({
         })
 
         break;
-
-
 
       default:
         break;
@@ -370,6 +371,8 @@ Page({
               latitude: res.latitude,
               longitude: res.longitude,
               iconPath: '/image/location.png',
+              width: '34px',
+              height: '34px',
               id: 1
             }]
           })
@@ -402,14 +405,8 @@ Page({
    */
   onLoad: function(options) {
     console.log(options)
-    // this.initData()
     this.mapCtx = wx.createMapContext('myMapMakeDemad')
-    this.initData()
     this.handleOp(options)
-
-    // this.moveToLocation();
-
-
   },
 
   /**
@@ -423,7 +420,7 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function() {
-    // this.initData()
+
   },
 
   /**
