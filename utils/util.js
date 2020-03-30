@@ -58,14 +58,16 @@ const getLocal = (latitude, longitude) => {
         let city = res.result.ad_info.city
         let district = res.result.ad_info.district
         let business_area = res.result.address_reference.business_area == null ? null : res.result.address_reference.business_area.title
+        let formatted_address = res.result.formatted_addresses.recommend
 
         locations = {
-          province: province,
-          city: city,
-          district: district,
-          latitude: latitude,
-          longitude: longitude,
-          business_area: business_area
+          province,
+          city,
+          district,
+          latitude,
+          longitude,
+          business_area,
+          formatted_address
         }
         resolve(locations)
 

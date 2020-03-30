@@ -79,7 +79,11 @@ Component({
           that.setPosition(re.longitude, re.latitude)
           that.moveToLocation();
 
-          util.getLocal(re.latitude, re.longitude)
+          util.getLocal(re.latitude, re.longitude).then((res) => {
+            that.setData({
+              inputInfo: res.formatted_address
+            })
+          })
         }
       });
 
@@ -100,13 +104,17 @@ Component({
               latitude: re.latitude,
               longitude: re.longitude,
               iconPath: '/image/location.png'
-            }],
-            inputInfo: re.address,
+            }]
           })
           // that.setPosition(re.longitude, re.latitude)
           console.log('setPosition', re.longitude, re.latitude)
           that.moveToLocation();
 
+          util.getLocal(re.latitude, re.longitude).then((res) => {
+            that.setData({
+              inputInfo: res.formatted_address
+            })
+          })
         }
       })
     },
