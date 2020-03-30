@@ -303,8 +303,13 @@ Component({
         MainCur: e.currentTarget.dataset.id
       })
     },
+    NavToMakeDemand(){
+      wx.navigateTo({
+        url: '/pages/makeDemand/makeDemand?type=add',
+      })
 
-  },
+    },
+  }
  
 
 })

@@ -43,22 +43,22 @@ Component({
         "pagePath": "/pages/main/main",
         "iconPath": "../pages/images/tabbar/basics.png",
         "selectedIconPath": "../pages/images/tabbar/basics_cur.png",
-        "text": "组件",
+        "text": "首页",
         "isSpecial": false
       },
       {
         "pagePath": "/pages/demands/demands",
         "iconPath": "../pages/images/tabbar/component.png",
         "selectedIconPath": "../pages/images/tabbar/component_cur.png",
-        "text": "接口",
+        "text": "需求",
         "isSpecial": false
       },
-      {
-        "iconPath": "../pages/images/tabbar/add_cur.png",
-        "selectedIconPath": "../pages/images/tabbar/add_cur.png",
-        "text": "发布",
-        "isSpecial": true
-      },
+      // {
+      //   "iconPath": "../pages/images/tabbar/add_cur.png",
+      //   "selectedIconPath": "../pages/images/tabbar/add_cur.png",
+      //   "text": "发布",
+      //   "isSpecial": true
+      // },
        {
         "pagePath": "/pages/source/source",
         "iconPath": "../pages/images/tabbar/plugin.png",
@@ -80,13 +80,13 @@ Component({
   methods: {
     switchTab(e) {
       const data = e.currentTarget.dataset
-      if(data.index==2){
-        this.NavToMakeDemand()
-      }else{
+      // if(data.index==2){
+      //   this.NavToMakeDemand()
+      // }else{
         const url = data.path
         wx.switchTab({ url })
 
-      }
+      // }
       this.setData({
         selected: data.index
       })

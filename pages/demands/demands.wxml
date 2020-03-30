@@ -2,18 +2,19 @@
 <wxs module="dateUtil" src="../../utils/timeUtil.wxs"></wxs>
 <wxs module="tools" src="../../utils/tools.wxs" />
   <view class="cu-bar search bg-white">
-    <view class="cu-avatar round" style="background-image:url(https://image.weilanwl.com/img/square-2.jpg);"></view>
-
-    <view class="search-form round">
-      <text class="cuIcon-search"></text>
-      <input type="text" bindchange="bindSearchKeywordChange" placeholder="搜索关键字" value="{{tools.filter(filterInfo.keyword,'%','')}}" confirm-type="search"></input>
-    </view>
     <view class="action">
       <picker mode="region" bindchange="bindRegionChange" value="{{region}}" custom-item="{{customItem}}">
         <text>{{region[2]}}</text>
         <text class="cuIcon-triangledownfill"></text>
       </picker>
     </view>
+    <view class="search-form round">
+      <text class="cuIcon-search"></text>
+      <input type="text" bindchange="bindSearchKeywordChange" placeholder="搜索关键字" value="{{tools.filter(filterInfo.keyword,'%','')}}" confirm-type="search"></input>
+    </view>
+
+     <view class="cu-avatar round" bindtap="NavToMakeDemand" style="background-image:url(https://image.weilanwl.com/img/square-2.jpg);"></view>
+
   </view>
   <view class="cu-list grid col-{{gridCol}} {{gridBorder?'':'no-border'}}">
     <view class="cu-item" wx:for="{{categoryA}}" wx:key bindtap="bindCategoryAChange" data-id="{{index}}">
