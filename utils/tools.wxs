@@ -1,17 +1,27 @@
-var myFilter = function (str,pattern,newPattern) {
-  console.log(str, pattern, newPattern) 
+var myFilter = function(str, pattern, newPattern) {
+  console.log(str, pattern, newPattern)
   return str.replace(getRegExp(pattern, 'g'), newPattern);
 }
-var distanceFormat = function(distance){
+var distanceFormat = function(distance) {
   var distanceStr = ''
-  if(distance<1){
+  if (distance < 1) {
     distanceStr = '<1km'
-  }else{
-    distanceStr =  distance.toFixed(1) + 'km'
+  } else if (distance > 100) {
+    distanceStr = '>100km'
+  } else {
+    distanceStr = distance.toFixed(1) + 'km'
   }
   return distanceStr
 }
+var locationFormat = function(location) {
+  var locArr = location.split(':')
+  if (locArr.length == 4) {
+    return locArr[3]
+  }
+  return ''
+}
 module.exports = {
   filter: myFilter,
-  distanceFormat: distanceFormat
+  distanceFormat: distanceFormat,
+  locationFormat: locationFormat
 }

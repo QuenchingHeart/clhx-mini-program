@@ -63,7 +63,7 @@ Component({
         txt:"党建宣传",
         url:'../../image/demands.png',
         selected_url:'../../image/selected_demands.png',
-        icon: 'clothesfill',
+        icon: 'camerafill',
         color: 'orange',
         badge: 120,
 
@@ -72,7 +72,7 @@ Component({
         txt: "社区服务",
         url: '../../image/demands.png',
         selected_url: '../../image/selected_demands.png',
-        icon: 'discoverfill',
+        icon: 'servicefill',
         color: 'yellow',
         badge: 120,
 
@@ -81,7 +81,7 @@ Component({
         txt: "特殊困难",
         url: '../../image/demands.png',
         selected_url: '../../image/selected_demands.png',
-        icon: 'questionfill',
+        icon: 'wefill',
         color: 'olive',
         badge: 120,
 
@@ -90,7 +90,7 @@ Component({
         txt: "项目策划",
         url: '../../image/demands.png',
         selected_url: '../../image/selected_demands.png',
-        icon: 'commandfill',
+        icon: 'writefill',
         color: 'cyan',
         badge: 120,
 
@@ -99,7 +99,7 @@ Component({
         txt: "为小为老",
         url: '../../image/demands.png',
         selected_url: '../../image/selected_demands.png',
-        icon: 'brandfill',
+        icon: 'babyfill',
         color: 'blue',
         badge: 120,
 
@@ -118,7 +118,7 @@ Component({
     ]},
     region: {
       type: Array,
-      value: ['广东省', '广州市', '海珠区']
+      value: ['江苏省', '南京市', '江宁区']
       },
     customItem: {
       type: String,
