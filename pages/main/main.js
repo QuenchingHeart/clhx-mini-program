@@ -17,7 +17,7 @@ Component({
       value: 23.54972,
       observer: function (newVal, oldVal) { }
     },
-    longtitude: {
+    longitude: {
       type: Number,
       value: 116.37271,
       observer: function (newVal, oldVal) { }
@@ -59,7 +59,7 @@ Component({
   methods:{
     initData: function (options) {
       var that = this;
-      that.mapCtx = wx.createMapContext('myMap')
+      that.mapCtxMain = wx.createMapContext('myMap')
 
 
       wx.getLocation({
@@ -112,8 +112,8 @@ Component({
     },
     moveToLocation: function () {
       var that = this;
-      console.log('setPosition2', that.data.longitude, that.data.latitude, that.mapCtx)
-      that.mapCtx.moveToLocation({
+      console.log('setPosition1', that.data.longitude, that.data.latitude, that.mapCtxMain)
+      that.mapCtxMain.moveToLocation({
         latitude: that.data.latitude,
         longitude: that.data.longitude,
         success: function (res) {
@@ -123,10 +123,10 @@ Component({
           console.log(res,'failed')
         },
         complete: function (res) {
-          console.log(res, 'failed')
+          console.log(res, 'complete')
         }
       })
-      console.log('setPosition2', that.data.longitude, that.data.latitude, that.mapCtx)
+      console.log('setPosition2', that.data.longitude, that.data.latitude, that.mapCtxMain)
     },
     NavToMakeDemand() {
       wx.navigateTo({

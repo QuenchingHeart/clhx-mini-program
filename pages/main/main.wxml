@@ -4,10 +4,9 @@
       id="myMap"
       style="width: 100%; height:calc(100vh)"
       latitude="{{latitude}}"
-      longitude="{{longtitude}}"
+      longitude="{{longitude}}"
       markers="{{markers}}"
       show-location="true"
-      scale="18"
       bindmarkertap="tapUm"
     >
     <cover-view class='map-contor'>
