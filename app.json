@@ -1,6 +1,5 @@
 {
   "pages": [
-    "pages/index/index",
     "pages/login/login",
     "pages/main/main",
     "pages/demands/demands",
@@ -11,6 +10,41 @@
     "pages/makeApply/makeApply",
     "pages/myApply/myApply"
   ],
+    "tabBar": {
+      "custom": true,
+      "color": "#7A7E83",
+      "selectedColor": "#3cc51f",
+      "borderStyle": "black",
+      "backgroundColor": "#ffffff",
+      "list": [
+        {
+          "pagePath": "pages/main/main",
+          "iconPath": "pages/images/logo.png",
+          "selectedIconPath": "image/location.png",
+          "text": "组件"
+        },
+        {
+          "pagePath": "pages/demands/demands",
+          "iconPath": "pages/images/logo.png",
+          "selectedIconPath": "image/location.png",
+          "text": "接口"
+        },
+        {
+          "pagePath": "pages/source/source",
+          "iconPath": "pages/images/tabbar/plugin.png",
+          "selectedIconPath": "pages/images/tabbar/plugin_cur.png",
+          "text": "资源",
+          "isSpecial": false
+        },
+        {
+          "pagePath": "pages/mine/mine",
+          "iconPath": "pages/images/tabbar/about.png",
+          "selectedIconPath": "pages/images/tabbar/about_cur.png",
+          "text": "我的",
+          "isSpecial": false
+        }
+      ]
+    },
   "window": {
     "navigationBarBackgroundColor": "#ffffff",
     "navigationBarTextStyle": "black",

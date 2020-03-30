@@ -228,6 +228,9 @@ Page({
     var myApplyID = 0
     var that = this
     console.log(options)
+    if(!options.type){
+      options.type='add'
+    }
     switch (options.type) {
       case 'add':
 

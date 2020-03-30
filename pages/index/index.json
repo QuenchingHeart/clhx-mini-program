@@ -1,8 +1,0 @@
-{
-  "usingComponents": {
-    "main": "/pages/main/main",
-    "demands": "/pages/demands/demands",
-    "mine": "/pages/mine/mine"
-
-  }
-}

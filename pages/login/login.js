@@ -77,8 +77,8 @@ Page({
                 app.globalData.userID = data.userID;
                 wx.getSetting({
                   success: res => {
-                    wx.navigateTo({
-                      url: "../index/index"
+                    wx.switchTab({
+                      url: "../main/main"
                     })
                     console.log('jump')
                     if (res.authSetting["scope.userInfo"]) {

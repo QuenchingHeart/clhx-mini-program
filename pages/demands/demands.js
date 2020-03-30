@@ -160,7 +160,12 @@ Component({
   pageLifetimes: {
     // 组件所在页面的生命周期函数
     show: function () {
-    
+      if (typeof this.getTabBar === 'function' &&
+        this.getTabBar()) {
+        this.getTabBar().setData({
+          selected: 1
+        })
+      }
     }
   },
   methods:{

@@ -1,70 +1,40 @@
 // pages/mine/mine.js
 var base64 = require("../images/base64");
-Page({
+Component({
 
   /**
    * 页面的初始数据
    */
-  data: {
+  Properties: {
 
   },
   /**
  * 生命周期函数--监听页面加载
  */
-  onLoad: function () {
-    this.setData({
-      icon: base64.icon20
-    });
+  lifetimes: {
+    // 生命周期函数，可以为函数，或一个在methods段中定义的方法名
+    attached: function () {
+    },
+    moved: function () { },
+    detached: function () { },
   },
 
+  // 生命周期函数，可以为函数，或一个在methods段中定义的方法名
+  attached: function () { }, // 此处attached的声明会被lifetimes字段中的声明覆盖
+  ready: function () { },
 
-
-  /**
-   * 生命周期函数--监听页面初次渲染完成
-   */
-  onReady: function () {
-
+  pageLifetimes: {
+    // 组件所在页面的生命周期函数
+    show: function () {
+      this.setData({
+        icon: base64.icon20
+      });
+      if (typeof this.getTabBar === 'function' &&
+        this.getTabBar()) {
+        this.getTabBar().setData({
+          selected: 4
+        })
+      }
+    }
   },
-
-  /**
-   * 生命周期函数--监听页面显示
-   */
-  onShow: function () {
-
-  },
-
-  /**
-   * 生命周期函数--监听页面隐藏
-   */
-  onHide: function () {
-
-  },
-
-  /**
-   * 生命周期函数--监听页面卸载
-   */
-  onUnload: function () {
-
-  },
-
-  /**
-   * 页面相关事件处理函数--监听用户下拉动作
-   */
-  onPullDownRefresh: function () {
-
-  },
-
-  /**
-   * 页面上拉触底事件的处理函数
-   */
-  onReachBottom: function () {
-
-  },
-
-  /**
-   * 用户点击右上角分享
-   */
-  onShareAppMessage: function () {
-
-  }
 })
