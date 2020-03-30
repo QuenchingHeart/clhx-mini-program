@@ -72,7 +72,7 @@
     <!-- </view> -->
   </scroll-view>
 </view>
-<index></index>
+<tabbar tabbar="{{tabbar}}"></tabbar>
 <!-- 
 
 距离

@@ -1,4 +1,5 @@
 // pages/demands/demands.js
+const app = getApp();
 import { demandsAll } from "../../utils/api.js";
 Component({
 
@@ -6,6 +7,10 @@ Component({
    * 页面的初始数据
    */
   properties: {
+    tabbar: {
+      type:Object,
+      value:{}
+    },
     TabCur: {
       type:Number,
       value:0
@@ -147,7 +152,8 @@ Component({
       var that = this
       that.initData();
 
-      that.initList();              
+      that.initList();  
+      app.editTabbar();            
     },
     moved: function () { },
     detached: function () { },
@@ -155,17 +161,13 @@ Component({
 
   // 生命周期函数，可以为函数，或一个在methods段中定义的方法名
   attached: function () { }, // 此处attached的声明会被lifetimes字段中的声明覆盖
-  ready: function () { },
+  ready: function () {     },
 
   pageLifetimes: {
     // 组件所在页面的生命周期函数
     show: function () {
-      if (typeof this.getTabBar === 'function' &&
-        this.getTabBar()) {
-        this.getTabBar().setData({
-          selected: 1
-        })
-      }
+      app.editTabbar();
+
     }
   },
   methods:{

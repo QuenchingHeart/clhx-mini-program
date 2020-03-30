@@ -19,31 +19,29 @@
       "list": [
         {
           "pagePath": "pages/main/main",
-          "iconPath": "pages/images/logo.png",
-          "selectedIconPath": "image/location.png",
-          "text": "组件"
+          "iconPath": "pages/images/tabbar/basics.png",
+          "selectedIconPath": "pages/images/tabbar/basics_cur.png",
+          "text": "首页"
         },
         {
           "pagePath": "pages/demands/demands",
-          "iconPath": "pages/images/logo.png",
-          "selectedIconPath": "image/location.png",
-          "text": "接口"
+          "iconPath": "pages/images/tabbar/component.png",
+          "selectedIconPath": "pages/images/tabbar/component_cur.png",
+          "text": "需求"
         },
         {
-          "pagePath": "pages/source/source",
-          "iconPath": "pages/images/tabbar/plugin.png",
-          "selectedIconPath": "pages/images/tabbar/plugin_cur.png",
-          "text": "资源",
-          "isSpecial": false
-        },
-        {
-          "pagePath": "pages/mine/mine",
-          "iconPath": "pages/images/tabbar/about.png",
-          "selectedIconPath": "pages/images/tabbar/about_cur.png",
-          "text": "我的",
-          "isSpecial": false
-        }
-      ]
+        "pagePath": "pages/source/source",
+        "iconPath": "pages/images/tabbar/plugin.png",
+        "selectedIconPath": "pages/images/tabbar/plugin_cur.png",
+        "text": "资源"
+      },
+      {
+        "pagePath": "pages/mine/mine",
+        "iconPath": "pages/images/tabbar/about.png",
+        "selectedIconPath": "pages/images/tabbar/about_cur.png",
+        "text": "我的"
+      }
+    ]
     },
   "window": {
     "navigationBarBackgroundColor": "#ffffff",
@@ -54,12 +52,7 @@
   },
   "component": true,
   "usingComponents": {
-    "mp-toptips": "libs/weui-miniprogram/components/toptips/toptips",
-    "mp-cells": "libs/weui-miniprogram/components/cells/cells",
-    "mp-cell": "libs/weui-miniprogram/components/cell/cell",
-    "mp-checkbox": "libs/weui-miniprogram/components/checkbox/checkbox",
-    "mp-checkbox-group": "libs/weui-miniprogram/components/checkbox-group/checkbox-group",
-    "mp-form": "libs/weui-miniprogram/components/form/form"
+
   },
   "sitemapLocation": "sitemap.json"
 }

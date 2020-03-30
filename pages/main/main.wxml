@@ -32,3 +32,4 @@
 
 </view>
 <!-- <index></index> -->
+<tabbar tabbar="{{tabbar}}"></tabbar>

@@ -16,6 +16,7 @@ Page({
     searchText: '选择位置',
     inputInfo: '选择位置',
     position: '',
+    tabbar: {},
 
   },
 
@@ -24,25 +25,20 @@ Page({
    */
   onLoad: function (options) {
     this.initData() 
+    app.editTabbar();
   },
 
   /**
    * 生命周期函数--监听页面初次渲染完成
    */
   onReady: function () {
-    
   },
 
   /**
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
-    if (typeof this.getTabBar === 'function' &&
-      this.getTabBar()) {
-      this.getTabBar().setData({
-        selected: 0
-      })
-    }
+
   },
 
   /**
