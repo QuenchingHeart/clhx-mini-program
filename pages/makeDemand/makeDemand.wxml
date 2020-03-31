@@ -51,10 +51,6 @@
     <input disabled="{{disabled}}" class="weui-input" data-field="title" bindinput="formInputChange" placeholder="请输入标题" value="{{formData.title}}" />
   </view>
 
-  <view class="cu-form-group align-start">
-    <view class="title">详细内容</view>
-    <textarea class="weui-textarea" data-field="detail" bindinput="formInputChange" value="{{formData.detail}}" placeholder="请输入详细内容" />
-  </view>
   <view class="cu-form-group">
     <view class="title">联系人</view>
     <input class="weui-input" disabled="{{disabled}}" data-field="contactName" bindinput="formInputChange" placeholder="请输入联系人" value="{{formData.contactName}}" />
@@ -71,6 +67,11 @@
     <view class="cu-tag line-blue">
       中国大陆
     </view>
+  </view>
+
+  <view class="cu-form-group align-start">
+    <view class="title">详细内容</view>
+    <textarea class="weui-textarea" data-field="detail" bindinput="formInputChange" value="{{formData.detail}}" placeholder="请输入详细内容" />
   </view>
 
 </form>

@@ -1,12 +1,12 @@
 <!--pages/mine/mine.wxml-->
 <scroll-view scroll-y class="scrollPage">
   <view class="UCenter-bg">
-    <image src="/pages/images/logo.png" class="png" mode="widthFix"></image>
-    <view class="text-xl">ColorUI组件库
-      <text class="text-df">v2.0</text>
+    <image src="/image/logo.jpg" class="png" mode="widthFix"></image>
+    <view class="text-xl">青云之上社区云公益服务中心
+      <text class="text-df">v0.1</text>
     </view>
     <view class="margin-top-sm">
-      <text>By:文晓港</text>
+      <text>NUAA</text>
     </view>
     <image src="https://raw.githubusercontent.com/weilanwl/ColorUI/master/demo/images/wave.gif" mode="scaleToFill" class="gif-wave"></image>
   </view>

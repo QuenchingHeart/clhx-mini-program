@@ -72,15 +72,15 @@ Page({
       "status": "已发布"
     },
     formData: {
-      district: "广东省:揭阳市:揭西县",
-      address: '',
       isOrganization: false,
       title: "",
       latitude: 23.099994,
       longitude: 113.324520,
+      district: "广东省:揭阳市:揭西县:",
+      address: '',
       detail: '内容',
       demandCategory: "防疫特区:物资援助",
-      contactName: "甲鱼",
+      contactName: "联系人",
       contactPhone: "15651699027",
       startTime: "2020-09-27",
       endTime: "2020-09-30"
@@ -130,16 +130,19 @@ Page({
     var location = {}
     wx.chooseLocation({
       success: function(loc) {
+        console.log("**", loc)
         getLocal(loc.latitude, loc.longitude).then((res) => {
           that.setData({
             "formData.latitude": res.latitude,
             "formData.longitude": res.longitude,
             "formData.district": res.province + ":" + res.city + ":" + res.district + ":" + (res.business_area == null ? '' : res.business_area),
-            "formData.address": res.formatted_address,
+            "formData.address": loc.name,
             markers: [{
               latitude: res.latitude,
               longitude: res.longitude,
               iconPath: '/image/location.png',
+              width: '34px',
+              height: '34px',
               id: 1
             }]
           })
@@ -155,7 +158,7 @@ Page({
     var demandDetail = {
       "demandID": that.data.demandDetail.demandID,
       "createdBy": {
-        "publishUserID": 14,
+        "publishUserID": app.globalData.userID,
         "publishUserName": "userName",
         "isOrganization": formData.isOrganization
       },
@@ -164,7 +167,8 @@ Page({
       "location": {
         "longitude": formData.longitude,
         "latitude": formData.latitude,
-        "district": formData.district
+        "district": formData.district,
+        "address": formData.address
       },
       "interval": {
         "startTime": Date.parse(formData.startTime) / 1000,
@@ -218,11 +222,10 @@ Page({
     demandOne({
       demandID: demandID
     }).then(demandDetail => {
-      getLocal(demandDetail.location.latitude, demandDetail.location.longitude).then((res) => {
+      getLocal(demandDetail.location.latitude, demandDetail.location.longitude).then(res => {
         this.setData({
           demandDetail,
           formData: {
-            district: demandDetail.location.district,
             isOrganization: demandDetail.createdBy.isOrganization,
             title: demandDetail.title,
             detail: demandDetail.detail,
@@ -234,18 +237,22 @@ Page({
             latitude: res.latitude,
             longitude: res.longitude,
             district: res.province + ":" + res.city + ":" + res.district + ":" + (res.business_area == null ? '' : res.business_area),
-            address: res.formatted_address
+            address: demandDetail.location.address
           },
           markers: [{
             latitude: res.latitude,
             longitude: res.longitude,
             iconPath: '/image/location.png',
+            width: '34px',
+            height: '34px',
             id: 1
           }]
         })
+        this.moveToLocation()
       })
-      this.moveToLocation()
+
     })
+
   },
   handleOp(options) {
     var disabled = false;
@@ -259,7 +266,7 @@ Page({
     }
     switch (options.type) {
       case 'add':
-
+        this.initData()
         break
       case 'edit':
         this.getOnedemand(options.demandID);
@@ -281,7 +288,7 @@ Page({
           demandID: options.demandID,
           userID: app.globalData.userID
         }).then(res => {
-          console.log(res.length, res[0])
+          // console.log(res.length, res[0])
           if (res.length > 0) {
             applied = true
             myApplyID = res[0].applyID
@@ -291,8 +298,6 @@ Page({
               myApplyID: myApplyID
             })
           }
-
-
         }).then(res => {
 
         })
@@ -306,8 +311,6 @@ Page({
         })
 
         break;
-
-
 
       default:
         break;
@@ -370,6 +373,8 @@ Page({
               latitude: res.latitude,
               longitude: res.longitude,
               iconPath: '/image/location.png',
+              width: '34px',
+              height: '34px',
               id: 1
             }]
           })
@@ -402,14 +407,8 @@ Page({
    */
   onLoad: function(options) {
     console.log(options)
-    // this.initData()
     this.mapCtx = wx.createMapContext('myMapMakeDemad')
-    this.initData()
     this.handleOp(options)
-
-    // this.moveToLocation();
-
-
   },
 
   /**
@@ -423,7 +422,7 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function() {
-    // this.initData()
+
   },
 
   /**

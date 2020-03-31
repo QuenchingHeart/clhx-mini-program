@@ -53,9 +53,13 @@
               <text class="text-cut">{{item.title}}</text>
               <view class="cu-tag round bg-orange sm">6人</view>
             </view>
-            <view class="text-grey text-sm"><text class="cuIcon-time text-orange margin-right-xs"></text>{{dateUtil.dateFormat(item.interval.startTime*1000,'yyyy/MM/dd')}} - {{dateUtil.dateFormat(item.interval.endTime*1000,'yyyy/MM/dd')}}</view>
+            <view class="text-grey text-sm">
+              <text class="cuIcon-remind text-orange margin-right-xs"></text>
+                {{dateUtil.dateFormat(item.interval.startTime*1000,'yyyy/MM/dd')}} - {{dateUtil.dateFormat(item.interval.endTime*1000,'yyyy/MM/dd')}}
+            </view>
             <view class="text-gray text-sm flex">
-              <text class="text-cut"> {{item.detail==null?'占位置看效果':item.detail}}</text>
+              <text class="cuIcon-mark text-orange margin-right-xs"></text>
+              <text class="text-cut">{{item.detail==null?'':(item.detail.length < 10 ? item.detail : item.detail + '......')}}</text>
             </view>
 
           </view>
