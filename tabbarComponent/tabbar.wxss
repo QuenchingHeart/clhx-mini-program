@@ -14,7 +14,7 @@
     padding-bottom: 66rpx;
 } */
 .iphoneX-height{
-  height: 100rpx;
+  height: 120rpx;
 }
 .middle-wrapper{
   position: absolute;

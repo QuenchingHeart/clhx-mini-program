@@ -92,7 +92,7 @@
   </view>
 </view>
 <view class="flex solid-bottom padding justify-around" wx:if="{{type=='check'}}">
-  <view wx:if="{{!applied}}" class="cu-btn bg-blue lg padding-sm margin-xs radius">
+  <view wx:if="{{!applied&userID!=demandDetail.createdBy.publishUserID}}" class="cu-btn bg-blue lg padding-sm margin-xs radius">
     <button class="cu-btn bg-blue lg" bindtap="apply" data-demandid="{{demandDetail.demandID}}">申请对接</button>
   </view>
   <view wx:if="{{applied}}" class="cu-btn bg-cyan lg padding-sm margin-xs radius">
