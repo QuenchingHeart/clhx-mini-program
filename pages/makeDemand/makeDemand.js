@@ -250,9 +250,9 @@ Page({
         })
         this.moveToLocation()
       })
-      
+
     })
-    
+
   },
   handleOp(options) {
     var disabled = false;
