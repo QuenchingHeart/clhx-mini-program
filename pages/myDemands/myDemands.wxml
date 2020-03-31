@@ -1,17 +1,17 @@
 <!--pages/myDemands/myDemands.wxml-->
 <view class="cu-list menu-avatar">
-    <view class="cu-item margin-top" wx:for="{{demands}}" data-demandid="{{item.demandID}}" wx:key="{{index}}" bindtap="navigateToDemandDatail">
-      <view class="content">
-        <view class="text-black">{{item.title}}</view>
-        <view class="text-gray text-sm flex">
-          <text class="text-cut text-green">
-							<text class="cuIcon-infofill text-blue  margin-right-xs"></text> {{item.detail}}
-          </text>
-        </view>
-      </view>
-      <view class="action">
-        <view class="text-grey text-xs">{{item.category}}</view>
-        <view class="cu-tag round bg-green sm">{{item.status}}</view>
+  <view class="cu-item margin-top" wx:for="{{demands}}" data-demandid="{{item.demandID}}" wx:key="{{index}}" bindtap="navigateToDemandDatail">
+    <view class="content">
+      <view class="text-black">{{item.title}}</view>
+      <view class="text-gray text-sm flex">
+        <text class="text-cut text-grey">
+							<text class="cuIcon-mark text-blue margin-right-xs"></text>{{item.detail.length >= 10 ? item.detail + '......' : item.detail}}
+        </text>
       </view>
     </view>
+    <view class="action">
+      <view class="text-grey text-xs">{{item.category}}</view>
+      <view class="cu-tag round bg-green sm">{{item.status}}</view>
+    </view>
+  </view>
 </view>
