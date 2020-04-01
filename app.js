@@ -70,8 +70,8 @@ App({
       "list": [
         {
           "pagePath": "/pages/main/main",
-          "iconPath": "../pages/images/tabbar/basics.png",
-          "selectedIconPath": "../pages/images/tabbar/basics_cur.png",
+          "iconPath": "../pages/images/helpicon/RectangleCopy_6.png",
+          "selectedIconPath": "../pages/images/helpicon/RectangleCopy_6.png",
           "text": "首页",
           "isSpecial": false
         },
@@ -84,8 +84,8 @@ App({
         },
         {
           "pagePath":"/pages/makeDemand/makeDemand?type=add",
-          "iconPath": "../pages/images/tabbar/add_cur.png",
-          "selectedIconPath": "../pages/images/tabbar/add_cur.png",
+          "iconPath": "../pages/images/helpicon/RectangleCopy_4.png",
+          "selectedIconPath": "../pages/images/helpicon/RectangleCopy_4.png",
           "text": "发布",
           "isSpecial": true
         },

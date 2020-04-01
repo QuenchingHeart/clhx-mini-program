@@ -98,7 +98,8 @@ Page({
     disabled: false,
     applies: [],
     applied: false,
-    myApplyID: 0
+    myApplyID: 0,
+    userID:0
   },
   bindPickerChange: function(e) {
     console.log('picker发送选择改变，携带值为', e.detail.value)
@@ -406,6 +407,9 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function(options) {
+    this.setData({
+      userID: app.globalData.userID
+    })
     console.log(options)
     this.mapCtx = wx.createMapContext('myMapMakeDemad')
     this.handleOp(options)

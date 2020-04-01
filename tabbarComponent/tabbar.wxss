@@ -1,3 +1,4 @@
+@import "../libs/iconfont/iconfont.wxss";
 .tabbar_box{
     display: flex;
     flex-direction: row;
@@ -44,6 +45,7 @@
     height: 56rpx;
 }
 .special-wrapper{
+  background-color: #75c142 !important;
   position: absolute;
   left: 27rpx;
   top: -26rpx;
@@ -63,4 +65,9 @@
 .special-text-wrapper{
   width: 56rpx;
   height: 56rpx;
+}
+
+.tabbar_icon_font{
+  line-height:50rpx;
+  font-size:56rpx;
 }

@@ -11,10 +11,8 @@
     >
     <cover-view class='map-contor'>
       <cover-view class='contor-input'>
-      <cover-view catchtap="toggleEmojis" class='emojisWarp'>
-        <cover-image  src="/image/search.png" style='height:26px;width:26px;margin:0 auto;'></cover-image></cover-view>
         <cover-view class="input-info" bindtap='chooseLocation'>
-              {{inputInfo}}
+            <span class="iconfont icon-RectangleCopy"></span>  {{inputInfo}}
               <!-- <input class="hide" value="{{searchText}}" focus="{{inputFocus}}"  bindinput="blurInput" value="{{inputInfo}}" maxlength='13'></input> -->
           </cover-view>
         </cover-view>

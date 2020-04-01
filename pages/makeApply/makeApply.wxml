@@ -56,7 +56,7 @@
 		</view>
     <view class="flex solid-bottom padding justify-around" wx:if="{{type=='check' & checkDemandsApply }}">
       <block wx:if="{{formData.status=='待审核'}}">
-        <view class="cu-btn bg-orange lg padding-sm margin-xs radius">
+        <view class="cu-btn bg-blue lg padding-sm margin-xs radius">
           <a class="cu-btn bg-blue lg" disabled='{{disabled}}' type="primary" data-type="approve" bindtap="connectOp">确认对接</a>
         </view>
       </block>

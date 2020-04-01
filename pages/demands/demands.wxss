@@ -220,3 +220,8 @@
 .cu-list.grid>.cu-item text {
   font-size: 24rpx;
 }
+
+.shadow-warp {
+	position: relative;
+	box-shadow: 0 0 0 rgba(0, 0, 0, 0.1);
+}

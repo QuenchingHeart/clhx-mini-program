@@ -1,15 +1,16 @@
 <!--pages/myApply/myApply.wxml-->
 <template name="myApply">
 <view class="cu-list menu-avatar">
-    <view class="cu-item margin-top" wx:for="{{applies}}" data-applyid="{{item.applyID}}" data-demandid="{{item.demandID}}" wx:key="{{index}}" bindtap="navigateToApplyDatail">
+    <view class="cu-item margin-top" wx:for="{{applies}}" data-applyid="{{item.applyID}}" data-demandid="{{item.demandID}}" wx:key="{{index}}" 
+      bindtap="{{item.status=='已关闭'?'':'navigateToApplyDatail'}}">
       <view class="content">
-        <view class="text-black">{{item.demandTitle}}</view>
+        <view class="text-{{item.status=='已关闭'?'gray':'black'}}">{{item.demandTitle}}</view>
         <view class="text-gray text-sm">联系人   {{item.contactName}}</view>
         <view class="text-gray text-sm">联系号码 {{item.contactPhone}}</view>
       </view>
       <view class="action">
         <view class="text-grey text-xs">{{item.demandCategory}}</view>
-        <view class="cu-tag round bg-green sm">{{item.status}}</view>
+        <view class="cu-tag round bg-{{item.status=='已关闭'?'gray':'black'}} sm">{{item.status}}</view>
       </view>
     </view>
 </view>

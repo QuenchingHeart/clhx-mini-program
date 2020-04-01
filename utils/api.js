@@ -96,7 +96,7 @@ function connectComplete(data) {
 
 function connectDel(data) {
   return http({
-    url: '/connect/cancel?applyID=' + data.applyID,
+    url: '/connect/cancel?applyID=' + data.applyID +'&demandID=' + data.demandID,
     method: 'DELETE',
     data: data
   })

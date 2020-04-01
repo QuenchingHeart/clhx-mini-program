@@ -295,8 +295,12 @@ Component({
     },
     navigateToDemandDatail: function (e) {
       console.log(e)
+      var type = 'check'
+      if(e.currentTarget.dataset.publisherid == app.globalData.userID){
+        type = 'edit'
+      }
       wx.navigateTo({
-        url: '/pages/makeDemand/makeDemand?type=check&' + 'demandID=' + e.currentTarget.dataset.demandid
+        url: '/pages/makeDemand/makeDemand?type=' + type + '&' + 'demandID=' + e.currentTarget.dataset.demandid
       })
     },
     tabSelect(e) {

@@ -28,8 +28,8 @@ Component({
           },
           {
             "pagePath":"/pages/makeDemand/makeDemand?type=add",
-            "iconPath": "../pages/images/tabbar/add_cur.png",
-            "selectedIconPath": "../pages/images/tabbar/add_cur.png",
+            "iconPath": "../pages/images/helpicon/RectangleCopy.png",
+            "selectedIconPath": "../pages/images/helpicon/RectangleCopy.png",
             "text": "发布",
             "isSpecial": true
           },
