@@ -1,71 +1,66 @@
-  <view class="cu-form-group">
-      <view class="title">联系人</view>
-      <input class="weui-input" disabled="{{disabled}}" data-field="contactName" bindinput="formInputChange" placeholder="请输入联系人" value="{{formData.contactName}}"/>
+<view class="cu-form-group">
+  <view class="title">组织或个人</view>
+  <picker mode="selector" bindchange="bindPickerChange" range="{{personorandganization}}" value="{{personorandganizationIndex}}" disabled="{{disabled}}">
+    <view class="picker">
+      {{personorandganization[personorandganizationIndex]}}
     </view>
-    
-    <view class="cu-form-group">
-      <view class="title">手机号码</view>
-      <input data-field="contactPhone" disabled="{{disabled}}" bindinput="formInputChange" value="{{formData.contactPhone}}" placeholder="请输入号码" />
-      <view class="cu-capsule radius">
-        <view class="cu-tag bg-blue">
-        +86
-        </view>
-      </view>
-      <view class="cu-tag line-blue">
-        中国大陆
-      </view>
-    </view>
-    <view class="cu-form-group">
-      <view class="title">组织或个人</view>
-      <picker mode="selector"
-        bindchange="bindPickerChange"
-        range="{{personorandganization}}"
-        value="{{personorandganizationIndex}}"
-        disabled="{{disabled}}"
-        >
-        <view class="picker">
-          {{personorandganization[personorandganizationIndex]}}
-        </view>
+  </picker>
+</view>
 
+<view class="cu-form-group">
+  <view class="title">联系人</view>
+  <input class="weui-input" disabled="{{disabled}}" data-field="contactName" bindinput="formInputChange" placeholder="请输入联系人" value="{{formData.contactName}}" />
+</view>
 
-      </picker>
+<view class="cu-form-group">
+  <view class="title">手机号码</view>
+  <input data-field="contactPhone" disabled="{{disabled}}" bindinput="formInputChange" value="{{formData.contactPhone}}" placeholder="请输入号码" />
+  <view class="cu-capsule radius">
+    <view class="cu-tag bg-blue">
+      +86
     </view>
-    <view class="cu-form-group align-start">
-      <view class="title">详细内容</view>
-        <textarea class="weui-textarea" data-field="detail" bindinput="formInputChange" value="{{formData.detail}}" placeholder="请输入详细内容" />
-    </view>
+  </view>
+  <view class="cu-tag line-blue">
+    中国大陆
+  </view>
+</view>
 
-    <view class="button-sp-area">
-			<view class="cu-btn bg-orange lg padding-sm margin-xs radius">
-        <a class="cu-btn bg-orange lg"  type="primary" bindtap="cancelForm">取消</a>
-      </view>
-		</view>
-		<view class="button-sp-area" wx:if="{{type=='add' }}">
-			<view class="cu-btn bg-blue lg padding-sm margin-xs radius">
-        <a class="cu-btn bg-blue lg" disabled='{{disabled}}' type="primary" bindtap="submitForm">申请对接</a>
-      </view>
-		</view>
-    <view class="flex solid-bottom padding justify-around" wx:if="{{type=='edit' }}">
-      {{formData.status}}
-			<view class="cu-btn bg-orange lg padding-sm margin-xs radius">
-        <a class="cu-btn bg-orange lg" disabled='{{disabled}}' type="primary" bindtap="cancelApply">撤销</a>
-      </view>
-			<view class="cu-btn bg-blue lg padding-sm margin-xs radius">
-        <a class="cu-btn bg-blue lg" disabled='{{disabled}}' type="primary" bindtap="submitForm">确认修改</a>
-      </view>
-		</view>
-    <view class="flex solid-bottom padding justify-around" wx:if="{{type=='check' & checkDemandsApply }}">
-      <block wx:if="{{formData.status=='待审核'}}">
-        <view class="cu-btn bg-blue lg padding-sm margin-xs radius">
-          <a class="cu-btn bg-blue lg" disabled='{{disabled}}' type="primary" data-type="approve" bindtap="connectOp">确认对接</a>
-        </view>
-      </block>
-       <block wx:if="{{formData.status=='对接中'}}">
-          <view class="cu-btn bg-blue lg padding-sm margin-xs radius">
-            <a class="cu-btn bg-blue lg" disabled='{{disabled}}' type="primary" data-type="complete" bindtap="connectOp">对接完成</a>
-          </view>
-          <view class="cu-btn bg-orange lg padding-sm margin-xs radius">
-            <a class="cu-btn bg-orange lg" disabled='{{disabled}}' type="primary" data-type="delete" bindtap="connectOp">撤销对接</a>
-          </view>
-      </block>
-		</view>
+<view class="cu-form-group align-start">
+  <view class="title">详细内容</view>
+  <textarea class="weui-textarea" data-field="detail" bindinput="formInputChange" value="{{formData.detail}}" placeholder="请输入详细内容" />
+</view>
+
+<view class="button-sp-area">
+  <view class="cu-btn bg-orange lg padding-sm margin-xs radius">
+    <a class="cu-btn bg-orange lg" type="primary" bindtap="cancelForm">取消</a>
+  </view>
+</view>
+<view class="button-sp-area" wx:if="{{type=='add' }}">
+  <view class="cu-btn bg-blue lg padding-sm margin-xs radius">
+    <a class="cu-btn bg-blue lg" disabled='{{disabled}}' type="primary" bindtap="submitForm">申请对接</a>
+  </view>
+</view>
+<view class="flex solid-bottom padding justify-around" wx:if="{{type=='edit' }}">
+  {{formData.status}}
+  <view class="cu-btn bg-orange lg padding-sm margin-xs radius">
+    <a class="cu-btn bg-orange lg" disabled='{{disabled}}' type="primary" bindtap="cancelApply">撤销</a>
+  </view>
+  <view class="cu-btn bg-blue lg padding-sm margin-xs radius">
+    <a class="cu-btn bg-blue lg" disabled='{{disabled}}' type="primary" bindtap="submitForm">确认修改</a>
+  </view>
+</view>
+<view class="flex solid-bottom padding justify-around" wx:if="{{type=='check' & checkDemandsApply }}">
+  <block wx:if="{{formData.status=='待审核'}}">
+    <view class="cu-btn bg-blue lg padding-sm margin-xs radius">
+      <a class="cu-btn bg-blue lg" disabled='{{disabled}}' type="primary" data-type="approve" bindtap="connectOp">确认对接</a>
+    </view>
+  </block>
+  <block wx:if="{{formData.status=='对接中'}}">
+    <view class="cu-btn bg-blue lg padding-sm margin-xs radius">
+      <a class="cu-btn bg-blue lg" disabled='{{disabled}}' type="primary" data-type="complete" bindtap="connectOp">对接完成</a>
+    </view>
+    <view class="cu-btn bg-orange lg padding-sm margin-xs radius">
+      <a class="cu-btn bg-orange lg" disabled='{{disabled}}' type="primary" data-type="delete" bindtap="connectOp">撤销对接</a>
+    </view>
+  </block>
+</view>
