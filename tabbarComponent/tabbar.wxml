@@ -9,8 +9,8 @@
       <image class="tabbar_icon" src="{{item.selected ? item.selectedIconPath : item.iconPath}}"></image>
       <text>{{item.text}}</text>
     </navigator>
-     <navigator wx:if="{{index==0}}" class="tabbar_nav" hover-class="none" url="{{item.pagePath}}" style="color:{{tabbar.selectedColor}}" open-type="navigate">
-     <span class="tabbar_icon tabbar_icon_font  iconfont icon-RectangleCopy6" ></span>
+     <navigator wx:if="{{index==0}}" class="tabbar_nav" hover-class="none" url="{{item.pagePath}}" style="color:{{item.selected ? tabbar.selectedColor : tabbar.color}}" open-type="switchTab">
+      <span class="tabbar_icon tabbar_icon_font  iconfont icon-RectangleCopy6" ></span>
       <text>{{item.text}}</text>
     </navigator>
   </block>
