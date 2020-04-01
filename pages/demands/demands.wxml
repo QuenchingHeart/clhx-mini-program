@@ -1,63 +1,79 @@
 <!--pages/demands/demands.wxml-->
 <wxs module="dateUtil" src="../../utils/timeUtil.wxs"></wxs>
 <wxs module="tools" src="../../utils/tools.wxs" />
-  <view class="cu-bar search bg-white">
-    <view class="action">
-      <picker mode="region" bindchange="bindRegionChange" value="{{region}}" custom-item="{{customItem}}">
-        <text>{{region[2]}}</text>
-        <text class="cuIcon-triangledownfill"></text>
-      </picker>
-    </view>
-    <view class="search-form round">
-      <text class="cuIcon-search"></text>
-      <input type="text" bindchange="bindSearchKeywordChange" placeholder="搜索关键字" value="{{tools.filter(filterInfo.keyword,'%','')}}" confirm-type="search"></input>
-    </view>
+<view class="cu-bar search bg-white">
+  <view class="action">
+    <picker mode="region" bindchange="bindRegionChange" value="{{region}}" custom-item="{{customItem}}">
+      <text>{{region[2]}}</text>
+      <text class="cuIcon-triangledownfill"></text>
+    </picker>
+  </view>
+  <view class="search-form round">
+    <text class="cuIcon-search"></text>
+    <input type="text" bindchange="bindSearchKeywordChange" placeholder="搜索关键字" value="{{tools.filter(filterInfo.keyword,'%','')}}" confirm-type="search"></input>
+  </view>
 
-  </view>
-  <view class="cu-list grid col-{{gridCol}} {{gridBorder?'':'no-border'}} shadow  shadow-warp">
-    <view class="cu-item" wx:for="{{categoryA}}" wx:key bindtap="bindCategoryAChange" data-id="{{index}}">
-      <view class="cuIcon-{{item.icon}} text-{{item.color}}" >
-      </view>
-      <text>{{item.txt}}</text>
+</view>
+<view class="cu-list grid col-{{gridCol}} {{gridBorder?'':'no-border'}} shadow  shadow-warp">
+  <view class="cu-item" wx:for="{{categoryA}}" wx:key bindtap="bindCategoryAChange" data-id="{{index}}">
+    <view class="cuIcon-{{item.icon}} text-{{item.color}}">
     </view>
+    <text>{{item.txt}}</text>
   </view>
+</view>
 <view class="VerticalBox margin-top">
   <scroll-view class="VerticalNav nav" scroll-y scroll-with-animation scroll-top="{{VerticalNavTop}}" style="height:calc(100vh - 375rpx);font-size:24rpx;">
-    <view class="cu-item {{index==TabCur?'text-green cur':''}}" wx:for="{{list}}" wx:key bindtap="bindCategoryBChange"  data-id="{{index}}" data-id="{{index}}">
+    <view class="cu-item {{index==TabCur?'text-green cur':''}}" wx:for="{{list}}" wx:key bindtap="bindCategoryBChange" data-id="{{index}}" data-id="{{index}}">
 
-    <text>{{item.name}}</text>
+      <text>{{item.name}}</text>
     </view>
 
   </scroll-view>
-  <scroll-view class="VerticalMain" scroll-y scroll-with-animation style="height:calc(100vh - 375rpx)" scroll-into-view="main-{{MainCur}}" >
-      <view class="cu-list menu-avatar">
-      
-        <view class="cu-item cur"  wx:for="{{demands}}" bindtap="navigateToDemandDatail" wx:key="{{index}}" data-demandID="{{item.demandID}}" 
-        data-publisherID="{{item.createdBy.publishUserID}}">
-          <view class="content">
-            <view>
-              <text class="text-cut">{{item.title}}</text>
-              <view class="cu-tag round bg-orange sm">6人</view>
-            </view>
-            <view class="text-grey text-sm">
-              <text class="cuIcon-remind text-orange margin-right-xs"></text>
-                {{dateUtil.dateFormat(item.interval.startTime*1000,'yyyy/MM/dd')}} - {{dateUtil.dateFormat(item.interval.endTime*1000,'yyyy/MM/dd')}}
-            </view>
-            <view class="text-gray text-sm flex">
-              <text class="cuIcon-mark text-orange margin-right-xs"></text>
-              <text class="text-cut">{{item.detail==null?'':(item.detail.length < 10 ? item.detail : item.detail + '......')}}</text>
-            </view>
+  <scroll-view class="VerticalMain" scroll-y scroll-with-animation style="height:calc(100vh - 375rpx)" scroll-into-view="main-{{MainCur}}">
+    <view class="cu-list menu-avatar">
 
+      <view class="cu-item cur" wx:for="{{demands}}" bindtap="navigateToDemandDatail" wx:key="{{index}}" data-demandID="{{item.demandID}}" data-publisherID="{{item.createdBy.publishUserID}}">
+        <view class="content">
+          <view>
+            <text class="text-cut">{{item.title}}</text>
           </view>
-          <view class="action">
-            <view class="text-grey text-xs">{{tools.distanceFormat(item.distance)}}</view>
-            <view class="text-grey text-xs"> {{tools.locationFormat(item.location.district)}}</view>
-             
-            <!-- <view class="text-grey text-xs">截止时间：{{dateUtil.dateFormat(item.interval.endTime*1000,'yyyy/MM/dd')}}</view> -->
-            <!-- <view class="cuIcon-notice_forbid_fill text-gray"></view> -->
+          <view class="text-gray text-sm flex">
+            <text class="cuIcon-people text-orange margin-right-xs"></text>
+            <text class="text-cut">由 {{item.createdBy.isOrganization?item.createdBy.publishUserName:item.contactName}} 发布</text>
           </view>
+          <view class="text-grey text-sm flex">
+            <text class="cuIcon-time text-orange margin-right-xs"></text>
+            <text class="text-cut">{{dateUtil.dateFormat(item.interval.startTime*1000,'yyyy/MM/dd')}} - {{dateUtil.dateFormat(item.interval.endTime*1000,'yyyy/MM/dd')}}</text>
+          </view>
+          <view class="text-gray text-sm flex">
+            <text class="cuIcon-mark text-orange margin-right-xs"></text>
+            <text class="text-cut">{{item.detail==null?'':(item.detail.length < 10 ? item.detail : item.detail + '......')}}</text>
+          </view>
+
+        </view>
+        <view class="action">
+
+          <view class="cu-capsule radius">
+            <view class="cu-tag bg-brown sm">
+              <text class="cuIcon-likefill"></text>
+            </view>
+            <view class="cu-tag line-brown sm">
+              <text class="text-xs">23</text>
+            </view>
+          </view>
+
+          <view class="text-grey text-xs"> {{tools.locationFormat(item.location.district)}}</view>
+          <view class="text-grey text-xs">{{tools.distanceFormat(item.distance)}}</view>
+
+          <!-- <view class="text-gray text-xs">
+              <view class="cu-tag round bg-orange sm">6个对接</view>
+            </view> -->
+
+          <!-- <view class="text-grey text-xs">截止时间：{{dateUtil.dateFormat(item.interval.endTime*1000,'yyyy/MM/dd')}}</view> -->
+          <!-- <view class="cuIcon-notice_forbid_fill text-gray"></view> -->
         </view>
       </view>
+    </view>
 
     <!-- </view> -->
   </scroll-view>
