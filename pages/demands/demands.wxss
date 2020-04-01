@@ -12,7 +12,8 @@
   background-color: #fff;
   margin: 0;
   border: none;
-  height: 50px;
+  height: 46px;
+  line-height: 46px;
   position: relative;
 }
 
