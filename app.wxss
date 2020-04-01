@@ -29,5 +29,5 @@ page {
   width:190rpx;
 }
 .cu-list.menu-avatar>.cu-item{
-  height: 170rpx;
+  height: 200rpx;
 }

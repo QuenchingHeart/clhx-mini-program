@@ -12,3 +12,15 @@
 .margin-top{
   margin-top: 5rpx;
 }
+
+.right{
+  text-align: right;
+
+}
+
+.cu-list.menu-avatar>.cu-item .content{
+  line-height: 1.3em;
+}
+.cu-list.menu-avatar>.cu-item>.content .title{
+  line-height: 2em;
+}
