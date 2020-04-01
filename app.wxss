@@ -31,7 +31,3 @@ page {
 .cu-list.menu-avatar>.cu-item{
   height: 170rpx;
 }
-
-.margin-top{
-  margin-top: 5rpx;
-}

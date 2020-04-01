@@ -1,6 +1,5 @@
 /* pages/demands/demands.wxss */
-@import "../../colorui/main.wxss";
-@import "../../colorui/icon.wxss";
+
 
 .VerticalNav.nav {
   width: 200rpx;
@@ -52,7 +51,6 @@
 }
 
 .cu-list.menu-avatar>.cu-item {
-  height: 170rpx;
   margin-bottom: 5rpx;
 }
 
