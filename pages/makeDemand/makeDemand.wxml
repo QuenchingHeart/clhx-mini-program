@@ -79,7 +79,7 @@
 <import src="../myApply/myApply.wxml" />
 <template is="myApply" data="{{applies: applies}}" />
 
-<view class="flex solid-bottom padding justify-around" wx:if="{{type=='add' }}">
+<view class="flex solid-bottom padding justify-around" wx:if="{{ type=='add' }}">
   <view class="cu-btn bg-orange lg padding-sm margin-xs radius">
     <button class="flex-sub cu-btn bg-orange" disabled='{{disabled}}' role='button' bindtap="cancelForm">取消</button>
   </view>
@@ -87,7 +87,8 @@
     <button class="flex-sub cu-btn bg-green margin-tb-sm " role="button" disabled='{{disabled}}' role='button' bindtap="submitForm">确定</button>
   </view>
 </view>
-<view class="flex solid-bottom padding justify-around" wx:if="{{ type=='edit' }}">
+
+<view class="flex solid-bottom padding justify-around" wx:if="{{ type=='edit' && formData.status != '已完成' }}">
   <view class="cu-btn bg-blue lg padding-sm margin-xs radius">
     <button class="cu-btn bg-blue lg" disabled='{{disabled}}' role='button' bindtap="submitForm">确定修改</button>
   </view>
@@ -95,7 +96,8 @@
     <button class="cu-btn bg-orange  margin-tb-sm" disabled='{{disabled}}' role='button' bindtap="cancelDemand">撤销需求</button>
   </view>
 </view>
-<view class="flex solid-bottom padding justify-around" wx:if="{{type=='check'}}">
+
+<view class="flex solid-bottom padding justify-around" wx:if="{{ type=='check' }}">
   <view wx:if="{{!applied&userID!=demandDetail.createdBy.publishUserID}}" class="cu-btn bg-blue lg padding-sm margin-xs radius">
     <button class="cu-btn bg-blue lg" bindtap="apply" data-demandid="{{demandDetail.demandID}}">申请对接</button>
   </view>

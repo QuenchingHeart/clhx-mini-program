@@ -83,8 +83,8 @@ Page({
       contactName: "联系人",
       contactPhone: "15651699027",
       startTime: "2020-09-27",
-      endTime: "2020-09-30"
-
+      endTime: "2020-09-30",
+      status: "已发布"
     },
     rules: [{
       name: 'district',
@@ -131,7 +131,6 @@ Page({
     var location = {}
     wx.chooseLocation({
       success: function(loc) {
-        console.log("**", loc)
         getLocal(loc.latitude, loc.longitude).then((res) => {
           that.setData({
             "formData.latitude": res.latitude,
@@ -238,7 +237,8 @@ Page({
             latitude: res.latitude,
             longitude: res.longitude,
             district: res.province + ":" + res.city + ":" + res.district + ":" + (res.business_area == null ? '' : res.business_area),
-            address: demandDetail.location.address
+            address: demandDetail.location.address,
+            status: demandDetail.status
           },
           markers: [{
             latitude: res.latitude,
