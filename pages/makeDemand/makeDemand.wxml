@@ -13,7 +13,16 @@
   </view>
 
   <view class="cu-form-group">
-    <view class="title">开始日期</view>
+    <view class="title">需求方</view>
+    <picker mode="selector" bindchange="bindPickerChange" range="{{personorandganization}}" value="{{personorandganizationIndex}}" disabled="{{disabled}}">
+      <view class="picker">
+        {{personorandganization[personorandganizationIndex]}}
+      </view>
+    </picker>
+  </view>
+
+  <view class="cu-form-group">
+    <view class="title">开始时间</view>
     <picker disabled="{{disabled}}" mode="date" value="{{formData.startTime}}" data-field="startTime" start="2020-03-17" end="2030-09-01" bindchange="formInputChange">
       <view class="picker">
         {{formData.startTime}}
@@ -21,22 +30,11 @@
     </picker>
   </view>
   <view class="cu-form-group">
-    <view class="title">截止选择</view>
+    <view class="title">截止时间</view>
     <picker disabled="{{disabled}}" mode="date" value="{{formData.endTime}}" data-field="endTime" start="2020-03-17" end="2030-09-01" bindchange="formInputChange">
       <view class="picker">
         {{formData.endTime}}
       </view>
-    </picker>
-  </view>
-
-
-  <view class="cu-form-group">
-    <view class="title">组织或个人</view>
-    <picker mode="selector" bindchange="bindPickerChange" range="{{personorandganization}}" value="{{personorandganizationIndex}}" disabled="{{disabled}}">
-      <view class="picker">
-        {{personorandganization[personorandganizationIndex]}}
-      </view>
-
     </picker>
   </view>
 
@@ -60,11 +58,11 @@
     <view class="title">手机号码</view>
     <input data-field="contactPhone" disabled="{{disabled}}" bindinput="formInputChange" value="{{formData.contactPhone}}" placeholder="请输入号码" />
     <view class="cu-capsule radius">
-      <view class="cu-tag bg-blue">
+      <view class="cu-tag bg-orange">
         +86
       </view>
     </view>
-    <view class="cu-tag line-blue">
+    <view class="cu-tag line-orange">
       中国大陆
     </view>
   </view>
@@ -76,32 +74,67 @@
 
 </form>
 
-<import src="../myApply/myApply.wxml" />
-<template is="myApply" data="{{applies: applies}}" />
+<!-- <import src="../myApply/myApply.wxml" />
+<template is="myApply" data="{{applies: applies}}" /> -->
+
+<view class="cu-list menu-avatar">
+  <view class="cu-item margin-top" wx:for="{{applies}}" data-applyid="{{item.applyID}}" data-demandid="{{item.demandID}}" wx:key="{{index}}" bindtap="{{item.status=='已关闭'?'':'navigateToApplyDatail'}}">
+    <view class="content">
+
+      <!-- <view class="text-{{item.status=='已关闭'?'gray':'black'}}">{{item.demandTitle}}</view> -->
+      <view class="text-{{item.status=='已关闭'?'gray':'black'}}">对接申请方 {{item.applyer.isOrganization ? item.applyer.applyerName : item.contactName}}</view>
+
+      <view class="text-gray text-sm flex" wx:if="{{ item.applyer.isOrganization }}">
+        <text class="text-cut text-grey">
+          <text class="cuIcon-group text-orange margin-right-xs"></text>{{item.contactName}}
+        </text>
+      </view>
+
+      <view class="text-gray text-sm flex">
+        <text class="text-cut text-grey">
+          <text class="cuIcon-phone text-orange margin-right-xs"></text>{{item.contactPhone}}
+        </text>
+      </view>
+
+      <view class="text-gray text-sm flex">
+        <text class="text-cut text-grey">
+          <text class="cuIcon-mark text-orange margin-right-xs"></text>{{item.detail.length >= 10 ? item.detail + '......' : item.detail}}
+        </text>
+      </view>
+
+    </view>
+
+
+    <view class="action">
+      <!-- <view class="text-grey text-xs">{{item.demandCategory}}</view> -->
+      <view class="cu-tag round bg-{{item.status=='已关闭'?'gray':(item.status=='待审核'?'orange':'green')}} sm">{{item.status}}</view>
+    </view>
+  </view>
+</view>
 
 <view class="flex solid-bottom padding justify-around" wx:if="{{ type=='add' }}">
-  <view class="cu-btn bg-orange lg padding-sm margin-xs radius">
-    <button class="flex-sub cu-btn bg-orange" disabled='{{disabled}}' role='button' bindtap="cancelForm">取消</button>
+  <view class="cu-btn bg-red lg padding-sm margin-xs radius">
+    <button class="flex-sub cu-btn bg-red" disabled='{{disabled}}' role='button' bindtap="cancelForm">取消</button>
   </view>
-  <view class="cu-btn bg-green lg padding-sm margin-xs radius">
-    <button class="flex-sub cu-btn bg-green margin-tb-sm " role="button" disabled='{{disabled}}' role='button' bindtap="submitForm">确定</button>
+  <view class="cu-btn bg-orange lg padding-sm margin-xs radius">
+    <button class="flex-sub cu-btn bg-orange margin-tb-sm " role="button" disabled='{{disabled}}' role='button' bindtap="submitForm">确定</button>
   </view>
 </view>
 
 <view class="flex solid-bottom padding justify-around" wx:if="{{ type=='edit' && formData.status != '已完成' }}">
-  <view class="cu-btn bg-blue lg padding-sm margin-xs radius">
-    <button class="cu-btn bg-blue lg" disabled='{{disabled}}' role='button' bindtap="submitForm">确定修改</button>
+  <view class="cu-btn bg-grey lg padding-sm margin-xs radius">
+    <button class="cu-btn bg-grey lg" disabled='{{disabled}}' role='button' bindtap="cancelDemand">撤销需求</button>
   </view>
   <view class="cu-btn bg-orange lg padding-sm margin-xs radius">
-    <button class="cu-btn bg-orange  margin-tb-sm" disabled='{{disabled}}' role='button' bindtap="cancelDemand">撤销需求</button>
+    <button class="cu-btn bg-orange lg" disabled='{{disabled}}' role='button' bindtap="submitForm">确定修改</button>
   </view>
 </view>
 
 <view class="flex solid-bottom padding justify-around" wx:if="{{ type=='check' }}">
-  <view wx:if="{{!applied&userID!=demandDetail.createdBy.publishUserID}}" class="cu-btn bg-blue lg padding-sm margin-xs radius">
-    <button class="cu-btn bg-blue lg" bindtap="apply" data-demandid="{{demandDetail.demandID}}">申请对接</button>
+  <view wx:if="{{!applied&userID!=demandDetail.createdBy.publishUserID}}" class="cu-btn bg-orange lg padding-sm margin-xs radius">
+    <button class="cu-btn bg-orange lg" bindtap="apply" data-demandid="{{demandDetail.demandID}}">申请对接</button>
   </view>
   <view wx:if="{{applied}}" class="cu-btn bg-cyan lg padding-sm margin-xs radius">
-    <button class="cu-btn bg-cyan  margin-tb-sm" bindtap="toMyapply" data-myapplyid="{{myApplyID}}" data-demandid="{{demandDetail.demandID}}">查看我的对接{{myApplyID}}</button>
+    <button class="cu-btn bg-cyan lg" bindtap="toMyapply" data-applyid="{{applyID}}" data-demandid="{{demandDetail.demandID}}">查看对接详情</button>
   </view>
 </view>

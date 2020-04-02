@@ -3,12 +3,25 @@
   <view class="cu-list menu-avatar">
     <view class="cu-item margin-top" wx:for="{{applies}}" data-applyid="{{item.applyID}}" data-demandid="{{item.demandID}}" wx:key="{{index}}" bindtap="{{item.status=='已关闭'?'':'navigateToApplyDatail'}}">
       <view class="content">
+
         <!-- <view class="text-{{item.status=='已关闭'?'gray':'black'}}">{{item.demandTitle}}</view> -->
-        <view class="text-{{item.status=='已关闭'?'gray':'black'}}">对接方：{{item.createdBy.isOrganization?item.createdBy.applyerName:item.contactName}}</view>
-        <view wx:if="{{item.createdBy.isOrganization}}" class="text-gray text-sm">联系人 {{item.contactName}}</view>
-        <view class="text-gray text-sm">联系方式 {{item.contactPhone}}</view>
-        <view class="text-gray text-sm">对接详情 {{item.detail}}</view>
+        <view class="text-{{item.status=='已关闭'?'gray':'black'}}">申请对接目标：{{item.demandTitle}}</view>
+
+        <view class="text-gray text-sm flex">
+          <text class="text-cut text-grey">
+            <text class="cuIcon-location text-orange margin-right-xs"></text>{{item.demandAddress}}
+          </text>
+        </view>
+
+        <view class="text-gray text-sm flex">
+          <text class="text-cut text-grey">
+            <text class="cuIcon-mark text-orange margin-right-xs"></text>{{item.detail.length >= 10 ? item.detail + '......' : item.detail}}
+          </text>
+        </view>
+
       </view>
+
+
       <view class="action">
         <!-- <view class="text-grey text-xs">{{item.demandCategory}}</view> -->
         <view class="cu-tag round bg-{{item.status=='已关闭'?'gray':(item.status=='待审核'?'orange':'green')}} sm">{{item.status}}</view>
