@@ -63,17 +63,10 @@
           <view class="text-grey text-xs"> {{tools.locationFormat(item.location.district)}}</view>
           <view class="text-grey text-xs">{{tools.distanceFormat(item.distance)}}</view>
 
-          <!-- <view class="text-gray text-xs">
-              <view class="cu-tag round bg-orange sm">6个对接</view>
-            </view> -->
-
-          <!-- <view class="text-grey text-xs">截止时间：{{dateUtil.dateFormat(item.interval.endTime*1000,'yyyy/MM/dd')}}</view> -->
-          <!-- <view class="cuIcon-notice_forbid_fill text-gray"></view> -->
         </view>
       </view>
     </view>
 
-    <!-- </view> -->
   </scroll-view>
 </view>
 <tabbar tabbar="{{tabbar}}"></tabbar>

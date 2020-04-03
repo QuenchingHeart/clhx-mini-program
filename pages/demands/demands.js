@@ -136,7 +136,7 @@ Component({
       type: Object,
       value: {
       // category:'',
-      // categoryA: 0,
+      categoryA: 0,
       // categoryB: 0,
       status:'已发布',
       keyword:'%',
@@ -187,6 +187,9 @@ Component({
           that.getDemands()
         }
       });
+      this.setData({
+        categoryB: this.data.categories[this.data.filterHelpInfo.categoryA]
+      })
       that.initList();
     },
     initList:function(){
