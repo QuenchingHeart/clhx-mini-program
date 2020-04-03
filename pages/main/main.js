@@ -173,12 +173,12 @@ Page({
         })
         // that.setPosition(re.longitude, re.latitude)
         // console.log('setPosition', re.longitude, re.latitude)
-        that.moveToLocation();
 
         util.getLocal(re.latitude, re.longitude).then((res) => {
           that.setData({
             inputInfo: res.formatted_address
-          })
+          });
+          that.moveToLocation();
         })
       }
     })
@@ -212,7 +212,5 @@ Page({
       longitude: longitude
     }
   }
-
-
 
 });

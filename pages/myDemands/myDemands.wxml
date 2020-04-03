@@ -3,9 +3,9 @@
 <wxs module="dateUtil" src="../../utils/timeUtil.wxs"></wxs>
 
 <view class="cu-list menu-avatar">
-  <view class="cu-item margin-top" wx:for="{{demands}}" data-demandid="{{item.demandID}}" wx:key="{{index}}" bindtap="navigateToDemandDatail">
+  <view class="cu-item margin-top" wx:for="{{demands}}" data-demandid="{{item.demandID}}" wx:key="index" bindtap="navigateToDemandDatail">
     <view class="content">
-    
+
       <view class="text-black title">{{item.title}}</view>
 
       <view class="text-gray text-sm flex">
@@ -16,7 +16,7 @@
 
       <view class="text-gray text-sm flex">
         <text class="text-cut text-grey"></text>
-          <text class="cuIcon-time text-orange margin-right-xs"></text>{{dateUtil.dateFormat(item.interval.startTime*1000,'yyyy/MM/dd')}} - {{dateUtil.dateFormat(item.interval.endTime*1000,'yyyy/MM/dd')}}
+        <text class="cuIcon-time text-orange margin-right-xs"></text>{{dateUtil.dateFormat(item.interval.startTime*1000,'yyyy/MM/dd')}} - {{dateUtil.dateFormat(item.interval.endTime*1000,'yyyy/MM/dd')}}
       </view>
 
       <view class="text-gray text-sm flex">
@@ -32,16 +32,16 @@
         <view class="padding-xs">
           <view class="cu-tag right round bg-{{item.status=='已发布'?'orange':(item.status=='已完成'?'green':'gray')}} sm">{{item.status}}</view>
           <view class="cu-capsule right radius">
-              <view class="cu-tag bg-orange sm">
-                <text class="cuIcon-peoplefill"> | {{item.applyerCount}}</text>
-              </view>
+            <view class="cu-tag bg-orange sm">
+              <text class="cuIcon-peoplefill"> | {{item.applyerCount}}</text>
             </view>
+          </view>
         </view>
 
       </view>
 
 
-    
+
 
     </view>
   </view>

@@ -7,7 +7,8 @@ Page({
    * 页面的初始数据
    */
   data: {
-    applies:[]
+    applies:[],
+    reload: false
   },
   getMyapplies:function(){
     var that = this
@@ -23,6 +24,7 @@ Page({
   },
   navigateToApplyDatail: function (e) {
     console.log(e.currentTarget.dataset.applyid)
+    this.data.reload = true;
     wx.navigateTo({
       url: '/pages/makeApply/makeApply?type=edit&applyID=' + e.currentTarget.dataset.applyid + '&demandID=' + e.currentTarget.dataset.demandid
     })
@@ -31,7 +33,8 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    this.getMyapplies()
+    this.getMyapplies();
+    this.data.reload = false;
   },
 
   /**
@@ -45,7 +48,9 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
-    this.onLoad()
+    if (this.data.reload) {
+      this.getMyapplies();
+    }
   },
 
   /**

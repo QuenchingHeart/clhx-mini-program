@@ -15,7 +15,7 @@
 
 </view>
 <view class="cu-list grid col-{{gridCol}} {{gridBorder?'':'no-border'}} shadow  shadow-warp">
-  <view class="cu-item" wx:for="{{categoryA}}" wx:key bindtap="bindCategoryAChange" data-id="{{index}}">
+  <view class="cu-item" wx:for="{{categoryA}}" wx:key="index" bindtap="bindCategoryAChange" data-id="{{index}}">
     <view class="cuIcon-{{item.icon}} text-{{item.color}}">
     </view>
     <text>{{item.txt}}</text>
@@ -23,7 +23,7 @@
 </view>
 <view class="VerticalBox margin-top">
   <scroll-view class="VerticalNav nav" scroll-y scroll-with-animation scroll-top="{{VerticalNavTop}}" style="height:calc(100vh - 375rpx);font-size:24rpx;">
-    <view class="cu-item {{index==TabCur?'text-green cur':''}}" wx:for="{{list}}" wx:key bindtap="bindCategoryBChange" data-id="{{index}}" data-id="{{index}}">
+    <view class="cu-item {{index==TabCur?'text-orange cur':''}}" wx:for="{{list}}" bindtap="bindCategoryBChange" data-id="{{index}}" data-id="{{index}}">
 
       <text>{{item.name}}</text>
     </view>
@@ -32,7 +32,7 @@
   <scroll-view class="VerticalMain" scroll-y scroll-with-animation style="height:calc(100vh - 375rpx)" scroll-into-view="main-{{MainCur}}">
     <view class="cu-list menu-avatar">
 
-      <view class="cu-item cur" style="height:100px" wx:for="{{demands}}" bindtap="navigateToDemandDatail" wx:key="{{index}}" data-demandID="{{item.demandID}}" data-publisherID="{{item.createdBy.publishUserID}}">
+      <view class="cu-item cur" style="height:100px" wx:for="{{demands}}" wx:index="index" bindtap="navigateToDemandDatail" wx:key="index" data-demandID="{{item.demandID}}" data-publisherID="{{item.createdBy.publishUserID}}">
         <view class="content">
           <view>
             <text class="text-cut title">{{item.title}}</text>
@@ -56,11 +56,11 @@
       <view class="padding-sm right flex flex-wrap">
         <view class="padding-xs">
           <!-- <view class="cu-tag right round bg-{{item.status=='已发布'?'orange':(item.status=='已完成'?'green':'gray')}} sm">{{item.status}}</view> -->
-          <view class="cu-capsule radius">
-              <view class="cu-tag bg-orange sm">
-                <text class="cuIcon-peoplefill"> | {{item.applyerCount}}</text>
-              </view>
+          <view class="">
+            <view class="cu-tag radius bg-orange sm">
+              <text class="cuIcon-peoplefill"> | {{item.applyerCount}}</text>
             </view>
+          </view>
             
           <view class="text-grey text-xs"> {{tools.locationFormat(item.location.district)}}</view>
           <view class="text-grey text-xs">{{tools.distanceFormat(item.distance)}}</view>

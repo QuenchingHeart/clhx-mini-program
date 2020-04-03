@@ -29,9 +29,9 @@ Page({
     multiIndex: [0, 0],
     categories: [
       ["物资援助", "防控宣传", "精准排查", "复工咨询", "感人故事"],
-      [],
+      [""],
       ["志愿服务", "物资需求", "心理关怀", "文化科教", "卫键服务", "创业就业", "便民通道", "法律援助", "社工帮助"],
-      ["特殊困难帮助", '家庭困难帮助', '社会组织困难帮助', '社区组织困难帮助', '物业扶贫'],
+      ["特殊群体", '家庭困难', '组织困难', '物业扶贫'],
       ['活动策划', '项目评估', '资金链接'],
       ["关爱儿童", "社区养老"],
     ],
@@ -78,12 +78,12 @@ Page({
       longitude: 113.324520,
       district: "广东省:揭阳市:揭西县:",
       address: '',
-      detail: '内容',
+      detail: '',
       demandCategory: "防疫特区:物资援助",
-      contactName: "联系人",
-      contactPhone: "15651699027",
-      startTime: "2020-09-27",
-      endTime: "2020-09-30",
+      contactName: "",
+      contactPhone: "",
+      startTime: formatTimeTwo(Math.round(new Date().getTime() / 1000).toString(), 'Y-M-D'),
+      endTime: formatTimeTwo((Math.round(new Date().getTime() / 1000) + 86400).toString(), 'Y-M-D'),
       status: "已发布"
     },
     rules: [{
@@ -100,7 +100,10 @@ Page({
     applied: false,
     applyID: 0,
     userID:0,
-    options:{}
+    options:{},
+
+    returnFromApply: false
+
   },
   bindPickerChange: function(e) {
     console.log('picker发送选择改变，携带值为', e.detail.value)
@@ -132,6 +135,7 @@ Page({
     var location = {}
     wx.chooseLocation({
       success: function(loc) {
+        // console.log("****chooseLocation")
         getLocal(loc.latitude, loc.longitude).then((res) => {
           that.setData({
             "formData.latitude": res.latitude,
@@ -147,7 +151,7 @@ Page({
               id: 1
             }]
           })
-        })
+        });
         that.moveToLocation();
       }
     })
@@ -221,11 +225,13 @@ Page({
     })
   },
   getOnedemand(demandID) {
+    var that = this;
     demandOne({
-      demandID: demandID
+      demandID
     }).then(demandDetail => {
+      // console.log("****getOne")
       getLocal(demandDetail.location.latitude, demandDetail.location.longitude).then(res => {
-        this.setData({
+        that.setData({
           demandDetail,
           formData: {
             isOrganization: demandDetail.createdBy.isOrganization,
@@ -236,8 +242,8 @@ Page({
             contactPhone: demandDetail.contactPhone,
             startTime: formatTimeTwo(demandDetail.interval.startTime, 'Y-M-D'),
             endTime: formatTimeTwo(demandDetail.interval.endTime, 'Y-M-D'),
-            latitude: res.latitude,
-            longitude: res.longitude,
+            latitude: demandDetail.location.latitude,
+            longitude: demandDetail.location.longitude,
             district: res.province + ":" + res.city + ":" + res.district + ":" + (res.business_area == null ? '' : res.business_area),
             address: demandDetail.location.address,
             status: demandDetail.status
@@ -251,8 +257,9 @@ Page({
             id: 1
           }]
         })
-        this.moveToLocation()
+        that.moveToLocation();
       })
+
 
     })
 
@@ -268,7 +275,7 @@ Page({
     }
     switch (options.type) {
       case 'add':
-        this.initData()
+        that.getCurrentLocation();
         break
       case 'edit':
         this.getOnedemand(options.demandID);
@@ -276,8 +283,7 @@ Page({
           demandID: options.demandID
         }).then(res => {
           that.setData({
-            applies: res,
-
+            applies: res
           })
           console.log(res)
         })
@@ -299,7 +305,7 @@ Page({
             })
           }
           that.setData({
-            applied: applied,
+            applied: applied
           })
         }).then(res => {
 
@@ -327,6 +333,7 @@ Page({
   apply: function(e) {
     console.log(e.target.dataset.demandid)
     var demandID = e.target.dataset.demandid
+    this.data.returnFromApply = true;
     wx.navigateTo({
       url: '/pages/makeApply/makeApply?type=add&demandID=' + demandID,
     })
@@ -334,7 +341,7 @@ Page({
   toMyapply: function(e) {
     var demandID = e.target.dataset.demandid
     var applyID = e.target.dataset.applyid
-    console.log('/pages/makeApply/makeApply?type=edit&demandID=' + demandID + '&applyID=' + applyID)
+    this.data.returnFromApply = true;
     wx.navigateTo({
       url: '/pages/makeApply/makeApply?type=edit&demandID=' + demandID + '&applyID=' + applyID,
     })
@@ -351,22 +358,23 @@ Page({
 
     })
   },
+
   navigateToApplyDatail: function(e) {
     console.log(e.currentTarget)
+    this.data.returnFromApply = true;
     wx.navigateTo({
       url: '/pages/makeApply/makeApply?type=check&checkDemandsApply=True&' + 'applyID=' + e.currentTarget.dataset.applyid + '&' + 'demandID=' + e.currentTarget.dataset.demandid
     })
   },
 
-
-  initData: function() {
+  getCurrentLocation: function() {
     var that = this;
 
     wx.getLocation({
       type: "gcj02",
       success: loc => {
         console.log(loc)
-
+        
         getLocal(loc.latitude, loc.longitude).then((res) => {
           that.setData({
             "formData.latitude": res.latitude,
@@ -381,19 +389,24 @@ Page({
               height: '34px',
               id: 1
             }]
-          })
+          });
+          
         })
-
+        
       }
     });
 
   },
+
+
   moveToLocation: function() {
     var that = this;
-    console.log('setPosition2', that.data.formData.longitude, that.data.formData.latitude, that.mapCtx)
+    console.log('setPosition1', that.data.formData.longitude, that.data.formData.latitude, that.mapCtx)
     that.mapCtx.moveToLocation({
       latitude: that.data.formData.latitude,
       longitude: that.data.formData.longitude,
+      // latitude,
+      // longitude,
       success: function(res) {
         console.log(res)
       },
@@ -406,13 +419,15 @@ Page({
     })
     console.log('setPosition2', that.data.formData.longitude, that.data.formData.latitude, that.mapCtx)
   },
+
+
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function(options) {
     this.setData({
       userID: app.globalData.userID,
-      options:options
+      options: options
     })
     console.log(options)
     this.mapCtx = wx.createMapContext('myMapMakeDemad')
@@ -430,8 +445,10 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function() {
-    this.onLoad(this.data.options)
-
+    if (this.data.returnFromApply) {
+      this.handleOp(this.data.options);
+      this.data.returnFromApply = false;
+    }
   },
 
   /**

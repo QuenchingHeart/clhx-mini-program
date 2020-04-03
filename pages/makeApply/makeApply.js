@@ -11,9 +11,9 @@ Page({
         "isOrganization": false
       },
       "demandID": 0,
-      "contactName": "甲鱼对接测试1",
-      "contactPhone": "15651699022",
-      "detail": "甲鱼对接测试1",
+      "contactName": "",
+      "contactPhone": "",
+      "detail": "",
       "status": "待审核"
     },
     type:'add',

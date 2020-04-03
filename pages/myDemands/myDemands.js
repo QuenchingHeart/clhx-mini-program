@@ -7,7 +7,8 @@ Page({
    * 页面的初始数据
    */
   data: {
-    demands:[]
+    demands:[],
+    reload: false
 
   },
   getMyDemands: function() {
@@ -21,6 +22,7 @@ Page({
   },
   navigateToDemandDatail: function (e) {
     console.log(e)
+    this.data.reload = true;
     wx.navigateTo({
       url: '/pages/makeDemand/makeDemand?type=edit&' + 'demandID=' + e.currentTarget.dataset.demandid
     })
@@ -29,7 +31,8 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    this.getMyDemands()
+    this.getMyDemands();
+    this.data.reload = false;
   },
 
   /**
@@ -43,7 +46,9 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
-    this.onLoad()
+    if (this.data.reload) {
+      this.getMyDemands();
+    }
   },
 
   /**
