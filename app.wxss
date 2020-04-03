@@ -37,3 +37,6 @@ page {
 .cu-list.menu-avatar>.cu-item>.content .title{
   line-height: 2em;
 }
+.cu-form-group textarea {
+  height: 8.6em;
+}
