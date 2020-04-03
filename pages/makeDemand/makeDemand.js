@@ -307,7 +307,7 @@ Page({
           demandID: options.demandID
         }).then(res => {
           console.log(res)
-          that.toastAndBack(2)
+          that.toastAndBack(1)
         })
 
         break;
@@ -337,8 +337,9 @@ Page({
     })
   },
   cancelDemand: function() {
-    wx.navigateTo({
-      url: '/pages/makeDemand/makeDemand?type=delete&demandID=' + this.data.demandDetail.demandID,
+    this.handleOp({
+      type:'delete',
+      demandID:this.data.demandDetail.demandID
     })
 
   },

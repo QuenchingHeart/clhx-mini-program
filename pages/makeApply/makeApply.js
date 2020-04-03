@@ -180,9 +180,10 @@ Page({
     })
     console.log(this.data)
   },
-  cancelApply: function () {                       
-    wx.navigateTo({
-      url: '/pages/makeApply/makeApply?type=delete&applyID=' + this.data.formData.applyID,
+  cancelApply: function () {   
+    this.handleOp({
+      type:'delete',
+      applyID:this.data.demandDetail.applyID
     })
 
   },
