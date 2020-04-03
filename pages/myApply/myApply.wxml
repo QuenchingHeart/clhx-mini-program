@@ -1,6 +1,6 @@
 <!--pages/myApply/myApply.wxml-->
 <template name="myApply">
-  <view class="cu-list menu-avatar">
+  <view class="cu-list menu-avatar card-menu">
     <view class="cu-item margin-top" wx:for="{{applies}}" data-applyid="{{item.applyID}}" data-demandid="{{item.demandID}}" wx:key="{{index}}" bindtap="{{item.status=='已关闭'?'':'navigateToApplyDatail'}}">
       <view class="content">
         <!-- <view class="text-{{item.status=='已关闭'?'gray':'black'}}">{{item.demandTitle}}</view> -->

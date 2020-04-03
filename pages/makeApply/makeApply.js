@@ -106,7 +106,7 @@ Page({
       case 'delete':
         connectDel(params).then(res=>{
           console.log(res)
-          that.toastAndBack()
+          that.toastAndBack(2)
         })
         break;
     }
@@ -124,7 +124,7 @@ Page({
         break;
       case 'edit':
         // this.applyGet(options.applyID);
-        var params = { applyID: options.myapplyID, demandID: options.demandID, userID: app.globalData.userID}
+        var params = { applyID: options.applyID, demandID: options.demandID, userID: app.globalData.userID}
         applyGet(params).then(res => {
           that.setData({
             formData: res[0],
@@ -167,7 +167,7 @@ Page({
       case 'delete':
         applyDel({ applyID: options.applyID }).then(res => {
           console.log(res)
-          that.toastAndBack()
+          that.toastAndBack(2)
         })
         break;
 
@@ -187,14 +187,15 @@ Page({
     })
 
   },
-  toastAndBack: function () {
+  toastAndBack: function(page=1) {
+    console.log(page)
     wx.showToast({
       title: '成功',
       icon: 'success',
       duration: 5000,
-      complete: function () {
+      complete: function() {
         wx.navigateBack({
-
+          delta: page
         })
       }
     })

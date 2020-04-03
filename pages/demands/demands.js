@@ -33,10 +33,13 @@ Component({
     },
     categories: {
       type: Array,
-      value:[["物资援助", "防控宣传", "精准排查", "复工咨询", "感人故事"], [], ["志愿服务", "物资需求", "心理关怀", "文化科教", "卫键服务", "创业就业", "便民通道", "法律援助", "社工帮助"],
-      ["特殊群体", '家庭困难', '组织困难', '物业扶贫'],
-      ['活动策划', '项目评估', '资金链接'],
-      ["关爱儿童", "社区养老"],
+      value:[
+        ["%","物资援助", "防控宣传", "精准排查", "复工咨询", "感人故事"],
+        ["%",], 
+        ["%","志愿服务", "物资需求", "心理关怀", "文化科教", "卫键服务", "创业就业", "便民通道", "法律援助", "社工帮助"],
+        ["%","特殊群体", '家庭困难', '组织困难', '物业扶贫'],
+        ["%",'活动策划', '项目评估', '资金链接'],
+        ["%","关爱儿童", "社区养老"],
       ]
     },
     categoryArray: {
@@ -151,8 +154,6 @@ Component({
     attached: function () {
       var that = this
       that.initData();
-
-      that.initList();  
       app.editTabbar();            
     },
     moved: function () { },
@@ -166,6 +167,8 @@ Component({
   pageLifetimes: {
     // 组件所在页面的生命周期函数
     show: function () {
+      var that = this
+      that.initData();
       app.editTabbar();
 
     }
@@ -184,6 +187,7 @@ Component({
           that.getDemands()
         }
       });
+      that.initList();
     },
     initList:function(){
       let list = [{}];

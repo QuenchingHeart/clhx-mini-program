@@ -198,14 +198,15 @@ Page({
     }
 
   },
-  toastAndBack: function() {
+  toastAndBack: function(page=1) {
+    console.log(page)
     wx.showToast({
       title: '成功',
       icon: 'success',
       duration: 5000,
       complete: function() {
         wx.navigateBack({
-
+          delta: page
         })
       }
     })
@@ -308,7 +309,7 @@ Page({
           demandID: options.demandID
         }).then(res => {
           console.log(res)
-          that.toastAndBack()
+          that.toastAndBack(2)
         })
 
         break;

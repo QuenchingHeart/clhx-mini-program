@@ -18,9 +18,3 @@
 
 }
 
-.cu-list.menu-avatar>.cu-item .content{
-  line-height: 1.3em;
-}
-.cu-list.menu-avatar>.cu-item>.content .title{
-  line-height: 2em;
-}
