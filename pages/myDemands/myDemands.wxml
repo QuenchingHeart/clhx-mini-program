@@ -1,4 +1,7 @@
 <!--pages/myDemands/myDemands.wxml-->
+
+<wxs module="dateUtil" src="../../utils/timeUtil.wxs"></wxs>
+
 <view class="cu-list menu-avatar">
   <view class="cu-item margin-top" wx:for="{{demands}}" data-demandid="{{item.demandID}}" wx:key="{{index}}" bindtap="navigateToDemandDatail">
     <view class="content">

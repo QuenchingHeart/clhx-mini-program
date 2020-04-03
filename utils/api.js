@@ -16,6 +16,14 @@ function demandsAll(data) {
   })
 }
 
+function demandsLocation(data) {
+  return http({
+    url: '/demands/location',
+    method: 'GET',
+    data
+  })
+}
+
 function demandsPost(data) {
   return http({
     url: '/demand',
@@ -104,7 +112,7 @@ function connectDel(data) {
 
 export { 
   login,
-  demandsAll, demandsPost, demandOne, demandPut, demandDel, 
+  demandsAll, demandsLocation, demandsPost, demandOne, demandPut, demandDel, 
   applyPost, applyGet, applyPut, applyDel, 
   connectApprove, connectComplete, connectDel
   };

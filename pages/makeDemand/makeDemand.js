@@ -98,7 +98,7 @@ Page({
     disabled: false,
     applies: [],
     applied: false,
-    myApplyID: 0,
+    applyID: 0,
     userID:0
   },
   bindPickerChange: function(e) {
@@ -260,7 +260,6 @@ Page({
     var disabled = false;
     var applies = []
     var applied = false
-    var myApplyID = 0
     var that = this
     console.log(options)
     if (!options.type) {
@@ -293,11 +292,10 @@ Page({
           // console.log(res.length, res[0])
           if (res.length > 0) {
             applied = true
-            myApplyID = res[0].applyID
             console.log('pppp')
             that.setData({
               applied: applied,
-              myApplyID: myApplyID
+              applyID: res[0].applyID
             })
           }
         }).then(res => {
@@ -332,10 +330,10 @@ Page({
   },
   toMyapply: function(e) {
     var demandID = e.target.dataset.demandid
-    var myapplyID = e.target.dataset.myapplyid
-    console.log('/pages/makeApply/makeApply?type=edit&demandID=' + demandID + '&myapplyID=' + myapplyID)
+    var applyID = e.target.dataset.applyid
+    console.log('/pages/makeApply/makeApply?type=edit&demandID=' + demandID + '&applyID=' + applyID)
     wx.navigateTo({
-      url: '/pages/makeApply/makeApply?type=edit&demandID=' + demandID + '&myapplyID=' + myapplyID,
+      url: '/pages/makeApply/makeApply?type=edit&demandID=' + demandID + '&applyID=' + applyID,
     })
   },
   cancelDemand: function() {

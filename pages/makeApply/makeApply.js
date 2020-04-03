@@ -123,7 +123,6 @@ Page({
         that.initData(options)
         break;
       case 'edit':
-        // this.applyGet(options.applyID);
         var params = { applyID: options.applyID, demandID: options.demandID, userID: app.globalData.userID}
         applyGet(params).then(res => {
           that.setData({

@@ -11,18 +11,20 @@ Page({
   },
   getMyapplies:function(){
     var that = this
-    applyGet({ userID:app.globalData.userID}).then(res=>{
-      var len = res.length
+    applyGet({ userID:app.globalData.userID }).then( res => {
+      res.forEach((item) => {
+        item.detail = item.detail.length > 10 ? item.detail.substring(0, 10) : item.detail
+      })
       that.setData({
-        applies:res
+        applies: res
       })
       console.log(res)
     })
   },
   navigateToApplyDatail: function (e) {
-    console.log(e.currentTarget)
+    console.log(e.currentTarget.dataset.applyid)
     wx.navigateTo({
-      url: '/pages/makeApply/makeApply?type=edit&' + 'applyID=' + e.currentTarget.dataset.applyid + '&' + 'demandID=' + e.currentTarget.dataset.demandid
+      url: '/pages/makeApply/makeApply?type=edit&applyID=' + e.currentTarget.dataset.applyid + '&demandID=' + e.currentTarget.dataset.demandid
     })
   },
   /**
