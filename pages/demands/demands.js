@@ -154,7 +154,7 @@ Component({
     attached: function () {
       var that = this
       that.initData();
-      app.editTabbar();            
+      app.editTabbar();       
     },
     moved: function () { },
     detached: function () { },
@@ -168,9 +168,10 @@ Component({
     // 组件所在页面的生命周期函数
     show: function () {
       var that = this
-      that.initData();
-      app.editTabbar();
-
+      if (!that.data.load) {
+        that.initData();
+        app.editTabbar();
+      }
     }
   },
   methods:{
@@ -280,6 +281,8 @@ Component({
         that.setData({
           demands: data
         });
+
+        that.data.load = false;
       });
     },
     chooseLocation: function () {
