@@ -25,7 +25,7 @@ var Utils = {
       method: method,
       data: params,
       header: {
-        "content-type": "application/json",
+        "Content-Type": "application/json",
         "Authorization": "Bearer " + app.globalData.token
       },
       success: res => {
