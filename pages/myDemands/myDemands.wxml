@@ -16,7 +16,7 @@
 
       <view class="text-gray text-sm flex">
         <text class="text-cut text-grey"></text>
-          <text class="cuIcon-mark text-orange margin-right-xs"></text>{{dateUtil.dateFormat(item.interval.startTime*1000,'yyyy/MM/dd')}} - {{dateUtil.dateFormat(item.interval.endTime*1000,'yyyy/MM/dd')}}
+          <text class="cuIcon-time text-orange margin-right-xs"></text>{{dateUtil.dateFormat(item.interval.startTime*1000,'yyyy/MM/dd')}} - {{dateUtil.dateFormat(item.interval.endTime*1000,'yyyy/MM/dd')}}
       </view>
 
       <view class="text-gray text-sm flex">

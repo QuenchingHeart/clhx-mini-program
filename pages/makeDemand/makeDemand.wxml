@@ -78,7 +78,7 @@
 <template is="myApply" data="{{applies: applies}}" /> -->
 
 <view class="cu-list menu-avatar">
-  <view class="cu-item margin-top" wx:for="{{applies}}" data-applyid="{{item.applyID}}" data-demandid="{{item.demandID}}" wx:key="{{index}}" bindtap="{{item.status=='已关闭'?'':'navigateToApplyDatail'}}">
+  <view class="cu-item margin-top" wx:for="{{applies}}" data-applyid="{{item.applyID}}" data-demandid="{{item.demandID}}" wx:key="index" bindtap="{{item.status=='已关闭'?'':'navigateToApplyDatail'}}">
     <view class="content">
 
       <!-- <view class="text-{{item.status=='已关闭'?'gray':'black'}}">{{item.demandTitle}}</view> -->

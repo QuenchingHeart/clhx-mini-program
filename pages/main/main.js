@@ -20,6 +20,8 @@ Page({
     position: '',
     tabbar: {},
 
+    firstLoad: true
+
   },
 
   /**
@@ -39,7 +41,10 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function() {
-
+    // this.onLoad()
+    if (!this.data.firstLoad) {
+      this.loadDemandsLocation();
+    }
   },
 
   /**
@@ -87,6 +92,30 @@ Page({
     console.log(this.data.markers[marker.markerId])
   },
 
+  loadDemandsLocation() {
+    demandsLocation().then(demands => {
+      var that = this;
+      let markers = [ that.data.markers[0] ];
+      for (let i = 0; i < demands.length; i++) {
+        markers.push({
+          latitude: demands[i].latitude,
+          longitude: demands[i].longitude,
+          iconPath: demands[i].status == '已发布' ? '/image/demand_published.png' : '/image/demand_completed.png',
+          width: '34px',
+          height: '34px',
+          id: 1 + i // the first marker is the current location
+        })
+      }
+
+      that.setData({
+        markers,
+        demands
+      })
+
+      that.data.firstLoad = false;
+    });
+  },
+
   initData: function(options) {
     var that = this;
     that.mapCtxMain = wx.createMapContext('myMap')
@@ -120,25 +149,7 @@ Page({
         })
 
         // Draw all demands.
-        demandsLocation().then(demands => {
-          let markers = that.data.markers;
-          for (let i = 0; i < demands.length; i++) {
-            markers.push({
-              latitude: demands[i].latitude,
-              longitude: demands[i].longitude,
-              iconPath: demands[i].status == '已发布' ? '/image/demand_published.png' : '/image/demand_completed.png',
-              width: '34px',
-              height: '34px',
-              id: markers.length
-            })
-          }
-          that.setData({
-            latitude: re.latitude,
-            longitude: re.longitude,
-            markers: markers,
-            demands
-          })
-        });
+        that.loadDemandsLocation();
 
         // Draw all resources.
       }
