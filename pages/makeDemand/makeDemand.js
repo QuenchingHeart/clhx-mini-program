@@ -99,7 +99,8 @@ Page({
     applies: [],
     applied: false,
     applyID: 0,
-    userID:0
+    userID:0,
+    options:{}
   },
   bindPickerChange: function(e) {
     console.log('picker发送选择改变，携带值为', e.detail.value)
@@ -294,10 +295,12 @@ Page({
             applied = true
             console.log('pppp')
             that.setData({
-              applied: applied,
               applyID: res[0].applyID
             })
           }
+          that.setData({
+            applied: applied,
+          })
         }).then(res => {
 
         })
@@ -408,7 +411,8 @@ Page({
    */
   onLoad: function(options) {
     this.setData({
-      userID: app.globalData.userID
+      userID: app.globalData.userID,
+      options:options
     })
     console.log(options)
     this.mapCtx = wx.createMapContext('myMapMakeDemad')
@@ -426,6 +430,7 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function() {
+    this.onLoad(this.data.options)
 
   },
 

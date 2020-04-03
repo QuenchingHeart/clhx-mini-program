@@ -106,7 +106,7 @@ Page({
       case 'delete':
         connectDel(params).then(res=>{
           console.log(res)
-          that.toastAndBack(2)
+          that.toastAndBack()
         })
         break;
     }
@@ -166,7 +166,7 @@ Page({
       case 'delete':
         applyDel({ applyID: options.applyID }).then(res => {
           console.log(res)
-          that.toastAndBack(2)
+          that.toastAndBack()
         })
         break;
 
@@ -183,7 +183,8 @@ Page({
   cancelApply: function () {   
     this.handleOp({
       type:'delete',
-      applyID:this.data.demandDetail.applyID
+      applyID:this.data.formData.applyID,
+      demandID:this.data.formData.demandID
     })
 
   },
