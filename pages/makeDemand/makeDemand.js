@@ -1,4 +1,5 @@
 // pages/makeDemand/makeDemand.js
+const formUtil = require('../../utils/formUtil.js')
 import {
   demandsPost,
   demandOne,
@@ -108,7 +109,7 @@ Page({
   bindPickerChange: function(e) {
     console.log('picker发送选择改变，携带值为', e.detail.value)
     this.setData({
-      personorandganizationIndex: e.detail.value,
+      "personorandganizationIndex": e.detail.value,
       "formData.isOrganization": e.detail.value
     })
   },
@@ -156,51 +157,56 @@ Page({
       }
     })
   },
-  submitForm: function() {
-    var that = this
-    console.log(this.data.formData)
-    var formData = that.data.formData
-    var demandDetail = {
-      "demandID": that.data.demandDetail.demandID,
-      "createdBy": {
-        "publishUserID": app.globalData.userID,
-        "publishUserName": "userName",
-        "isOrganization": formData.isOrganization
-      },
-      "contactName": formData.contactName,
-      "contactPhone": formData.contactPhone,
-      "location": {
-        "longitude": formData.longitude,
-        "latitude": formData.latitude,
-        "district": formData.district,
-        "address": formData.address
-      },
-      "interval": {
-        "startTime": Date.parse(formData.startTime) / 1000,
-        "endTime": Date.parse(formData.endTime) / 1000
-        // "time": formatTimeTwo(Date.parse(formData.startTime) / 1000,'Y-M-D')
-      },
-      "category": formData.demandCategory,
-      "title": formData.title,
-      "detail": formData.detail,
-    }
-    that.setData({
-      demandDetail: demandDetail
-    })
-    console.log(that.data.type, demandDetail)
-    if (that.data.type == 'add') {
-      demandsPost(demandDetail).then(data => {
-        console.log(data)
-        that.toastAndBack()
-
+  submitForm: function(e) {
+    var checkRes = formUtil.checkNullForm(e);
+    if(checkRes){
+      console.log("调用工具结果：", checkRes)
+      var that = this
+      console.log(this.data.formData)
+      var formData = that.data.formData
+      var demandDetail = {
+        "demandID": that.data.demandDetail.demandID,
+        "createdBy": {
+          "publishUserID": app.globalData.userID,
+          "publishUserName": "userName",
+          "isOrganization": formData.isOrganization
+        },
+        "contactName": formData.contactName,
+        "contactPhone": formData.contactPhone,
+        "location": {
+          "longitude": formData.longitude,
+          "latitude": formData.latitude,
+          "district": formData.district,
+          "address": formData.address
+        },
+        "interval": {
+          "startTime": Date.parse(formData.startTime) / 1000,
+          "endTime": Date.parse(formData.endTime) / 1000
+          // "time": formatTimeTwo(Date.parse(formData.startTime) / 1000,'Y-M-D')
+        },
+        "category": formData.demandCategory,
+        "title": formData.title,
+        "detail": formData.detail,
+      }
+      that.setData({
+        demandDetail: demandDetail
       })
-
-    } else if (that.data.type == 'edit') {
-      demandPut(demandDetail).then(data => {
-        console.log(data)
-        that.toastAndBack()
-      })
+      console.log(that.data.type, demandDetail)
+      if (that.data.type == 'add') {
+        demandsPost(demandDetail).then(data => {
+          console.log(data)
+          that.toastAndBack()
+  
+        })
+  
+      } else if (that.data.type == 'edit') {
+        demandPut(demandDetail).then(data => {
+          console.log(data)
+          that.toastAndBack()
+        })
+      }
     }
+   
 
   },
   toastAndBack: function(page=1) {

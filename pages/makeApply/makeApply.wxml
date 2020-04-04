@@ -1,52 +1,54 @@
-<view class="cu-form-group">
-  <view class="title">对接方</view>
-  <picker mode="selector" bindchange="bindPickerChange" range="{{personorandganization}}" value="{{personorandganizationIndex}}" disabled="{{disabled}}">
-    <view class="picker">
-      {{personorandganization[personorandganizationIndex]}}
+<form models="{{formData}}" bindsubmit="submitForm">
+  <view class="cu-form-group">
+    <view class="title">对接方</view>
+    <picker mode="selector" bindchange="bindPickerChange" name="personorandganization" range="{{personorandganization}}" value="{{personorandganizationIndex}}" disabled="{{disabled}}">
+      <view class="picker">
+        {{personorandganization[personorandganizationIndex]}}
+      </view>
+    </picker>
+  </view>
+
+  <view class="cu-form-group">
+    <view class="title">联系人</view>
+    <input class="weui-input" disabled="{{disabled}}" name="contactName" data-field="contactName" bindinput="formInputChange" placeholder="请输入联系人" value="{{formData.contactName}}" />
+  </view>
+
+  <view class="cu-form-group">
+    <view class="title">手机号码</view>
+    <input name="contactPhone" data-field="contactPhone" disabled="{{disabled}}" bindinput="formInputChange" value="{{formData.contactPhone}}" placeholder="请输入号码" />
+    <view class="cu-capsule radius">
+      <view class="cu-tag bg-orange">
+        +86
+      </view>
     </view>
-  </picker>
-</view>
-
-<view class="cu-form-group">
-  <view class="title">联系人</view>
-  <input class="weui-input" disabled="{{disabled}}" data-field="contactName" bindinput="formInputChange" placeholder="请输入联系人" value="{{formData.contactName}}" />
-</view>
-
-<view class="cu-form-group">
-  <view class="title">手机号码</view>
-  <input data-field="contactPhone" disabled="{{disabled}}" bindinput="formInputChange" value="{{formData.contactPhone}}" placeholder="请输入号码" />
-  <view class="cu-capsule radius">
-    <view class="cu-tag bg-orange">
-      +86
+    <view class="cu-tag line-orange">
+      中国大陆
     </view>
   </view>
-  <view class="cu-tag line-orange">
-    中国大陆
+
+  <view class="cu-form-group align-start">
+    <view class="title">详细内容</view>
+    <textarea class="weui-textarea" name="detail" data-field="detail" bindinput="formInputChange" value="{{formData.detail}}" placeholder="请输入详细内容" />
   </view>
-</view>
 
-<view class="cu-form-group align-start">
-  <view class="title">详细内容</view>
-  <textarea class="weui-textarea" data-field="detail" bindinput="formInputChange" value="{{formData.detail}}" placeholder="请输入详细内容" />
-</view>
-
-<view class="cu-form-group" wx:if="{{type!='add'}}">
-  <view class="title">对接状态</view>
-  <input class="weui-input" disabled="true" placeholder="待审核" value="{{formData.status}}" />
-</view>
-
-<!-- <view class="button-sp-area">
-  <view class="cu-btn bg-orange lg padding-sm margin-xs radius">
-    <a class="cu-btn bg-orange lg" type="primary" bindtap="cancelForm">取消</a>
+  <view class="cu-form-group" wx:if="{{type!='add'}}">
+    <view class="title">对接状态</view>
+    <input class="weui-input" disabled="true" placeholder="待审核" value="{{formData.status}}" />
   </view>
-</view> -->
 
-<view class="button-sp-area" wx:if="{{type=='add'}}">
-  <view class="cu-btn bg-blue lg padding-sm margin-xs radius">
-    <a class="cu-btn bg-blue lg" disabled='{{disabled}}' type="primary" bindtap="submitForm">申请对接</a>
+  <!-- <view class="button-sp-area">
+    <view class="cu-btn bg-orange lg padding-sm margin-xs radius">
+      <a class="cu-btn bg-orange lg" type="primary" bindtap="cancelForm">取消</a>
+    </view>
+  </view> -->
+
+  <view class="button-sp-area" wx:if="{{type=='add'}}">
+    <view class="cu-btn bg-blue lg padding-sm margin-xs radius">
+      <button class="cu-btn bg-blue lg" disabled='{{disabled}}' form-type='submit'>申请对接</button>
+    </view>
   </view>
-</view>
 
+</form>
 <view class="flex solid-bottom padding justify-around" wx:if="{{ type=='edit' && formData.status != '已关闭' && formData.status != '已完成' }}">
   <!-- {{formData.status}} -->
   <view class="cu-btn bg-gray lg padding-sm margin-xs radius">
