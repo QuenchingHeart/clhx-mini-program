@@ -1,6 +1,17 @@
 <!--pages/makeDemand/makeDemand.wxml-->
 <wxs src="../../utils/tools.wxs" module="tools" />
-<map id="myMapMakeDemad" style="width: 100%; height: 400rpx;" latitude="{{formData.latitude}}" longitude="{{formData.longitude}}" markers="{{markers}}" show-location bindtap="{{disabled==false?'chooseLocation':''}}" scale="18"></map>
+<map
+  id="myMapMakeDemad"
+  style="width: 100%; height: 400rpx;"
+  latitude="{{formData.latitude}}"
+  longitude="{{formData.longitude}}"
+  markers="{{markers}}"
+  show-location
+  show-compass
+  show-scale
+  bindtap="{{disabled==false?'chooseLocation':''}}"
+  scale="18">
+</map>
 <form models="{{formData}}" id="form">
 
   <view class="cu-form-group  margin-top">
