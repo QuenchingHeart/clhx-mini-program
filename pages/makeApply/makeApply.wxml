@@ -47,7 +47,7 @@
   </view>
 </view>
 
-<view class="flex solid-bottom padding justify-around" wx:if="{{ type=='edit' }}">
+<view class="flex solid-bottom padding justify-around" wx:if="{{ type=='edit' && formData.status != '已关闭' && formData.status != '已完成' }}">
   <!-- {{formData.status}} -->
   <view class="cu-btn bg-gray lg padding-sm margin-xs radius">
     <a class="cu-btn bg-gray lg" disabled='{{disabled}}' type="primary" bindtap="cancelApply">撤销对接</a>
