@@ -75,4 +75,3 @@
   </view>
   <view class="cu-tabbar-height"></view>
 </scroll-view>
-<tabbar tabbar="{{tabbar}}"></tabbar>
