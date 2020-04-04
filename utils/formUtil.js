@@ -39,7 +39,6 @@ function checkNullForm(e){
     "detail":"详细内容",
   }
 
-  console.log(formData.length)
   // 循环遍历表单内容
   for(var item in formData){
 		// 打桩 - 查看表单信息
