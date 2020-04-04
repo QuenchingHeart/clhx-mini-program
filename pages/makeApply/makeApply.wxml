@@ -10,7 +10,7 @@
 
   <view class="cu-form-group">
     <view class="title">联系人</view>
-    <input class="weui-input" disabled="{{disabled}}" name="contactName" data-field="contactName" bindinput="formInputChange" placeholder="请输入联系人" value="{{formData.contactName}}" />
+    <input disabled="{{disabled}}" name="contactName" data-field="contactName" bindinput="formInputChange" placeholder="请输入联系人" value="{{formData.contactName}}" />
   </view>
 
   <view class="cu-form-group">
@@ -28,12 +28,12 @@
 
   <view class="cu-form-group align-start">
     <view class="title">详细内容</view>
-    <textarea class="weui-textarea" name="detail" data-field="detail" bindinput="formInputChange" value="{{formData.detail}}" placeholder="请输入详细内容" />
+    <textarea name="detail" data-field="detail" bindinput="formInputChange" value="{{formData.detail}}" placeholder="请输入详细内容" />
   </view>
 
   <view class="cu-form-group" wx:if="{{type!='add'}}">
     <view class="title">对接状态</view>
-    <input class="weui-input" disabled="true" placeholder="待审核" value="{{formData.status}}" />
+    <input disabled="true" placeholder="待审核" value="{{formData.status}}" />
   </view>
 
   <!-- <view class="button-sp-area">

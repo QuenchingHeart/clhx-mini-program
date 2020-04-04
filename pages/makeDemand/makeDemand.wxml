@@ -69,7 +69,7 @@
 
   <view class="cu-form-group align-start">
     <view class="title">详细内容</view>
-    <textarea class="weui-textarea" name="detail" data-field="detail" bindinput="formInputChange" value="{{formData.detail}}" placeholder="请输入详细内容" />
+    <textarea name="detail" data-field="detail" bindinput="formInputChange" value="{{formData.detail}}" placeholder="请输入详细内容" />
   </view>
 
 
