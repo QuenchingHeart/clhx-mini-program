@@ -29,7 +29,6 @@ Page({
    */
   onLoad: function(options) {
     this.initData()
-    app.editTabbar();
   },
 
   /**
@@ -42,6 +41,7 @@ Page({
    */
   onShow: function() {
     // this.onLoad()
+    app.editTabbar();
     if (!this.data.firstLoad) {
       this.loadDemandsLocation();
     }

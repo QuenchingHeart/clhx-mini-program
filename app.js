@@ -56,10 +56,14 @@ App({
       tabbar.list[i].selected = false;
       (tabbar.list[i].pagePath == pagePath) && (tabbar.list[i].selected = true);
     }
-    _this.setData({
-      tabbar: tabbar
-    });
+    if (typeof _this.getTabBar === 'function' &&
+    _this.getTabBar()) {
+      _this.getTabBar().setData({
+        tabbar: tabbar
+    })
+  }
   },
+  
   globalData: {
     "tabBar": {
       "custom": true,
@@ -110,6 +114,5 @@ App({
     // token:'eyJhbGciOiJSUzI1NiJ9.eyJleHAiOjE1ODU1NzkyMzcsInVzZXIiOjE0fQ.cAKSDLiwuktVShjilZTnEifLEdTw1lIK57BoovveFBbuCy8GqtDnlzAjO4Iur04Rv9FXiWzyUbC_0DVDI1Q9bAvEga-PBUikTPFfbPISyQz-KUqWQaUdNHPTP0uuaOV2RZi3DcfOxhPkgHEWcvQSkYkxVh2vpBCPpOeJ6I5QHu11OOmUveA0_mjxrQYKeRwllfI6Q4nMX7JDL80CuNZhhtfnG9cObEj5oIRKaaT7DLi6kVW8RSkTUZd7upppT59gLgD1TRKrcEPBkfKEYkDb8hkcoYNl_GQRhTTOOrVRhud6_R9hJNEJzdsVO5sxRFP51_xKBXx3gVCdxWYYQ66cJQ',
     userID:'',
     baseUrl: 'https://api.smartcommunity.mrdrivingduck.cn:8081'
-  
   }
 });

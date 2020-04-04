@@ -1,4 +1,4 @@
-// tabBarComponent/tabBar.js
+// custom-tab-bar/index.js
 const app = getApp();
 Component({
   /**
@@ -10,7 +10,7 @@ Component({
       value: {
         "backgroundColor": "#ffffff",
         "color": "#979795",
-        "selectedColor": "#1c1c1b",
+        "selectedColor": "#3cc51f",
         "list": [
           {
             "pagePath": "/pages/main/main",
@@ -28,8 +28,8 @@ Component({
           },
           {
             "pagePath":"/pages/makeDemand/makeDemand?type=add",
-            "iconPath": "../pages/images/helpicon/RectangleCopy.png",
-            "selectedIconPath": "../pages/images/helpicon/RectangleCopy.png",
+            "iconPath": "../pages/images/helpicon/RectangleCopy_4.png",
+            "selectedIconPath": "../pages/images/helpicon/RectangleCopy_4.png",
             "text": "发布",
             "isSpecial": true
           },
@@ -56,7 +56,7 @@ Component({
    * 组件的初始数据
    */
   data: {
-    isIphoneX: app.globalData.systemInfo.model.includes('iPhone X')
+    isIphoneX: app.globalData.systemInfo.model.includes('iPhone X'),
   },
 
   /**

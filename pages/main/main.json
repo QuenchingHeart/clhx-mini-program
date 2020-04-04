@@ -1,6 +1,6 @@
 {
 
   "usingComponents": {
-    "tabbar": "../tabbarComponent/tabbar"
+    "tabbar": "../custom-tab-bar/index"
   }
 }
