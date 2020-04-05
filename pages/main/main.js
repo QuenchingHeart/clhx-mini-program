@@ -93,10 +93,22 @@ Page({
     })
   },
   tapUm: function(marker) {
-    // console.log(marker)
-    // console.log(marker.markerId)
-    // console.log(this.data.markers)
     console.log(this.data.markers[marker.markerId])
+    if (marker.markerId >= 1 && marker.markerId < this.data.demands.length + 1) {
+      // let callout = "markers[" + marker.markerId + "].callout";
+      // this.setData({
+      //   [callout]: {
+      //     content: '腾讯总部大楼',
+      //     padding: 10,
+      //     borderRadius: 2
+      //   }
+      // })
+      console.log(this.data.demands[marker.markerId - 1])
+    } else if (marker.markerId >= this.data.demands.length + 1) {
+      // resource
+    } else if (marker.markerId == 0) {
+      // current location
+    }
   },
 
   loadDemandsLocation() {

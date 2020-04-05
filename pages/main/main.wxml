@@ -33,18 +33,12 @@
       <cover-view class='contor-input'>
         <cover-view class="input-info" bindtap='chooseLocation'>
             <span class="iconfont icon-RectangleCopy"></span>  {{inputInfo}}
-              <!-- <input class="hide" value="{{searchText}}" focus="{{inputFocus}}"  bindinput="blurInput" value="{{inputInfo}}" maxlength='13'></input> -->
           </cover-view>
         </cover-view>
-
-        <!-- <cover-view class="btn-group">
-          <button class="btn-need" style="background-color:red;"type="primary" size="{{primarySize}}" loading="{{loading}}" plain="{{plain}}" disabled="{{disabled}}" bindtap="NavToMakeDemand"> 我有需求 </button>
-          <button class="btn-offer" type="primary" size="{{primarySize}}" loading="{{loading}}" plain="{{plain}}" disabled="{{disabled}}" bindtap="primary"> 我能提供 </button>
-        </cover-view>
-        <cover-view class='share-huihua' catchtap="toggleAddjzq">加入家长群</cover-view> -->
     </cover-view>
     </map>
     
   </view>
+
 
 </view>
