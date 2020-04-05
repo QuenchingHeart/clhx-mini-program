@@ -1,4 +1,7 @@
 /* pages/main/main.wxss */
+.page-body{
+  height: calc(100vh-env(safe-area-inset-bottom));
+}
 .map-contor{
   position: absolute;
   width: 94%;
