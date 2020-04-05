@@ -10,69 +10,51 @@
     </view>
     <image src="https://raw.githubusercontent.com/weilanwl/ColorUI/master/demo/images/wave.gif" mode="scaleToFill" class="gif-wave"></image>
   </view>
-  <view class="padding flex text-center text-grey bg-white shadow-warp">
-    <view class="flex flex-sub flex-direction solid-right">
-      <view class="text-xxl text-orange">{{visitTotal}}</view>
-      <view class="margin-top-sm">
-        <text class="cuIcon-attentionfill"></text> View</view>
-    </view>
-    <view class="flex flex-sub flex-direction solid-right">
-      <view class="text-xxl text-blue">{{starCount}}</view>
-      <view class="margin-top-sm">
-        <text class="cuIcon-favorfill"></text> Star</view>
-    </view>
-    <view class="flex flex-sub flex-direction">
-      <view class="text-xxl text-green">{{forksCount}}</view>
-      <view class="margin-top-sm">
-        <text class="cuIcon-fork"></text> Fork</view>
-    </view>
-  </view>
   <view class="cu-list menu card-menu margin-top-xl margin-bottom-xl shadow-lg radius">
 
     <view class="cu-item arrow">
       <navigator url="/pages/myDemands/myDemands" class="content" hover-class="none">
           <text class="cuIcon-attentionfill text-red"></text>
-          <text class="weui-cell__bd">我的需求</text>
+          <text>我的需求</text>
       </navigator>
     </view>
     <view class="cu-item arrow">
       <navigator url="" class="content" hover-class="none">
           <text class="cuIcon-favorfill text-red"></text>
-          <text class="weui-cell__bd">我的资源</text>
+          <text>我的资源</text>
       </navigator>
     </view>
     <view class="cu-item arrow">
       <navigator url="/pages/myApply/myApply" class="content" hover-class="none">
           <text class="cuIcon-fork text-red"></text>
-          <text class="weui-cell__bd">我的对接</text>
+          <text>我的对接</text>
       </navigator>
     </view>
     <view class="cu-item arrow">
       <navigator url="" class="content" hover-class="none">
           <text class="cuIcon-github text-red"></text>
-          <text class="weui-cell__bd">我的信息</text>
+          <text>我的信息</text>
       </navigator>
     </view>
     <view class="cu-item arrow">
       <navigator url="" class="content" hover-class="none">
           <text class="cuIcon-formfill text-red"></text>
-          <text class="weui-cell__bd">我的组织</text>
+          <text>我的组织</text>
       </navigator>
     </view>
     <view class="cu-item arrow">
       <navigator url="" class="content" hover-class="none">
           <text class="cuIcon-appreciatefill text-red"></text>
-          <text class="weui-cell__bd">客服/建议</text>
+          <text>客服/建议</text>
       </navigator>
     </view>
     <view class="cu-item arrow">
       <navigator url="" class="content" hover-class="none">
           <text class="cuIcon-writefill text-red"></text>
-          <text class="weui-cell__bd">关于</text>
+          <text>关于</text>
       </navigator>
     </view>
 
   </view>
   <view class="cu-tabbar-height"></view>
 </scroll-view>
-<tabbar tabbar="{{tabbar}}"></tabbar>

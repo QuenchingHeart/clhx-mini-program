@@ -41,6 +41,10 @@
 			"currentL": -1,
 			"list": []
 		},
+		"gamePlugin": {
+			"current": -1,
+			"list": []
+		},
 		"miniprogram": {
 			"current": 0,
 			"list": [
@@ -84,6 +88,13 @@
 					"name": "对接详情",
 					"pathName": "pages/makeApply/makeApply",
 					"query": "type=edit&myAppplyID=27&demandID=44",
+					"scene": null
+				},
+				{
+					"id": 6,
+					"name": "pages/makeApply/makeApply",
+					"pathName": "pages/makeApply/makeApply",
+					"query": "",
 					"scene": null
 				}
 			]

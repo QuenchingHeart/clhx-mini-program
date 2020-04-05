@@ -57,6 +57,7 @@ Component({
    */
   data: {
     isIphoneX: app.globalData.systemInfo.model.includes('iPhone X'),
+    isHUAWEI: app.globalData.systemInfo.model.includes('HUAWEI')
   },
 
   /**

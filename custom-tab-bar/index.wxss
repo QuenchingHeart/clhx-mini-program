@@ -1,15 +1,22 @@
 @import "../libs/iconfont/iconfont.wxss";
+.safe-area{
+  position: fixed;
+  bottom: 0;
+  height: 28rpx;
+  width: 100%;
+  background: white;
+}
 .tabbar_box{
-    display: flex;
-    flex-direction: row;
-    justify-content: space-around;
-    position: fixed;
-    bottom: 0;
-    left: 0;
-    z-index: 999;
-    width: 100%;
-    height: 98rpx;
-    box-shadow: 0 0 2px rgba(58, 56, 56, 0.1);
+  position: fixed;
+  bottom:0;
+  left: 0;
+  right: 0;
+  height: calc(52px);
+  background: white;
+  display: flex;
+}
+.bottom{
+  bottom: 27rpx;
 }
 /* .tabbar_box.iphoneX-height{
     padding-bottom: 66rpx;

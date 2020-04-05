@@ -1,3 +1,2 @@
 <!--pages/source/source.wxml-->
 <text>更新中 敬请期待</text>
-<tabbar tabbar="{{tabbar}}"></tabbar>

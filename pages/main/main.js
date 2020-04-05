@@ -85,6 +85,13 @@ Page({
   /**
    * 点击 marker 的回调，得到 marker id (数组中的下标)
    */
+  bindRegionChange:function(){
+    this.mapCtxMain.getScale({
+      success: res=>{
+        console.log(res)
+      }
+    })
+  },
   tapUm: function(marker) {
     console.log(this.data.markers[marker.markerId])
     if (marker.markerId >= 1 && marker.markerId < this.data.demands.length + 1) {

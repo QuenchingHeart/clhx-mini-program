@@ -1,5 +1,6 @@
 const app = getApp();
 const util = require("../../utils/util.js");
+const formUtil = require('../../utils/formUtil.js')
 import { applyPost, applyGet, applyPut, applyDel, connectApprove, connectComplete, connectDel} from "../../utils/api.js";
 Page({
   data:{
@@ -57,26 +58,30 @@ Page({
     })
   },
 
-  submitForm: function (){
-    var that = this
-    console.log(that.data)
-    if (that.data.type == 'add') {
-      applyPost(this.data.formData).then(res => {
-        console.log(res)
-        that.setData({
-          formData: res
+  submitForm: function (e){
+    var checkRes = formUtil.checkNullForm(e);
+    if(checkRes){
+      var that = this
+      console.log(that.data)
+      if (that.data.type == 'add') {
+        applyPost(this.data.formData).then(res => {
+          console.log(res)
+          that.setData({
+            formData: res
+          })
+          that.toastAndBack()
         })
-        that.toastAndBack()
-      })
-    } else if (that.data.type == 'edit') {
-      applyPut(this.data.formData).then(res => {
-        console.log(res)
-        that.setData({
-          formData: res
+      } else if (that.data.type == 'edit') {
+        applyPut(this.data.formData).then(res => {
+          console.log(res)
+          that.setData({
+            formData: res
+          })
+          that.toastAndBack()
         })
-        that.toastAndBack()
-      })
+      }
     }
+    
   },
   cancelForm: function(){
     wx.navigateBack({
