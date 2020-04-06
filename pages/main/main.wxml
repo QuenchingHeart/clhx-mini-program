@@ -16,20 +16,20 @@
       <cover-view class="padding flex text-center text-grey bg-white shadow-warp">
         <cover-view class="flex flex-sub flex-direction solid-right">
           <cover-view class="margin-top-sm">
-            <text class="cuIcon-attentionfill text-red"></text> 已发布</cover-view>
-          <cover-view class="margin-top text-xxl text-red">{{visitTotal}}234</cover-view>
+            <text class="cuIcon-attentionfill text-orange"></text> 已发布</cover-view>
+          <cover-view class="margin-top text-xxl text-orange">{{publishedDemandCount}}</cover-view>
         </cover-view>
 
         <cover-view class="flex flex-sub flex-direction solid-right">
           <cover-view class="margin-top-sm">
-            <text class="cuIcon-favorfill text-olive"></text> 对接中</cover-view>
-          <cover-view class="margin-top text-xxl text-olive">{{starCount}}234</cover-view>
+            <text class="cuIcon-favorfill text-cyan"></text> 对接中</cover-view>
+          <cover-view class="margin-top text-xxl text-cyan">{{connectingDemandCount}}</cover-view>
         </cover-view>
 
         <cover-view class="flex flex-sub flex-direction">
           <cover-view class="margin-top-sm">
-            <text class="cuIcon-fork text-cyan"></text> 已完成</cover-view>
-          <cover-view class="margin-top text-xxl text-cyan">{{forksCount}}234</cover-view>
+            <text class="cuIcon-fork text-gray"></text> 已完成</cover-view>
+          <cover-view class="margin-top text-xxl text-gray">{{completedDemandCount}}</cover-view>
         </cover-view>
 
       </cover-view>
