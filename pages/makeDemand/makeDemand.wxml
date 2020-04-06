@@ -67,7 +67,7 @@
 
   <view class="cu-form-group">
     <view class="title">手机号码</view>
-    <input name="contactPhone" data-field="contactPhone" disabled="{{disabled}}" bindinput="formInputChange" value="{{formData.contactPhone}}" placeholder="请输入号码" />
+    <input name="contactPhone" type="number" data-field="contactPhone" disabled="{{disabled}}" bindinput="formInputChange" value="{{formData.contactPhone}}" placeholder="请输入号码" />
     <view class="cu-capsule radius">
       <view class="cu-tag bg-orange">
         +86
@@ -80,7 +80,7 @@
 
   <view class="cu-form-group align-start">
     <view class="title">详细内容</view>
-    <textarea name="detail" data-field="detail" bindinput="formInputChange" value="{{formData.detail}}" placeholder="请输入详细内容" />
+    <textarea name="detail" data-field="detail" disabled="{{disabled}}" bindinput="formInputChange" value="{{formData.detail}}" placeholder="请输入详细内容" />
   </view>
 
 
@@ -88,7 +88,7 @@
 <template is="myApply" data="{{applies: applies}}" /> -->
 
 <view class="cu-list menu-avatar">
-  <view class="cu-item margin-top" wx:for="{{applies}}" data-applyid="{{item.applyID}}" data-demandid="{{item.demandID}}" wx:key="index" bindtap="{{item.status=='已关闭'?'':'navigateToApplyDatail'}}">
+  <view class="cu-item margin-top" wx:for="{{applies}}" data-applyid="{{item.applyID}}" data-demandid="{{item.demandID}}" wx:key="index" bindtap="{{(item.status=='已关闭' || (demandDetail.status == '对接中' && item.status != '对接中'))?'':'navigateToApplyDatail'}}">
     <view class="content">
 
       <!-- <view class="text-{{item.status=='已关闭'?'gray':'black'}}">{{item.demandTitle}}</view> -->
