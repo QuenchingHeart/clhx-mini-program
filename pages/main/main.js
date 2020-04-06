@@ -2,17 +2,18 @@
 const app = getApp();
 const util = require("../../utils/util.js");
 import {
-  demandsLocation
+  demandsLocation,
+  demandsCount
 } from "../../utils/api.js";
 const RADIUS = 4
 const INIT_CALLOUT = {
-	padding: 6,
-	display: 'BYCLICK',
-	fontSize: 16,
-	textAlign: 'left',
-	borderRadius: RADIUS,
-	borderWidth: 2,
-	bgColor: '#ffffff'
+  padding: 6,
+  display: 'BYCLICK',
+  fontSize: 16,
+  textAlign: 'center',
+  borderRadius: RADIUS,
+  borderWidth: 3,
+  bgColor: '#ffffff'
 }
 
 Page({
@@ -33,115 +34,121 @@ Page({
 
     firstLoad: true,
 
-    mpScale: 0
+    mpScale: 0,
 
+    publishedDemandCount: "-",
+    connectingDemandCount: "-",
+    completedDemandCount: "-"
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
-  onLoad: function(options) {
+  onLoad: function (options) {
     this.initData()
   },
 
   /**
    * 生命周期函数--监听页面初次渲染完成
    */
-  onReady: function() {},
+  onReady: function () {},
 
   /**
    * 生命周期函数--监听页面显示
    */
-  onShow: function() {
+  onShow: function () {
     // this.onLoad()
     app.editTabbar();
     if (!this.data.firstLoad) {
       this.loadDemandsLocation();
+      this.loadDemandsCount();
     }
   },
 
   /**
    * 生命周期函数--监听页面隐藏
    */
-  onHide: function() {
+  onHide: function () {
 
   },
 
   /**
    * 生命周期函数--监听页面卸载
    */
-  onUnload: function() {
+  onUnload: function () {
 
   },
 
   /**
    * 页面相关事件处理函数--监听用户下拉动作
    */
-  onPullDownRefresh: function() {
+  onPullDownRefresh: function () {
 
   },
 
   /**
    * 页面上拉触底事件的处理函数
    */
-  onReachBottom: function() {
+  onReachBottom: function () {
 
   },
 
   /**
    * 用户点击右上角分享
    */
-  onShareAppMessage: function() {
+  onShareAppMessage: function () {
 
   },
   /**
    * 点击 marker 的回调，得到 marker id (数组中的下标)
    */
-  changeRegion:function(e){
-    console.log(e)
+  changeRegion: function (e) {
+    // console.log(e)
     var that = this
-    if(e.type=="end"){
+    if (e.type == "end") {
       that.mapCtxMain.getScale({
-        success: res=>{
+        success: res => {
           let demands = that.data.demands
           var op = 'nothing'
+          // console.log(res.scale)
+          // console.log(that.data.mpScale)
           // 为了避免频繁的刷新，所以设置到达阈值并且与之前的scale不同才会刷新
-          if(res.scale>10&&that.data.mpScale<=10){
+          if (res.scale > 12 && that.data.mpScale <= 12) {
             op = 'show'
-          }else if (res.scale<=10&&that.data.mpScale>10) {
+          } else if (res.scale <= 12 && that.data.mpScale > 12) {
             op = 'hide'
           }
           console.log(res.scale)
-          if(op == "show"||op=="hide"){
+          if (op == "show" || op == "hide") {
             that.data.markers.forEach(marker => {
-             if(marker.id>=1){
-              var i =  marker.id - 1
-              var display = ''
-              if(op=='show'){
-                display = demands[i].status=='已发布'?'ALWAYS':'BYCLICK'
-              }else if (op=='hide'){
-                display = 'BYCLICK'
-              }
+              if (marker.id >= 1) {
+                var i = marker.id - 1
+                var display = ''
+                if (op == 'show') {
+                  display = demands[i].status == '已发布' ? 'ALWAYS' : 'BYCLICK'
+                } else if (op == 'hide') {
+                  display = 'BYCLICK'
+                }
 
-              let callout = "markers[" + marker.id + "].callout.display";
-              this.setData({
-                [callout]:display
-              })
-             }
-              });
-            }
-            that.setData({
-              mpScale: res.scale
-            })
+                let callout = "markers[" + marker.id + "].callout.display";
+                this.setData({
+                  [callout]: display
+                })
+              }
+            });
+          }
+          that.setData({
+            mpScale: res.scale
+          })
         }
       })
     }
 
   },
-  tanCallout:function(e){
+  tanCallout: function (e) {
 
   },
-  tapUm: function(marker) {
+  tapUm: function (marker) {
     console.log(this.data.markers[marker.markerId])
     if (marker.markerId >= 1 && marker.markerId < this.data.demands.length + 1) {
       // let callout = "markers[" + marker.markerId + "].callout";
@@ -163,20 +170,25 @@ Page({
   loadDemandsLocation() {
     demandsLocation().then(demands => {
       var that = this;
-      let markers = [ that.data.markers[0] ];
+      let markers = [that.data.markers[0]];
       for (let i = 0; i < demands.length; i++) {
+        let color = demands[i].status == "已发布" ? "#f37b1d" :
+          demands[i].status == "对接中" ? "#1cbbb4" :
+          "#aaaaaa"
         markers.push({
           latitude: demands[i].latitude,
           longitude: demands[i].longitude,
-          iconPath: demands[i].status == '已发布' ? '/image/demand_published.png' 
-                      : demands[i].status == '对接中'? '/image/demand_connecting.png'
-                      : '/image/demand_completed.png',
+          iconPath: demands[i].status == '已发布' ? '/image/demand_published.png' :
+            demands[i].status == '对接中' ? '/image/demand_connecting.png' :
+            '/image/demand_completed.png',
           width: '34px',
           height: '34px',
           id: 1 + i,
           callout: {
             ...INIT_CALLOUT,
-            content: demands[i].title
+            content: demands[i].title,
+            color: color,
+            borderColor: color
           },
         })
       }
@@ -190,7 +202,18 @@ Page({
     });
   },
 
-  initData: function(options) {
+  loadDemandsCount() {
+    demandsCount().then(count => {
+      var that = this;
+      that.setData({
+        publishedDemandCount: count.published,
+        connectingDemandCount: count.connecting,
+        completedDemandCount: count.completed
+      })
+    });
+  },
+
+  initData: function (options) {
     var that = this;
     that.mapCtxMain = wx.createMapContext('myMap')
 
@@ -222,6 +245,9 @@ Page({
           })
         })
 
+        // Show demands count.
+        that.loadDemandsCount();
+
         // Draw all demands.
         that.loadDemandsLocation();
 
@@ -232,7 +258,7 @@ Page({
     //  this.getAroundUm();
 
   },
-  chooseLocation: function() {
+  chooseLocation: function () {
     var that = this;
     wx.chooseLocation({
       success: (re) => {
@@ -257,19 +283,19 @@ Page({
       }
     })
   },
-  moveToLocation: function() {
+  moveToLocation: function () {
     var that = this;
     console.log('setPosition1', that.data.longitude, that.data.latitude, that.mapCtxMain)
     that.mapCtxMain.moveToLocation({
       latitude: that.data.latitude,
       longitude: that.data.longitude,
-      success: function(res) {
+      success: function (res) {
         console.log(res)
       },
-      fail: function(res) {
+      fail: function (res) {
         console.log(res, 'failed')
       },
-      complete: function(res) {
+      complete: function (res) {
         console.log(res, 'complete')
       }
     })
@@ -280,7 +306,7 @@ Page({
       url: '/pages/makeDemand/makeDemand',
     })
   },
-  setPosition: function(longitude, latitude) {
+  setPosition: function (longitude, latitude) {
     app.globalData.position = {
       latitude: latitude,
       longitude: longitude
