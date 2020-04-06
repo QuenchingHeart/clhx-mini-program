@@ -8,7 +8,7 @@ const RADIUS = 4
 const INIT_CALLOUT = {
 	padding: 6,
 	display: 'BYCLICK',
-	fontSize: 10,
+	fontSize: 16,
 	textAlign: 'left',
 	borderRadius: RADIUS,
 	borderWidth: 2,
@@ -33,7 +33,7 @@ Page({
 
     firstLoad: true,
 
-    mpScale: 16
+    mpScale: 0
 
   },
 
@@ -106,12 +106,12 @@ Page({
           let demands = that.data.demands
           var op = 'nothing'
           // 为了避免频繁的刷新，所以设置到达阈值并且与之前的scale不同才会刷新
-          if(res.scale>13&&that.data.mpScale<=13){
+          if(res.scale>10&&that.data.mpScale<=10){
             op = 'show'
-          }else if (res.scale<=13&&that.data.mpScale>13) {
+          }else if (res.scale<=10&&that.data.mpScale>10) {
             op = 'hide'
           }
-          console.log(op,op == "show")
+          console.log(res.scale)
           if(op == "show"||op=="hide"){
             that.data.markers.forEach(marker => {
              if(marker.id>=1){
