@@ -1,7 +1,7 @@
 <!--pages/mine/mine.wxml-->
 <scroll-view scroll-y class="scrollPage">
   <view class="UCenter-bg">
-    <image src="/image/logo.jpg" class="png" mode="widthFix"></image>
+    <image class="userinfo-avatar png" src="{{userInfo.avatarUrl}}" background-size="cover"></image>
     <view class="text-xl">青云之上社区云公益服务中心
       <text class="text-df">v0.1</text>
     </view>

@@ -4,6 +4,17 @@ const util = require("../../utils/util.js");
 import {
   demandsLocation
 } from "../../utils/api.js";
+const RADIUS = 4
+const INIT_CALLOUT = {
+	padding: 6,
+	display: 'BYCLICK',
+	fontSize: 10,
+	textAlign: 'left',
+	borderRadius: RADIUS,
+	borderWidth: 2,
+	bgColor: '#ffffff'
+}
+
 Page({
 
   /**
@@ -20,7 +31,9 @@ Page({
     position: '',
     tabbar: {},
 
-    firstLoad: true
+    firstLoad: true,
+
+    mpScale: 16
 
   },
 
@@ -81,16 +94,52 @@ Page({
   onShareAppMessage: function() {
 
   },
-
   /**
    * 点击 marker 的回调，得到 marker id (数组中的下标)
    */
-  bindRegionChange:function(){
-    this.mapCtxMain.getScale({
-      success: res=>{
-        console.log(res)
-      }
-    })
+  changeRegion:function(e){
+    console.log(e)
+    var that = this
+    if(e.type=="end"){
+      that.mapCtxMain.getScale({
+        success: res=>{
+          let demands = that.data.demands
+          var op = 'nothing'
+          // 为了避免频繁的刷新，所以设置到达阈值并且与之前的scale不同才会刷新
+          if(res.scale>13&&that.data.mpScale<=13){
+            op = 'show'
+          }else if (res.scale<=13&&that.data.mpScale>13) {
+            op = 'hide'
+          }
+          console.log(op,op == "show")
+          if(op == "show"||op=="hide"){
+            that.data.markers.forEach(marker => {
+             if(marker.id>=1){
+              var i =  marker.id - 1
+              var display = ''
+              if(op=='show'){
+                display = demands[i].status=='已发布'?'ALWAYS':'BYCLICK'
+              }else if (op=='hide'){
+                display = 'BYCLICK'
+              }
+
+              let callout = "markers[" + marker.id + "].callout.display";
+              this.setData({
+                [callout]:display
+              })
+             }
+              });
+            }
+            that.setData({
+              mpScale: res.scale
+            })
+        }
+      })
+    }
+
+  },
+  tanCallout:function(e){
+
   },
   tapUm: function(marker) {
     console.log(this.data.markers[marker.markerId])
@@ -119,10 +168,16 @@ Page({
         markers.push({
           latitude: demands[i].latitude,
           longitude: demands[i].longitude,
-          iconPath: demands[i].status == '已发布' ? '/image/demand_published.png' : '/image/demand_completed.png',
+          iconPath: demands[i].status == '已发布' ? '/image/demand_published.png' 
+                      : demands[i].status == '对接中'? '/image/demand_connecting.png'
+                      : '/image/demand_completed.png',
           width: '34px',
           height: '34px',
-          id: 1 + i // the first marker is the current location
+          id: 1 + i,
+          callout: {
+            ...INIT_CALLOUT,
+            content: demands[i].title
+          },
         })
       }
 

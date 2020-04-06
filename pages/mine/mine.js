@@ -12,12 +12,20 @@ Component({
       value:{}
     },
   },
+  data:{
+    userInfo:{
+
+    }
+  },
   /**
  * 生命周期函数--监听页面加载
  */
   lifetimes: {
     // 生命周期函数，可以为函数，或一个在methods段中定义的方法名
     attached: function () {
+      this.setData({
+        userInfo: app.globalData.userInfo
+      })
     },
     moved: function () { },
     detached: function () { },

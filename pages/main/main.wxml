@@ -2,12 +2,15 @@
   <view class="page-section page-section-gap">
     <map
       id="myMap"
+      scale="16"
       style="width: 100%; height:calc(100vh)"
       latitude="{{latitude}}"
       longitude="{{longitude}}"
       markers="{{markers}}"
       show-location="true"
       bindmarkertap="tapUm"
+      bindregionchange="changeRegion"
+      bindcallouttap="tapCallout"
     >
     <cover-view class='map-contor'>
       <cover-view class="padding flex text-center text-grey bg-white shadow-warp">
