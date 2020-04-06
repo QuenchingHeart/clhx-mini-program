@@ -12,7 +12,7 @@
   bindtap="{{disabled==false?'chooseLocation':''}}"
   scale="18">
 </map>
-<form models="{{formData}}" id="form">
+<form models="{{formData}}" id="form" bindsubmit="submitForm">
 
   <view class="cu-form-group  margin-top">
     <view class="title">需求类型</view>
