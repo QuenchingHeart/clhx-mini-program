@@ -25,6 +25,12 @@
       </navigator>
     </view>
     <view class="cu-item arrow">
+      <navigator url="/pages/contact/contacts/contacts" class="content" hover-class="none">
+          <text class="cuIcon-favorfill text-red"></text>
+          <text>我的联系人</text>
+      </navigator>
+    </view>
+    <view class="cu-item arrow">
       <navigator url="/pages/myApply/myApply" class="content" hover-class="none">
           <text class="cuIcon-fork text-red"></text>
           <text>我的对接</text>
