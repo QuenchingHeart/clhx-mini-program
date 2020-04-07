@@ -141,7 +141,7 @@ Component({
         // category:'',
         categoryA: 0,
         // categoryB: 0,
-        status: '已发布',
+        status: '已发布:对接中',
         keyword: '%',
         location: {
           longitude: 0,

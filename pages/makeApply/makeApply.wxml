@@ -15,7 +15,7 @@
 
   <view class="cu-form-group">
     <view class="title">手机号码</view>
-    <input name="contactPhone" data-field="contactPhone" disabled="{{disabled}}" bindinput="formInputChange" value="{{formData.contactPhone}}" placeholder="请输入号码" />
+    <input name="contactPhone" type="number" data-field="contactPhone" disabled="{{disabled}}" bindinput="formInputChange" value="{{formData.contactPhone}}" placeholder="请输入号码" />
     <view class="cu-capsule radius">
       <view class="cu-tag bg-orange">
         +86
@@ -28,7 +28,7 @@
 
   <view class="cu-form-group align-start">
     <view class="title">详细内容</view>
-    <textarea name="detail" data-field="detail" bindinput="formInputChange" value="{{formData.detail}}" placeholder="请输入详细内容" />
+    <textarea name="detail" data-field="detail" disabled="{{disabled}}" bindinput="formInputChange" value="{{formData.detail}}" placeholder="请输入详细内容" />
   </view>
 
   <view class="cu-form-group" wx:if="{{type!='add'}}">
@@ -43,8 +43,8 @@
   </view> -->
 
   <view class="button-sp-area" wx:if="{{type=='add'}}">
-    <view class="cu-btn bg-blue lg padding-sm margin-xs radius">
-      <button class="cu-btn bg-blue lg" disabled='{{disabled}}' form-type='submit'>申请对接</button>
+    <view class="cu-btn bg-orange lg padding-sm margin-xs radius">
+      <button class="cu-btn bg-orange lg" disabled='{{disabled}}' form-type='submit'>申请对接</button>
     </view>
   </view>
 
@@ -61,16 +61,16 @@
 
 <view class="flex solid-bottom padding justify-around" wx:if="{{type=='check' & checkDemandsApply }}">
   <block wx:if="{{formData.status=='待审核'}}">
-    <view class="cu-btn bg-blue lg padding-sm margin-xs radius">
-      <a class="cu-btn bg-blue lg" disabled='{{disabled}}' type="primary" data-type="approve" bindtap="connectOp">确认对接</a>
+    <view class="cu-btn bg-orange lg padding-sm margin-xs radius">
+      <a class="cu-btn bg-orange lg" disabled='{{disabled}}' type="primary" data-type="approve" bindtap="connectOp">确认对接</a>
     </view>
   </block>
   <block wx:if="{{formData.status=='对接中'}}">
-    <view class="cu-btn bg-blue lg padding-sm margin-xs radius">
-      <a class="cu-btn bg-blue lg" disabled='{{disabled}}' type="primary" data-type="complete" bindtap="connectOp">对接完成</a>
+    <view class="cu-btn bg-gray lg padding-sm margin-xs radius">
+      <a class="cu-btn bg-gray lg" disabled='{{disabled}}' type="primary" data-type="delete" bindtap="connectOp">撤销对接</a>
     </view>
     <view class="cu-btn bg-orange lg padding-sm margin-xs radius">
-      <a class="cu-btn bg-orange lg" disabled='{{disabled}}' type="primary" data-type="delete" bindtap="connectOp">撤销对接</a>
+      <a class="cu-btn bg-orange lg" disabled='{{disabled}}' type="primary" data-type="complete" bindtap="connectOp">对接完成</a>
     </view>
   </block>
 </view>

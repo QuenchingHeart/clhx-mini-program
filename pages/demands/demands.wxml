@@ -23,7 +23,7 @@
 </view>
 <view class="VerticalBox margin-top">
   <scroll-view class="VerticalNav nav" scroll-y scroll-with-animation scroll-top="{{VerticalNavTop}}" style="height:calc(100vh - 375rpx);font-size:24rpx;">
-    <view class="cu-item {{index==TabCur?'text-orange cur':''}}" wx:for="{{list}}" bindtap="bindCategoryBChange" data-id="{{index}}" data-id="{{index}}">
+    <view class="cu-item {{index==TabCur?'text-orange cur':''}}" data-id="{{index}}" wx:for="{{list}}" bindtap="bindCategoryBChange" wx:key="index">
 
       <text>{{item.name}}</text>
     </view>
