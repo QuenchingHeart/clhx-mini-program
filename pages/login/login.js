@@ -60,12 +60,14 @@ Page({
         if (loginRes.code) {
           wx.getUserInfo({
             success: (userInfo) => {
-              login({
+              let json = {
                 jsoncode: loginRes.code,
                 jsonCode: loginRes.code,
                 nickName: userInfo.userInfo.nickName,
                 avatarUrl: userInfo.userInfo.avatarUrl
-              }).then(backEndRes => {
+              };
+              console.log(json);
+              login(json).then(backEndRes => {
                 app.globalData.token = backEndRes.token;
                 app.globalData.userID = backEndRes.userID;
                 wx.getSetting({
