@@ -117,9 +117,43 @@ function connectDel(data) {
   })
 }
 
+//  contact 联系人
+
+function contactPost(data) {
+  return http({
+    url: '/contact',
+    method: 'POST',
+    data: data
+  })
+}
+
+function contactGet(data) {
+  return http({
+    url: '/contact',
+    method: 'GET',
+    data: data
+  })
+}
+function contactPut(data) {
+  return http({
+    url: '/contact',
+    method: 'PUT',
+    data: data
+  })
+}
+function contactDel(data) {
+  return http({
+    url: '/contact?id='+data.id+'&userID='+data.userID,
+    method: 'DELETE',
+    data: data
+  })
+}
+
+
 export { 
   login,
   demandsAll, demandsLocation, demandsCount, demandsPost, demandOne, demandPut, demandDel, 
   applyPost, applyGet, applyPut, applyDel, 
-  connectApprove, connectComplete, connectDel
+  connectApprove, connectComplete, connectDel,
+  contactPost, contactGet, contactPut, contactDel, 
   };

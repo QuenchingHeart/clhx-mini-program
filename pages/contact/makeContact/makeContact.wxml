@@ -1,0 +1,57 @@
+<form models="{{formData}}" bindsubmit="submitForm">
+  <map
+    id="myMapMakeContact"
+    style="width: 100%; height: 400rpx;"
+    latitude="{{formData.latitude}}"
+    longitude="{{formData.longitude}}"
+    markers="{{markers}}"
+    show-location
+    show-compass
+    show-scale
+    bindtap="{{disabled==false?'chooseLocation':''}}"
+    scale="18">
+  </map>
+    <view class="cu-form-group">
+    <view class="title">地点</view>
+    <input disabled="{{disabled}}" bindtap="{{disabled==false?'chooseLocation':''}}"  placeholder="请选择地点" name="district" data-field="district" bindinput="formInputChange" value="{{formData.address}}" />
+    <text class="cuIcon-locationfill text-orange"></text>
+  </view>
+
+  <view class="cu-form-group">
+    <view class="title">联系人</view>
+    <input disabled="{{disabled}}" name="contactName" data-field="contactName" bindinput="formInputChange" placeholder="请输入联系人" value="{{formData.contactName}}" />
+  </view>
+
+  <view class="cu-form-group">
+    <view class="title">手机号码</view>
+    <input name="contactPhone" data-field="contactPhone" disabled="{{disabled}}" bindinput="formInputChange" value="{{formData.contactPhone}}" placeholder="请输入号码" />
+    <view class="cu-capsule radius">
+      <view class="cu-tag bg-orange">
+        +86
+      </view>
+    </view>
+    <view class="cu-tag line-orange">
+      中国大陆
+    </view>
+  </view>
+  <view class="cu-form-group">
+    <view class="title">设置为默认</view>
+   		<switch class="red sm" data-field="isDefault" checked="{{formData.isDefault}}" disabled='{{disabled}}'  bindchange="formInputChange"></switch>
+  </view>
+
+  <view class="button-sp-area" wx:if="{{type=='add'}}">
+    <view class="cu-btn bg-blue lg padding-sm margin-xs radius">
+      <button class="cu-btn bg-blue lg" disabled='{{disabled}}' form-type='submit'>添加联系人</button>
+    </view>
+  </view>
+
+</form>
+<view class="flex solid-bottom padding justify-around" wx:if="{{ type=='edit'}}">
+
+  <view class="cu-btn bg-gray lg padding-sm margin-xs radius">
+    <a class="cu-btn bg-gray lg" disabled='{{disabled}}' type="primary" bindtap="cancelContact">撤销联系人</a>
+  </view>
+  <view class="cu-btn bg-orange lg padding-sm margin-xs radius">
+    <a class="cu-btn bg-orange lg" disabled='{{disabled}}' type="submit" bindtap="submitForm">更新联系人</a>
+  </view>
+</view>

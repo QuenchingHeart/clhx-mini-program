@@ -96,6 +96,20 @@
 					"pathName": "pages/makeApply/makeApply",
 					"query": "",
 					"scene": null
+				},
+				{
+					"id": 7,
+					"name": "makeContact",
+					"pathName": "pages/contact/makeContact/makeContact",
+					"query": "type=edit&id=10",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "pages/contact/contacts/contacts",
+					"pathName": "pages/contact/contacts/contacts",
+					"query": "",
+					"scene": null
 				}
 			]
 		}

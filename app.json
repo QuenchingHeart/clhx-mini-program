@@ -8,7 +8,9 @@
     "pages/makeDemand/makeDemand",
     "pages/myDemands/myDemands",
     "pages/makeApply/makeApply",
-    "pages/myApply/myApply"
+    "pages/myApply/myApply",
+    "pages/contact/makeContact/makeContact",
+    "pages/contact/contacts/contacts"
   ],
   "tabBar": {
     "custom": true,

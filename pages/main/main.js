@@ -118,7 +118,6 @@ Page({
           } else if (res.scale <= 12 && that.data.mpScale > 12) {
             op = 'hide'
           }
-          console.log(res.scale)
           if (op == "show" || op == "hide") {
             that.data.markers.forEach(marker => {
               if (marker.id >= 1) {
