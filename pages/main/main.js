@@ -32,7 +32,7 @@ Page({
     position: '',
     tabbar: {},
 
-    firstLoad: true,
+    reload: false,
 
     mpScale: 0,
 
@@ -57,12 +57,12 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
-    // this.onLoad()
     app.editTabbar();
-    if (!this.data.firstLoad) {
+    if (this.data.reload) {
       this.loadDemandsLocation();
       this.loadDemandsCount();
     }
+    this.data.reload = true;
   },
 
   /**
@@ -144,9 +144,21 @@ Page({
     }
 
   },
-  tanCallout: function (e) {
 
+  tapCallout: function (e) {
+    console.log(e)
+    let demand = this.data.demands[e.markerId - 1];
+    let type = 'check';
+    this.data.reload = false;
+    if (demand.createdBy.publishUserID == app.globalData.userID) {
+      type = 'edit';
+      this.data.reload = true;
+    }
+    wx.navigateTo({
+      url: '/pages/makeDemand/makeDemand?type=' + type + '&' + 'demandID=' + demand.demandID
+    })
   },
+
   tapUm: function (marker) {
     console.log(this.data.markers[marker.markerId])
     if (marker.markerId >= 1 && marker.markerId < this.data.demands.length + 1) {
@@ -197,7 +209,7 @@ Page({
         demands
       })
 
-      that.data.firstLoad = false;
+      // that.data.reload = false;
     });
   },
 
@@ -255,8 +267,8 @@ Page({
     });
 
     //  this.getAroundUm();
-
   },
+
   chooseLocation: function () {
     var that = this;
     wx.chooseLocation({
