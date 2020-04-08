@@ -14,3 +14,11 @@
 .margin-top{
   margin-top: 5rpx;
 }
+
+.fixed{
+  position: fixed;
+  left: 25%;
+  width: 50%;
+  bottom: 8%;
+  z-index: 1000;
+}

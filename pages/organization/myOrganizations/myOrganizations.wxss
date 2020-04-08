@@ -1,1 +1,7 @@
 /* pages/myApply/myApply.wxss */
+.fixed{
+  position: fixed;
+  left: 25%;
+  width: 50%;
+  bottom: 8%;
+}

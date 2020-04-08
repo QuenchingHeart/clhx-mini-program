@@ -426,7 +426,11 @@ Page({
     console.log('setPosition2', that.data.formData.longitude, that.data.formData.latitude, that.mapCtx)
   },
 
-
+  chooseContact:function(){
+    wx.navigateTo({
+      url: '/pages/contact/contacts/contacts?type=choose',
+    })
+  },
   /**
    * 生命周期函数--监听页面加载
    */
@@ -455,6 +459,18 @@ Page({
       this.handleOp(this.data.options);
       this.data.returnFromApply = false;
     }
+    var that = this
+    wx.getStorage({
+      key: 'contact',
+      success (res) {
+        let data = res.data
+        that.setData({
+          "formData.contactName":data.contactName,
+          "formData.contactPhone":data.contactPhone
+        })
+        console.log(data)
+      }
+    })
   },
 
   /**

@@ -11,6 +11,7 @@
   <view class="cu-form-group">
     <view class="title">联系人</view>
     <input disabled="{{disabled}}" name="contactName" data-field="contactName" bindinput="formInputChange" placeholder="请输入联系人" value="{{formData.contactName}}" />
+    <text class="cuIcon-peoplefill text-orange" bindtap="chooseContact"></text>
   </view>
 
   <view class="cu-form-group">

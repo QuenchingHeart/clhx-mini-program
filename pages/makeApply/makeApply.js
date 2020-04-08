@@ -44,6 +44,20 @@ Page({
     
     that.handleOp(options)
   },
+  onShow:function(){
+    var that = this
+    wx.getStorage({
+      key: 'contact',
+      success (res) {
+        let data = res.data
+        that.setData({
+          "formData.contactName":data.contactName,
+          "formData.contactPhone":data.contactPhone
+        })
+        console.log(data)
+      }
+    })
+  },
   bindPickerChange: function (e) {
     console.log('picker发送选择改变，携带值为', e.detail.value)
     this.setData({
@@ -192,6 +206,11 @@ Page({
       demandID:this.data.formData.demandID
     })
 
+  },
+  chooseContact:function(){
+    wx.navigateTo({
+      url: '/pages/contact/contacts/contacts?type=choose',
+    })
   },
   toastAndBack: function(page=1) {
     console.log(page)

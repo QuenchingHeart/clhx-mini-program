@@ -25,7 +25,7 @@
       </navigator>
     </view>
     <view class="cu-item arrow">
-      <navigator url="/pages/contact/contacts/contacts" class="content" hover-class="none">
+      <navigator url="/pages/contact/contacts/contacts?type=check" class="content" hover-class="none">
           <text class="cuIcon-favorfill text-red"></text>
           <text>我的联系人</text>
       </navigator>

@@ -1,6 +1,4 @@
-<view class="flex solid-bottom padding justify-end">
-  <button class="cu-btn bg-green shadow-blur round" data-type="add" bindtap="navigateToContactDatail">创建或加入组织</button>
-</view>
+
 <template name="organizations">
   <view class="cu-list menu card-menu margin-top-xl margin-bottom-xl shadow-lg radius">
     <view class="cu-item arrow" wx:for="{{organizations}}" data-name="{{item.name}}"  data-organizationID="{{item.orgID}}" data-type="edit"  wx:key="{{index}}" bindtap="navigateToContactDatail">
@@ -36,3 +34,7 @@
 </template>
 
 <template is="organizations" data="{{organizations: organizations}}" />
+
+<view class="flex solid-bottom padding justify-center fixed">
+  <button class="cu-btn bg-red lg shadow-blur" data-type="add" bindtap="navigateToContactDatail">创建或加入组织</button>
+</view>

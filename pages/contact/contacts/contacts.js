@@ -8,6 +8,7 @@ Page({
    */
   data: {
     contacts:[],
+    type:'check',
     reload: false
   },
   getContacts:function(){
@@ -20,17 +21,26 @@ Page({
     })
   },
   navigateToContactDatail: function (e) {
-    console.log(e.currentTarget.dataset.applyid)
     this.data.reload = true;
-    if(e.currentTarget.dataset.type=='edit'){
-      wx.navigateTo({
-        url: '/pages/contact/makeContact/makeContact?type=edit&id=' + e.currentTarget.dataset.id +'&contactDetail='+JSON.stringify(e.currentTarget.dataset.contactdetail)
+    if(this.data.type=='choose'){
+      console.log(e.currentTarget.dataset.contactdetail)
+      wx.setStorage({
+        key: "contact",
+        data: e.currentTarget.dataset.contactdetail
       })
-    }else if(e.currentTarget.dataset.type=='add'){
-      wx.navigateTo({
-        url: '/pages/contact/makeContact/makeContact?type=add'
-      })
+      wx.navigateBack({})
+    }else{
+      if(e.currentTarget.dataset.type=='edit'){
+        wx.navigateTo({
+          url: '/pages/contact/makeContact/makeContact?type=edit&id=' + e.currentTarget.dataset.id +'&contactDetail='+JSON.stringify(e.currentTarget.dataset.contactdetail)
+        })
+      }else if(e.currentTarget.dataset.type=='add'){
+        wx.navigateTo({
+          url: '/pages/contact/makeContact/makeContact?type=add'
+        })
+      }
     }
+
 
   },
   /**
@@ -39,6 +49,10 @@ Page({
   onLoad: function (options) {
     this.getContacts();
     this.data.reload = false;
+    this.setData({
+      type:options.type
+    })
+    console.log(options)
   },
 
   /**
