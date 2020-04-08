@@ -10,7 +10,8 @@
     "pages/makeApply/makeApply",
     "pages/myApply/myApply",
     "pages/contact/makeContact/makeContact",
-    "pages/contact/contacts/contacts"
+    "pages/contact/contacts/contacts",
+    "pages/organization/makeOrganization/makeOrganization"
   ],
   "tabBar": {
     "custom": true,
