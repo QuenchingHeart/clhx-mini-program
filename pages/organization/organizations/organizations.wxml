@@ -1,27 +1,18 @@
 <template name="organizations">
-  <view class="cu-list menu-avatar card-menu">
-    <view class="cu-item margin-top" wx:for="{{organizations}}" data-name="{{item.name}}"  data-type="check"  wx:key="{{index}}" bindtap="navigateToContactDatail">
-      <view class="content">
+  <view class="cu-list menu card-menu margin-top-xl margin-bottom-xl shadow-lg radius">
+    <view class="cu-item arrow" wx:for="{{organizations}}" data-name="{{item.name}}" data-type="check" wx:key="index" bindtap="navigateToContactDatail">
+      <!-- <view class="content">
         <view class="text-gray text-sm flex">
           <text class="text-cut text-grey">
-            <text class="cuIcon-location text-orange margin-right-xs"></text>{{item.contactName}}
+            {{item.name}}
           </text>
         </view>
+      </view> -->
 
-        <view class="text-gray text-sm flex">
-          <text class="text-cut text-grey">
-            <text class="cuIcon-location text-orange margin-right-xs"></text>{{item.contactPhone}}
-          </text>
-        </view>
-
-        <view class="text-gray text-sm flex">
-          <text class="text-cut text-grey">
-            <text class="cuIcon-location text-orange margin-right-xs"></text>{{item.name}}
-          </text>
-        </view>
-
-      </view>
-
+      <navigator class="content" hover-class="none">
+        <text class="cuIcon-formfill text-red"></text>
+        <text class="text-black left">{{item.name}}</text>
+      </navigator>
 
       <!-- <view class="action">
         <view wx:if="{{item.isDefault}}" class="cu-tag round bg-green sm">默认联系人</view>

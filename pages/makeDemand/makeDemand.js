@@ -464,11 +464,24 @@ Page({
       key: 'contact',
       success (res) {
         let data = res.data
-        that.setData({
-          "formData.contactName":data.contactName,
-          "formData.contactPhone":data.contactPhone
-        })
-        console.log(data)
+        if (data) {
+          that.setData({
+            "formData.contactName":data.contactName,
+            "formData.contactPhone":data.contactPhone,
+            "formData.address": data.address,
+            "formData.latitude": data.latitude,
+            "formData.longitude": data.longitude,
+            markers: [{
+              latitude: data.latitude,
+              longitude: data.longitude,
+              iconPath: '/image/location.png',
+              width: '34px',
+              height: '34px',
+              id: 1
+            }]
+          });
+          that.moveToLocation();
+        }
       }
     })
   },

@@ -1,9 +1,9 @@
 const app = getApp();
-import {  getLocal } from "../../../utils/util.js"
+import { getLocal } from "../../../utils/util.js"
 const formUtil = require('../../../utils/formUtil.js')
-import { organizationPost, organizationApplyGet,organizationGet, organizationDel } from "../../../utils/api.js";
+import { organizationPost, organizationApplyGet, organizationGet, organizationDel } from "../../../utils/api.js";
 Page({
-  data:{
+  data: {
     formData: {
       latitude: 23.099994,
       longitude: 113.324520,
@@ -13,19 +13,35 @@ Page({
       "contactPhone": "15615844978",
       isOrganization: true
     },
-    type:'add',
+    type: 'add',
     //add del edit check
 
   },
   initData: function (options) {
     var that = this
-    that.setData({
-      'formData.userID': app.globalData.userID,
-      'formData.id': options.id
-    })
-    console.log(that.data.formData)
+    wx.getLocation({
+      type: "gcj02",
+      success: loc => {
+        getLocal(loc.latitude, loc.longitude).then((res) => {
+          that.setData({
+            'formData.userID': app.globalData.userID,
+            "formData.latitude": res.latitude,
+            "formData.longitude": res.longitude,
+            "formData.address": res.formatted_address,
+            markers: [{
+              latitude: res.latitude,
+              longitude: res.longitude,
+              iconPath: '/image/location.png',
+              width: '34px',
+              height: '34px',
+              id: 1
+            }]
+          });
+        })
+      }
+    });
   },
-  onLoad: function (options){
+  onLoad: function (options) {
     var that = this
     this.mapCtx = wx.createMapContext('myMapMakeOrganization')
     that.handleOp(options)
@@ -39,16 +55,16 @@ Page({
   },
   formInputChange(e) {
     const { field } = e.currentTarget.dataset
-    console.log(field,e.detail.value,e)
+    console.log(field, e.detail.value, e)
     this.setData({
       [`formData.${field}`]: e.detail.value
     })
   },
-  chooseLocation: function() {
+  chooseLocation: function () {
     var that = this
     var location = {}
     wx.chooseLocation({
-      success: function(loc) {
+      success: function (loc) {
         // console.log("****chooseLocation")
         getLocal(loc.latitude, loc.longitude).then((res) => {
           that.setData({
@@ -70,7 +86,7 @@ Page({
       }
     })
   },
-  moveToLocation: function() {
+  moveToLocation: function () {
     var that = this;
     console.log('setPosition1', that.data.formData.longitude, that.data.formData.latitude, that.mapCtx)
     that.mapCtx.moveToLocation({
@@ -78,21 +94,21 @@ Page({
       longitude: that.data.formData.longitude,
       // latitude,
       // longitude,
-      success: function(res) {
+      success: function (res) {
         console.log(res)
       },
-      fail: function(res) {
+      fail: function (res) {
         console.log(res, 'failed')
       },
-      complete: function(res) {
+      complete: function (res) {
         console.log(res, 'failed')
       }
     })
     console.log('setPosition2', that.data.formData.longitude, that.data.formData.latitude, that.mapCtx)
   },
-  submitForm: function (e){
+  submitForm: function (e) {
     var checkRes = formUtil.checkNullForm(e);
-    if(checkRes){
+    if (checkRes) {
       var that = this
       console.log(that.data)
       if (that.data.type == 'add') {
@@ -113,24 +129,24 @@ Page({
         // })
       }
     }
-    
+
   },
-  cancelForm: function(){
+  cancelForm: function () {
     wx.navigateBack({
-      
+
     })
   },
-  navigateToApplyOrganization: function(){
+  navigateToApplyOrganization: function () {
     wx.navigateTo({
-      url: '/pages/organization/makeApplyOrganization/makeApplyOrganization?type=add&organizationID='+this.data.formData.orgID,
+      url: '/pages/organization/makeApplyOrganization/makeApplyOrganization?type=add&organizationID=' + this.data.formData.orgID,
     })
   },
-  navigateToMakeOrganization: function(){
+  navigateToMakeOrganization: function () {
     wx.navigateTo({
       url: '/pages/organization/makeOrganization/makeOrganization?type=add'
     })
   },
-  
+
 
   handleOp(options) {
     var disabled = false;
@@ -144,7 +160,7 @@ Page({
         that.initData(options)
         break;
       case 'edit':
-        organizationGet({userID:app.globalData.userID}).then(res=>{
+        organizationGet({ userID: app.globalData.userID }).then(res => {
           console.log(res)
           that.setData({
             formData: res[0],
@@ -152,17 +168,17 @@ Page({
         })
 
         break;
-        case 'check':
-          organizationGet({keyword:options.keyword}).then(res=>{
-            console.log(res)
-            that.setData({
-              formData: res[0],
-            })
+      case 'check':
+        organizationGet({ keyword: options.keyword }).then(res => {
+          console.log(res)
+          that.setData({
+            formData: res[0],
           })
-  
-          break;
+        })
+
+        break;
       case 'delete':
-        organizationDel({ organizationID : options.orgID,userID:app.globalData.userID }).then(res => {
+        organizationDel({ organizationID: options.orgID, userID: app.globalData.userID }).then(res => {
           console.log(res)
           that.toastAndBack()
         })
@@ -177,20 +193,20 @@ Page({
     })
     console.log(this.data)
   },
-  cancelOrganization: function () {   
+  cancelOrganization: function () {
     this.handleOp({
-      type:'delete',
-      orgID:this.data.formData.orgID
+      type: 'delete',
+      orgID: this.data.formData.orgID
     })
 
   },
-  toastAndBack: function(page=1) {
+  toastAndBack: function (page = 1) {
     console.log(page)
     wx.showToast({
       title: '成功',
       icon: 'success',
       duration: 5000,
-      complete: function() {
+      complete: function () {
         wx.navigateBack({
           delta: page
         })

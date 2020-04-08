@@ -42,10 +42,11 @@ Page({
   },
   onLoad: function (options){
     var that = this
-    this.mapCtx = wx.createMapContext('myMapMakeOrganization')
+    // this.mapCtx = wx.createMapContext('myMapMakeOrganization')
     that.handleOp(options)
     this.getAuditOrganization(options)
   },
+
   getAuditOrganization: function(options){
     console.log(options)
     var that = this
@@ -62,6 +63,7 @@ Page({
       })
     })
   },
+
   bindPickerChange: function (e) {
     console.log('picker发送选择改变，携带值为', e.detail.value)
     this.setData({
@@ -175,23 +177,22 @@ Page({
         that.initData(options)
         break;
       case 'edit':
-        organizationGet({userID:app.globalData.userID}).then(res=>{
+        organizationGet({orgID: options.organizationID}).then(res=>{
           console.log(res)
           that.setData({
             formData: res[0],
           })
         })
-
         break;
-        case 'check':
-          organizationGet({keyword:options.keyword}).then(res=>{
-            console.log(res)
-            that.setData({
-              formData: res[0],
-            })
+
+      case 'check':
+        organizationGet({keyword:options.keyword}).then(res=>{
+          console.log(res)
+          that.setData({
+            formData: res[0],
           })
-  
-          break;
+        })
+        break;
       case 'delete':
         organizationDel({ organizationID : options.orgID,userID:app.globalData.userID }).then(res => {
           console.log(res)

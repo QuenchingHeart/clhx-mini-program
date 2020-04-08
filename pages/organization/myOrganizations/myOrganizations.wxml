@@ -1,13 +1,13 @@
 
 <template name="organizations">
   <view class="cu-list menu card-menu margin-top-xl margin-bottom-xl shadow-lg radius">
-    <view class="cu-item arrow" wx:for="{{organizations}}" data-name="{{item.name}}"  data-organizationID="{{item.orgID}}" data-type="edit"  wx:key="{{index}}" bindtap="navigateToContactDatail">
+    <view class="cu-item arrow" wx:for="{{organizations}}" data-name="{{item.name}}" data-organizationID="{{item.orgID}}" data-type="edit" wx:key="index" bindtap="navigateToOrgDatail">
       <navigator url="" class="content" hover-class="none">
         <text class="cuIcon-formfill text-red"></text>
         <text class="text-black left">{{item.name}}</text>
       </navigator>
     </view>
-    <!-- <view class="cu-item" wx:for="{{organizations}}" data-name="{{item.name}}"  data-type="check"  wx:key="{{index}}" bindtap="navigateToContactDatail">
+    <!-- <view class="cu-item" wx:for="{{organizations}}" data-name="{{item.name}}"  data-type="check"  wx:key="{{index}}" bindtap="navigateToOrgDatail">
       <view class="content">
         <view class="text-gray text-sm flex">
           <text class="text-cut text-grey">
@@ -36,5 +36,5 @@
 <template is="organizations" data="{{organizations: organizations}}" />
 
 <view class="flex solid-bottom padding justify-center fixed">
-  <button class="cu-btn bg-red lg shadow-blur" data-type="add" bindtap="navigateToContactDatail">创建或加入组织</button>
+  <button class="cu-btn bg-red lg shadow-blur" data-type="add" bindtap="navigateToOrgDatail">创建或加入组织</button>
 </view>

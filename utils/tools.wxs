@@ -4,12 +4,12 @@ var myFilter = function(str, pattern, newPattern) {
 }
 var distanceFormat = function(distance) {
   var distanceStr = ''
-  if (distance < 1) {
+  if (distance < 1000) {
     distanceStr = '<1km'
-  } else if (distance > 100) {
+  } else if (distance > 100000) {
     distanceStr = '>100km'
   } else {
-    distanceStr = distance.toFixed(1) + 'km'
+    distanceStr = (distance / 1000).toFixed(1) + 'km'
   }
   return distanceStr
 }

@@ -2,16 +2,28 @@
 <scroll-view scroll-y class="scrollPage">
   <view class="UCenter-bg">
     <image class="userinfo-avatar png" src="{{userInfo.avatarUrl}}" background-size="cover"></image>
-    <view class="text-xl">青云之上社区云公益服务中心
+    <!-- <view class="text-xl">青云之上社区云公益服务中心
       <text class="text-df">v0.1</text>
     </view>
     <view class="margin-top-sm">
       <text>NUAA</text>
     </view>
-    <image src="https://raw.githubusercontent.com/weilanwl/ColorUI/master/demo/images/wave.gif" mode="scaleToFill" class="gif-wave"></image>
+    <image src="https://raw.githubusercontent.com/weilanwl/ColorUI/master/demo/images/wave.gif" mode="scaleToFill" class="gif-wave"></image> -->
   </view>
   <view class="cu-list menu card-menu margin-top-xl margin-bottom-xl shadow-lg radius">
 
+    <view class="cu-item arrow">
+      <navigator url="/pages/organization/myOrganizations/myOrganizations" class="content" hover-class="none">
+          <text class="cuIcon-group_fill text-red"></text>
+          <text>我的组织</text>
+      </navigator>
+    </view>
+    <view class="cu-item arrow">
+      <navigator url="/pages/contact/contacts/contacts?type=check" class="content" hover-class="none">
+          <text class="cuIcon-favorfill text-red"></text>
+          <text>常用联系人</text>
+      </navigator>
+    </view>
     <view class="cu-item arrow">
       <navigator url="/pages/myDemands/myDemands" class="content" hover-class="none">
           <text class="cuIcon-attentionfill text-red"></text>
@@ -25,27 +37,15 @@
       </navigator>
     </view>
     <view class="cu-item arrow">
-      <navigator url="/pages/contact/contacts/contacts?type=check" class="content" hover-class="none">
-          <text class="cuIcon-favorfill text-red"></text>
-          <text>我的联系人</text>
-      </navigator>
-    </view>
-    <view class="cu-item arrow">
       <navigator url="/pages/myApply/myApply" class="content" hover-class="none">
           <text class="cuIcon-fork text-red"></text>
           <text>我的对接</text>
       </navigator>
     </view>
-    <view class="cu-item arrow">
+    <!-- <view class="cu-item arrow">
       <navigator url="" class="content" hover-class="none">
           <text class="cuIcon-github text-red"></text>
           <text>我的信息</text>
-      </navigator>
-    </view>
-    <view class="cu-item arrow">
-      <navigator url="/pages/organization/myOrganizations/myOrganizations" class="content" hover-class="none">
-          <text class="cuIcon-formfill text-red"></text>
-          <text>我的组织</text>
       </navigator>
     </view>
     <view class="cu-item arrow">
@@ -59,7 +59,7 @@
           <text class="cuIcon-writefill text-red"></text>
           <text>关于</text>
       </navigator>
-    </view>
+    </view> -->
 
   </view>
   <view class="cu-tabbar-height"></view>

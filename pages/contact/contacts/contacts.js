@@ -23,12 +23,18 @@ Page({
   navigateToContactDatail: function (e) {
     this.data.reload = true;
     if(this.data.type=='choose'){
-      console.log(e.currentTarget.dataset.contactdetail)
-      wx.setStorage({
-        key: "contact",
-        data: e.currentTarget.dataset.contactdetail
-      })
-      wx.navigateBack({})
+      if (e.currentTarget.dataset.type === "add") {
+        wx.navigateTo({
+          url: '/pages/contact/makeContact/makeContact?type=add'
+        })
+      } else {
+        console.log(e.currentTarget.dataset.contactdetail)
+        wx.setStorage({
+          key: "contact",
+          data: e.currentTarget.dataset.contactdetail
+        })
+        wx.navigateBack({})
+      }
     }else{
       if(e.currentTarget.dataset.type=='edit'){
         wx.navigateTo({

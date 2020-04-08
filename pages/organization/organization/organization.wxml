@@ -10,32 +10,32 @@
     bindtap="{{disabled==false?'chooseLocation':''}}"
     scale="18">
   </map> -->
-    <view class="cu-form-group">
-    <view class="title">地点</view>
-    <input disabled="{{disabled}}" bindtap="{{disabled==false?'chooseLocation':''}}"  placeholder="请选择地点" name="district" data-field="district" bindinput="formInputChange" value="{{formData.address}}" />
-    <text class="cuIcon-locationfill text-orange"></text>
+  <view class="cu-form-group">
+  	<view class="title">地点</view>
+  	<input disabled="{{disabled}}" bindtap="{{disabled==false?'chooseLocation':''}}" placeholder="请选择地点" name="district" data-field="district" bindinput="formInputChange" value="{{formData.address}}" />
+  	<text class="cuIcon-locationfill text-orange"></text>
   </view>
 
   <view class="cu-form-group">
-    <view class="title">联系人</view>
-    <input disabled="{{disabled}}" name="contactName" data-field="contactName" bindinput="formInputChange" placeholder="请输入联系人" value="{{formData.contactName}}" />
+  	<view class="title">联系人</view>
+  	<input disabled="{{disabled}}" name="contactName" data-field="contactName" bindinput="formInputChange" placeholder="请输入联系人" value="{{formData.contactName}}" />
   </view>
 
   <view class="cu-form-group">
-    <view class="title">手机号码</view>
-    <input name="contactPhone" data-field="contactPhone" disabled="{{disabled}}" bindinput="formInputChange" value="{{formData.contactPhone}}" placeholder="请输入号码" />
-    <view class="cu-capsule radius">
-      <view class="cu-tag bg-orange">
-        +86
-      </view>
-    </view>
-    <view class="cu-tag line-orange">
-      中国大陆
-    </view>
+  	<view class="title">手机号码</view>
+  	<input name="contactPhone" data-field="contactPhone" disabled="{{disabled}}" bindinput="formInputChange" value="{{formData.contactPhone}}" placeholder="请输入号码" />
+  	<view class="cu-capsule radius">
+  		<view class="cu-tag bg-orange">
+  			+86
+  		</view>
+  	</view>
+  	<view class="cu-tag line-orange">
+  		中国大陆
+  	</view>
   </view>
   <view class="cu-form-group">
-    <view class="title">组织名称</view>
-    <input disabled="{{disabled}}"  placeholder="组织名称" name="name" data-field="name" bindinput="formInputChange" value="{{formData.name}}" />
+  	<view class="title">组织名称</view>
+  	<input disabled="{{disabled}}" placeholder="组织名称" name="name" data-field="name" bindinput="formInputChange" value="{{formData.name}}" />
   </view>
 
   <!-- <view class="button-sp-area" wx:if="{{type=='add'}}">
@@ -51,51 +51,51 @@
 
   <view class="flex solid-bottom padding justify-around" wx:if="{{ type=='edit'}}">
 
-    <view class="cu-btn bg-gray lg padding-sm margin-xs radius">
-      <button class="cu-btn bg-gray lg" disabled='{{disabled}}' form-type='submit' bindtap="cancelOrganization">解散组织</button>
-    </view>
+  	<view class="cu-btn bg-gray lg padding-sm margin-xs radius">
+  		<button class="cu-btn bg-gray lg" disabled='{{disabled}}' form-type='submit' bindtap="cancelOrganization">解散组织</button>
+  	</view>
 
   </view>
 
-<scroll-view scroll-x class="bg-green nav text-center">
-  <view class="cu-item {{0==TabCur?'text-white cur':''}}" bindtap="tabSelect" data-id="0">
-    <text class="cuIcon-camerafill">成员列表</text> 
-  </view>
-  <view class="cu-item {{1==TabCur?'text-white cur':''}}" bindtap="tabSelect" data-id="1">
-    <text class="cuIcon-upstagefill"></text> 待审核
-  </view>
-</scroll-view>
+  <scroll-view scroll-x class="bg-green nav text-center">
+  	<view class="cu-item {{0==TabCur?'text-white cur':''}}" bindtap="tabSelect" data-id="0">
+  		<text class="cuIcon-camerafill">成员列表</text>
+  	</view>
+  	<view class="cu-item {{1==TabCur?'text-white cur':''}}" bindtap="tabSelect" data-id="1">
+  		<text class="cuIcon-upstagefill"></text> 待审核
+  	</view>
+  </scroll-view>
 
- <view class="cu-list menu-avatar card-menu">
-    <view class="cu-item margin-top" wx:if="{{TabCur==0}}" wx:for="{{members}}" data-applyid="{{item.applyID}}" data-applyerid="{{item.applyerID}}" wx:key="{{index}}" bindtap="{{item.status=='已关闭'?'':'navigateToApplyDatail'}}">
-      <view class="content">
+  <view class="cu-list menu-avatar card-menu">
+  	<view class="cu-item margin-top" wx:if="{{TabCur==0}}" wx:for="{{members}}" data-applyid="{{item.applyID}}" data-applyerid="{{item.applyerID}}" wx:key="index" bindtap="{{item.status=='已关闭'?'':'navigateToApplyDatail'}}">
+  		<view class="content">
 
-        <!-- <view class="text-{{item.status=='已关闭'?'gray':'black'}}">{{item.demandTitle}}</view> -->
-        <view class="text-black">{{item.userID}}</view>
+  			<!-- <view class="text-{{item.status=='已关闭'?'gray':'black'}}">{{item.demandTitle}}</view> -->
+  			<view class="text-black">{{item.userID}}</view>
 
-        <view class="text-gray text-sm flex">
-          <text class="text-cut text-grey">
+  			<view class="text-gray text-sm flex">
+  				<text class="text-cut text-grey">
             <text class="cuIcon-location text-orange margin-right-xs"></text>{{item.name}}
-          </text>
-        </view>
-      </view>
-    </view>
+  				</text>
+  			</view>
+  		</view>
+  	</view>
 
-    <view class="cu-item margin-top" wx:if="{{TabCur==1}}" wx:for="{{appliers}}" data-applyid="{{item.applyID}}"  data-applyerid="{{item.applyerID}}" data-applydetail="{{item}}" wx:key="{{index}}" bindtap="navigateToAudit">
-      <view class="content">
+  	<view class="cu-item margin-top" wx:if="{{TabCur==1}}" wx:for="{{appliers}}" data-applyid="{{item.applyID}}" data-applyerid="{{item.applyerID}}" data-applydetail="{{item}}" wx:key="index" bindtap="navigateToAudit">
+  		<view class="content">
 
-        <!-- <view class="text-{{item.status=='已关闭'?'gray':'black'}}">{{item.demandTitle}}</view> -->
-        <view class="text-black">{{item.applyerName}}</view>
+  			<!-- <view class="text-{{item.status=='已关闭'?'gray':'black'}}">{{item.demandTitle}}</view> -->
+  			<view class="text-black">{{item.applyerName}}</view>
 
-        <view class="text-gray text-sm flex">
-          <text class="text-cut text-grey">
+  			<view class="text-gray text-sm flex">
+  				<text class="text-cut text-grey">
             <text class="cuIcon-location text-orange margin-right-xs"></text>{{item.applyerID}}
-          </text>
-        </view>
+  				</text>
+  			</view>
 
 
-      </view>
+  		</view>
 
-    </view>
+  	</view>
 
   </view>

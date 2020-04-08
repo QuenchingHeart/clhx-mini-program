@@ -1,9 +1,9 @@
 const app = getApp();
-import {  getLocal } from "../../../utils/util.js"
+import { getLocal } from "../../../utils/util.js"
 const formUtil = require('../../../utils/formUtil.js')
 import { contactPost, contactGet, contactPut, contactDel } from "../../../utils/api.js";
 Page({
-  data:{
+  data: {
     formData: {
       latitude: 23.099994,
       longitude: 113.324520,
@@ -12,19 +12,37 @@ Page({
       "contactPhone": "15615844978",
       isDefault: false
     },
-    type:'add',
+    type: 'add',
     //add del edit check
 
   },
   initData: function (options) {
     var that = this
-    that.setData({
-      'formData.userID': app.globalData.userID,
-      'formData.id': options.id
-    })
-    console.log(that.data.formData)
+    wx.getLocation({
+      type: "gcj02",
+      success: loc => {
+
+        getLocal(loc.latitude, loc.longitude).then((res) => {
+          that.setData({
+            'formData.userID': app.globalData.userID,
+            'formData.id': options.id,
+            "formData.latitude": res.latitude,
+            "formData.longitude": res.longitude,
+            "formData.address": res.formatted_address,
+            markers: [{
+              latitude: res.latitude,
+              longitude: res.longitude,
+              iconPath: '/image/location.png',
+              width: '34px',
+              height: '34px',
+              id: 1
+            }]
+          });
+        })
+      }
+    });
   },
-  onLoad: function (options){
+  onLoad: function (options) {
     var that = this
     this.mapCtx = wx.createMapContext('myMapMakeContact')
     that.handleOp(options)
@@ -38,16 +56,16 @@ Page({
   },
   formInputChange(e) {
     const { field } = e.currentTarget.dataset
-    console.log(field,e.detail.value,e)
+    console.log(field, e.detail.value, e)
     this.setData({
       [`formData.${field}`]: e.detail.value
     })
   },
-  chooseLocation: function() {
+  chooseLocation: function () {
     var that = this
     var location = {}
     wx.chooseLocation({
-      success: function(loc) {
+      success: function (loc) {
         // console.log("****chooseLocation")
         getLocal(loc.latitude, loc.longitude).then((res) => {
           that.setData({
@@ -69,7 +87,7 @@ Page({
       }
     })
   },
-  moveToLocation: function() {
+  moveToLocation: function () {
     var that = this;
     console.log('setPosition1', that.data.formData.longitude, that.data.formData.latitude, that.mapCtx)
     that.mapCtx.moveToLocation({
@@ -77,21 +95,21 @@ Page({
       longitude: that.data.formData.longitude,
       // latitude,
       // longitude,
-      success: function(res) {
+      success: function (res) {
         console.log(res)
       },
-      fail: function(res) {
+      fail: function (res) {
         console.log(res, 'failed')
       },
-      complete: function(res) {
+      complete: function (res) {
         console.log(res, 'failed')
       }
     })
     console.log('setPosition2', that.data.formData.longitude, that.data.formData.latitude, that.mapCtx)
   },
-  submitForm: function (e){
+  submitForm: function (e) {
     var checkRes = formUtil.checkNullForm(e);
-    if(checkRes){
+    if (checkRes) {
       var that = this
       console.log(that.data)
       if (that.data.type == 'add') {
@@ -112,11 +130,11 @@ Page({
         })
       }
     }
-    
+
   },
-  cancelForm: function(){
+  cancelForm: function () {
     wx.navigateBack({
-      
+
     })
   },
 
@@ -132,16 +150,23 @@ Page({
         that.initData(options)
         break;
       case 'edit':
-          that.setData({
-            formData: JSON.parse(options.contactDetail),
-          })
-
-
+        let contactDetail = JSON.parse(options.contactDetail);
+        that.setData({
+          formData: contactDetail,
+          markers: [{
+            latitude: contactDetail.latitude,
+            longitude: contactDetail.longitude,
+            iconPath: '/image/location.png',
+            width: '34px',
+            height: '34px',
+            id: 1
+          }]
+        })
 
         break;
 
       case 'delete':
-        contactDel({ id: options.id,userID:app.globalData.userID }).then(res => {
+        contactDel({ id: options.id, userID: app.globalData.userID }).then(res => {
           console.log(res)
           that.toastAndBack()
         })
@@ -156,20 +181,20 @@ Page({
     })
     console.log(this.data)
   },
-  cancelContact: function () {   
+  cancelContact: function () {
     this.handleOp({
-      type:'delete',
-      id:this.data.formData.id
+      type: 'delete',
+      id: this.data.formData.id
     })
 
   },
-  toastAndBack: function(page=1) {
+  toastAndBack: function (page = 1) {
     console.log(page)
     wx.showToast({
       title: '成功',
       icon: 'success',
       duration: 5000,
-      complete: function() {
+      complete: function () {
         wx.navigateBack({
           delta: page
         })

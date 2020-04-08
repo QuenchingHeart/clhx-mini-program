@@ -50,12 +50,6 @@
   </view>
 
   <view class="cu-form-group">
-    <view class="title">地点</view>
-    <input disabled="{{disabled}}" bindtap="{{disabled==false?'chooseLocation':''}}"  placeholder="请选择地点" name="district" data-field="district" bindinput="formInputChange" value="{{formData.address}}" />
-    <text class="cuIcon-locationfill text-orange"></text>
-  </view>
-
-  <view class="cu-form-group">
     <view class="title">标题</view>
     <input disabled="{{disabled}}"  name="title" data-field="title" bindinput="formInputChange" placeholder="请输入标题" value="{{formData.title}}" />
   </view>
@@ -64,6 +58,12 @@
     <view class="title">联系人</view>
     <input  disabled="{{disabled}}" name="contactName" data-field="contactName" bindinput="formInputChange" placeholder="请输入联系人" value="{{formData.contactName}}" />
     <text class="cuIcon-peoplefill text-orange" bindtap="chooseContact"></text>
+  </view>
+
+  <view class="cu-form-group">
+    <view class="title">地点</view>
+    <input disabled="{{disabled}}" bindtap="{{disabled==false?'chooseLocation':''}}"  placeholder="请选择地点" name="district" data-field="district" bindinput="formInputChange" value="{{formData.address}}" />
+    <text class="cuIcon-locationfill text-orange"></text>
   </view>
 
   <view class="cu-form-group">

@@ -19,12 +19,29 @@ Page({
   },
   initData: function (options) {
     var that = this
-    that.setData({
-      'formData.userID': app.globalData.userID,
-      'formData.organizationID': parseInt(options.organizationID),
-      'formAuditData.userID': app.globalData.userID,
-    })
-    console.log(that.data.formData)
+    wx.getLocation({
+      type: "gcj02",
+      success: loc => {
+        getLocal(loc.latitude, loc.longitude).then((res) => {
+          that.setData({
+            'formData.userID': app.globalData.userID,
+            'formData.organizationID': parseInt(options.organizationID),
+            'formAuditData.userID': app.globalData.userID,
+            "formData.latitude": res.latitude,
+            "formData.longitude": res.longitude,
+            "formData.address": res.formatted_address,
+            markers: [{
+              latitude: res.latitude,
+              longitude: res.longitude,
+              iconPath: '/image/location.png',
+              width: '34px',
+              height: '34px',
+              id: 1
+            }]
+          });
+        })
+      }
+    });
   },
   onLoad: function (options){
     var that = this

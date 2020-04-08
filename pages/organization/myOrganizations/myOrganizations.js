@@ -1,5 +1,5 @@
 // pages/myApply/myApply.js
-import { organizationInGet,organizationApplyGet } from '../../../utils/api.js'
+import { organizationInGet, organizationApplyGet } from '../../../utils/api.js'
 const app = getApp()
 Page({
 
@@ -7,30 +7,30 @@ Page({
    * 页面的初始数据
    */
   data: {
-    organizations:[],
+    organizations: [],
     reload: false
   },
-  getOrganizations:function(){
+  getOrganizations: function () {
     var that = this
-    organizationInGet({ userID:app.globalData.userID }).then( res => {
+    organizationInGet({ userID: app.globalData.userID }).then(res => {
       that.setData({
         organizations: res
       })
       console.log(res)
     })
   },
-  navigateToContactDatail: function (e) {
+  navigateToOrgDatail: function (e) {
     console.log(e.currentTarget.dataset.applyid)
     this.data.reload = true;
-    if(e.currentTarget.dataset.type=='check'){
+    if (e.currentTarget.dataset.type == 'check') {
       wx.navigateTo({
-        url: '/pages/organization/makeOrganization/makeOrganization?type=check&keyword='+e.currentTarget.dataset.name
+        url: '/pages/organization/makeOrganization/makeOrganization?type=check&organizationID=' + e.currentTarget.dataset.organizationid
       })
-    }else if(e.currentTarget.dataset.type=='edit'){
+    } else if (e.currentTarget.dataset.type == 'edit') {
       wx.navigateTo({
-        url: '/pages/organization/organization/organization?type=check&organizationID='+e.currentTarget.dataset.organizationid
+        url: '/pages/organization/organization/organization?type=edit&organizationID=' + e.currentTarget.dataset.organizationid
       })
-    }else{
+    } else {
       wx.navigateTo({
         url: '/pages/organization/organizations/organizations'
       })
