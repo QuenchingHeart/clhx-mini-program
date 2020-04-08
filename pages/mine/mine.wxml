@@ -43,7 +43,7 @@
       </navigator>
     </view>
     <view class="cu-item arrow">
-      <navigator url="" class="content" hover-class="none">
+      <navigator url="/pages/organization/myOrganizations/myOrganizations" class="content" hover-class="none">
           <text class="cuIcon-formfill text-red"></text>
           <text>我的组织</text>
       </navigator>

@@ -1,0 +1,37 @@
+<view class="flex solid-bottom padding justify-end">
+  <button class="cu-btn bg-green shadow-blur round" data-type="add" bindtap="navigateToContactDatail">创建组织</button>
+</view>
+<template name="organizations">
+  <view class="cu-list menu-avatar card-menu">
+    <view class="cu-item margin-top" wx:for="{{organizations}}" data-name="{{item.name}}"  data-type="check"  wx:key="{{index}}" bindtap="navigateToContactDatail">
+      <view class="content">
+        <view class="text-gray text-sm flex">
+          <text class="text-cut text-grey">
+            <text class="cuIcon-location text-orange margin-right-xs"></text>{{item.contactName}}
+          </text>
+        </view>
+
+        <view class="text-gray text-sm flex">
+          <text class="text-cut text-grey">
+            <text class="cuIcon-location text-orange margin-right-xs"></text>{{item.contactPhone}}
+          </text>
+        </view>
+
+        <view class="text-gray text-sm flex">
+          <text class="text-cut text-grey">
+            <text class="cuIcon-location text-orange margin-right-xs"></text>{{item.name}}
+          </text>
+        </view>
+
+      </view>
+
+
+      <!-- <view class="action">
+        <view wx:if="{{item.isDefault}}" class="cu-tag round bg-green sm">默认联系人</view>
+      </view> -->
+    </view>
+  </view>
+
+</template>
+
+<template is="organizations" data="{{organizations: organizations}}" />

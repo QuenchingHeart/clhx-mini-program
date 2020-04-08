@@ -1,5 +1,4 @@
-<form models="{{formData}}" bindsubmit="submitForm">
-  <map
+  <!-- <map
     id="myMapMakeOrganization"
     style="width: 100%; height: 400rpx;"
     latitude="{{formData.latitude}}"
@@ -10,7 +9,7 @@
     show-scale
     bindtap="{{disabled==false?'chooseLocation':''}}"
     scale="18">
-  </map>
+  </map> -->
     <view class="cu-form-group">
     <view class="title">地点</view>
     <input disabled="{{disabled}}" bindtap="{{disabled==false?'chooseLocation':''}}"  placeholder="请选择地点" name="district" data-field="district" bindinput="formInputChange" value="{{formData.address}}" />
@@ -39,7 +38,7 @@
     <input disabled="{{disabled}}"  placeholder="组织名称" name="name" data-field="name" bindinput="formInputChange" value="{{formData.name}}" />
   </view>
 
-  <view class="button-sp-area" wx:if="{{type=='add'}}">
+  <!-- <view class="button-sp-area" wx:if="{{type=='add'}}">
     <view class="cu-btn bg-blue lg padding-sm margin-xs radius">
       <button class="cu-btn bg-blue lg" disabled='{{disabled}}' form-type='submit'>添加组织</button>
     </view>
@@ -48,16 +47,55 @@
     <view class="cu-btn bg-blue lg padding-sm margin-xs radius">
       <button class="cu-btn bg-blue lg" disabled='{{disabled}}' bindtap="navigateToApplyOrganization">申请加入组织</button>
     </view>
-  </view>
+  </view> -->
 
   <view class="flex solid-bottom padding justify-around" wx:if="{{ type=='edit'}}">
 
     <view class="cu-btn bg-gray lg padding-sm margin-xs radius">
       <button class="cu-btn bg-gray lg" disabled='{{disabled}}' form-type='submit' bindtap="cancelOrganization">解散组织</button>
     </view>
-    <!-- <view class="cu-btn bg-orange lg padding-sm margin-xs radius">
-      <button class="cu-btn bg-orange lg" disabled='{{disabled}}' form-type='submit'>更新组织</button>
-    </view> -->
+
   </view>
 
-</form>
+<scroll-view scroll-x class="bg-green nav text-center">
+  <view class="cu-item {{0==TabCur?'text-white cur':''}}" bindtap="tabSelect" data-id="0">
+    <text class="cuIcon-camerafill">成员列表</text> 
+  </view>
+  <view class="cu-item {{1==TabCur?'text-white cur':''}}" bindtap="tabSelect" data-id="1">
+    <text class="cuIcon-upstagefill"></text> 待审核
+  </view>
+</scroll-view>
+
+ <view class="cu-list menu-avatar card-menu">
+    <view class="cu-item margin-top" wx:if="{{TabCur==0}}" wx:for="{{members}}" data-applyid="{{item.applyID}}" data-applyerid="{{item.applyerID}}" wx:key="{{index}}" bindtap="{{item.status=='已关闭'?'':'navigateToApplyDatail'}}">
+      <view class="content">
+
+        <!-- <view class="text-{{item.status=='已关闭'?'gray':'black'}}">{{item.demandTitle}}</view> -->
+        <view class="text-black">{{item.userID}}</view>
+
+        <view class="text-gray text-sm flex">
+          <text class="text-cut text-grey">
+            <text class="cuIcon-location text-orange margin-right-xs"></text>{{item.name}}
+          </text>
+        </view>
+      </view>
+    </view>
+
+    <view class="cu-item margin-top" wx:if="{{TabCur==1}}" wx:for="{{appliers}}" data-applyid="{{item.applyID}}"  data-applyerid="{{item.applyerID}}" data-applydetail="{{item}}" wx:key="{{index}}" bindtap="navigateToAudit">
+      <view class="content">
+
+        <!-- <view class="text-{{item.status=='已关闭'?'gray':'black'}}">{{item.demandTitle}}</view> -->
+        <view class="text-black">{{item.applyerName}}</view>
+
+        <view class="text-gray text-sm flex">
+          <text class="text-cut text-grey">
+            <text class="cuIcon-location text-orange margin-right-xs"></text>{{item.applyerID}}
+          </text>
+        </view>
+
+
+      </view>
+
+    </view>
+
+  </view>

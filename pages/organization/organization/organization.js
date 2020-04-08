@@ -1,9 +1,17 @@
 const app = getApp();
 import {  getLocal } from "../../../utils/util.js"
 const formUtil = require('../../../utils/formUtil.js')
-import { organizationPost, organizationApplyGet,organizationGet, organizationDel } from "../../../utils/api.js";
+import { 
+  organizationPost, 
+  organizationApplyGet,
+  organizationAuditGet,
+  organizationMemberGet,
+  organizationGet, 
+  organizationDel 
+} from "../../../utils/api.js";
 Page({
   data:{
+    TabCur:0,
     formData: {
       latitude: 23.099994,
       longitude: 113.324520,
@@ -14,8 +22,15 @@ Page({
       isOrganization: true
     },
     type:'add',
+    appliers:[],
+    members:[]
     //add del edit check
 
+  },
+  tabSelect(e) {
+    this.setData({
+      TabCur: e.currentTarget.dataset.id
+    })
   },
   initData: function (options) {
     var that = this
@@ -29,6 +44,23 @@ Page({
     var that = this
     this.mapCtx = wx.createMapContext('myMapMakeOrganization')
     that.handleOp(options)
+    this.getAuditOrganization(options)
+  },
+  getAuditOrganization: function(options){
+    console.log(options)
+    var that = this
+    organizationAuditGet({organizationID :options.organizationID,status:'待审核'}).then(res=>{
+      console.log('appliers',res)
+      that.setData({
+        appliers:res
+      })
+    })
+    organizationMemberGet({organizationID :options.organizationID,userID:app.globalData.userID}).then(res=>{
+      console.log(res)
+      that.setData({
+        members:res
+      })
+    })
   },
   bindPickerChange: function (e) {
     console.log('picker发送选择改变，携带值为', e.detail.value)
@@ -42,6 +74,11 @@ Page({
     console.log(field,e.detail.value,e)
     this.setData({
       [`formData.${field}`]: e.detail.value
+    })
+  },
+  navigateToAudit:function(e){
+    wx.navigateTo({
+      url: '/pages/organization/makeApplyOrganization/makeApplyOrganization?type=audit&'+'&applyDetail='+JSON.stringify(e.currentTarget.dataset.applydetail),
     })
   },
   chooseLocation: function() {
@@ -125,15 +162,9 @@ Page({
       url: '/pages/organization/makeApplyOrganization/makeApplyOrganization?type=add&organizationID='+this.data.formData.orgID,
     })
   },
-  navigateToMakeOrganization: function(){
-    wx.navigateTo({
-      url: '/pages/organization/makeOrganization/makeOrganization?type=add'
-    })
-  },
-  
 
   handleOp(options) {
-    var disabled = false;
+    var disabled = true;
     var applies = []
     var applied = false
     var myid = 0

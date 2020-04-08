@@ -1,17 +1,17 @@
 const app = getApp();
 import {  getLocal } from "../../../utils/util.js"
 const formUtil = require('../../../utils/formUtil.js')
-import { organizationPost, organizationApplyGet,organizationGet, organizationDel } from "../../../utils/api.js";
+import { organizationApplyPost,organizationApplyGet, organizationGet, organizationDel,organizationAuditPut } from "../../../utils/api.js";
 Page({
   data:{
     formData: {
-      latitude: 23.099994,
-      longitude: 113.324520,
-      address: '',
-      name: '组织名称',
-      "contactName": "甲鱼",
-      "contactPhone": "15615844978",
-      isOrganization: true
+      reason:'',
+    },
+    formAuditData:{
+      "userID": 0,
+      "applyID": 0,
+      "agree": true,
+      "reason": ""
     },
     type:'add',
     //add del edit check
@@ -21,7 +21,8 @@ Page({
     var that = this
     that.setData({
       'formData.userID': app.globalData.userID,
-      'formData.id': options.id
+      'formData.organizationID': parseInt(options.organizationID),
+      'formAuditData.userID': app.globalData.userID,
     })
     console.log(that.data.formData)
   },
@@ -40,9 +41,16 @@ Page({
   formInputChange(e) {
     const { field } = e.currentTarget.dataset
     console.log(field,e.detail.value,e)
-    this.setData({
-      [`formData.${field}`]: e.detail.value
-    })
+    if(this.data.type!='audit'){
+      this.setData({
+        [`formData.${field}`]: e.detail.value
+      })
+    }else{
+      this.setData({
+        [`formAuditData.${field}`]: e.detail.value
+      })
+    }
+
   },
   chooseLocation: function() {
     var that = this
@@ -96,12 +104,12 @@ Page({
       var that = this
       console.log(that.data)
       if (that.data.type == 'add') {
-        organizationPost(this.data.formData).then(res => {
+        organizationApplyPost(this.data.formData).then(res => {
           console.log(res)
           that.setData({
             formData: res
           })
-          that.toastAndBack()
+          that.toastAndBack(2)
         })
       } else if (that.data.type == 'edit') {
         // organizationPut(this.data.formData).then(res => {
@@ -111,6 +119,11 @@ Page({
         //   })
         //   that.toastAndBack()
         // })
+      }else if(that.data.type=='audit') {
+        organizationAuditPut(this.data.formAuditData).then(res => {
+          console.log(res)
+          that.toastAndBack()
+        })
       }
     }
     
@@ -120,17 +133,6 @@ Page({
       
     })
   },
-  navigateToApplyOrganization: function(){
-    wx.navigateTo({
-      url: '/pages/organization/makeApplyOrganization/makeApplyOrganization?type=add&organizationID='+this.data.formData.orgID,
-    })
-  },
-  navigateToMakeOrganization: function(){
-    wx.navigateTo({
-      url: '/pages/organization/makeOrganization/makeOrganization?type=add'
-    })
-  },
-  
 
   handleOp(options) {
     var disabled = false;
@@ -144,7 +146,7 @@ Page({
         that.initData(options)
         break;
       case 'edit':
-        organizationGet({userID:app.globalData.userID}).then(res=>{
+        organizationGet({keyword:options.keyword}).then(res=>{
           console.log(res)
           that.setData({
             formData: res[0],
@@ -161,6 +163,13 @@ Page({
           })
   
           break;
+      case 'audit':
+        this.setData({
+          formData:JSON.parse(options.applyDetail),
+          "formAuditData.userID":app.globalData.userID,
+          "formAuditData.applyID":JSON.parse(options.applyDetail).applyID
+        })
+        break;
       case 'delete':
         organizationDel({ organizationID : options.orgID,userID:app.globalData.userID }).then(res => {
           console.log(res)

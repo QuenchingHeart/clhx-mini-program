@@ -1,0 +1,5 @@
+/* pages/makeApply.wxss */
+.button-sp-area{padding-top:15px;text-align:center}
+.nav .cu-item{
+  line-height: 90rpx;
+}

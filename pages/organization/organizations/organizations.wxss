@@ -1,0 +1,16 @@
+/* pages/myApply/myApply.wxss */
+.cu-list.menu-avatar>.cu-item .content {
+  left:30rpx;
+  width:calc(100% - 190rpx-20rpx);
+}
+
+.cu-list.menu-avatar>.cu-item .action {
+  width:190rpx;
+}
+.cu-list.menu-avatar>.cu-item{
+  height: 170rpx;
+}
+
+.margin-top{
+  margin-top: 5rpx;
+}

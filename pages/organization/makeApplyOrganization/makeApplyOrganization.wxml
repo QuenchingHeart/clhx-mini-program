@@ -1,0 +1,41 @@
+<form models="{{formData}}" bindsubmit="submitForm">
+
+  <view class="cu-form-group align-start">
+    <view class="title">申请理由</view>
+    <textarea name="reason" data-field="reason" disabled="{{disabled}}" bindinput="formInputChange" value="{{formData.reason}}" placeholder="请输入申请理由" />
+  </view>
+
+
+  <view class="button-sp-area" wx:if="{{type=='add'}}">
+    <view class="cu-btn bg-blue lg padding-sm margin-xs radius">
+      <button class="cu-btn bg-blue lg" disabled='{{disabled}}' form-type='submit'>申请加入组织</button>
+    </view>
+  </view>
+
+  <view class="button-sp-area" wx:if="{{type=='audit'}}">
+    <view class="cu-form-group">
+      <view class="title">批准通过</view>
+      <switch class="red sm" data-field="agree" checked="{{formAuditData.agree}}" disabled='{{disabled}}'  bindchange="formInputChange"></switch>
+    </view>
+    <view wx:if="{{!formAuditData.agree}}" class="cu-form-group align-start">
+      <view class="title">拒绝的理由</view>
+      <textarea name="reason" data-field="reason" disabled="{{disabled}}" bindinput="formInputChange" value="{{formAuditData.reason}}" placeholder="请输入申请理由" />
+    </view>
+
+    <view class="cu-btn bg-blue lg padding-sm margin-xs radius">
+      <button class="cu-btn bg-blue lg" disabled='{{disabled}}' form-type='submit'>确定</button>
+    </view>
+  </view>
+
+
+  <view class="flex solid-bottom padding justify-around" wx:if="{{ type=='edit'}}">
+
+    <view class="cu-btn bg-gray lg padding-sm margin-xs radius">
+      <button class="cu-btn bg-gray lg" disabled='{{disabled}}' form-type='submit' bindtap="cancelOrganization">退出组织</button>
+    </view>
+    <!-- <view class="cu-btn bg-orange lg padding-sm margin-xs radius">
+      <button class="cu-btn bg-orange lg" disabled='{{disabled}}' form-type='submit'>更新组织</button>
+    </view> -->
+  </view>
+
+</form>

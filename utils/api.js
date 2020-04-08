@@ -187,6 +187,14 @@ function organizationApplyPost(data) {
   })
 }
 
+function organizationApplyGet(data) {
+  return http({
+    url: '/organization/apply',
+    method: 'GET',
+    data: data
+  })
+}
+
 function organizationAuditGet(data) {
   return http({
     url: '/organization/audit',
@@ -194,6 +202,15 @@ function organizationAuditGet(data) {
     data: data
   })
 }
+
+function organizationMemberGet(data) {
+  return http({
+    url: '/organization/member',
+    method: 'GET',
+    data: data
+  })
+}
+
 function organizationAuditPut(data) {
   return http({
     url: '/organization/audit',
@@ -209,6 +226,14 @@ function organizationQuitDel(data) {
   })
 }
 
+function organizationInGet(data) {
+  return http({
+    url: '/organization/in',
+    method: 'GET',
+    data: data
+  })
+}
+
 export { 
   login,
   demandsAll, demandsLocation, demandsCount, demandsPost, demandOne, demandPut, demandDel, 
@@ -216,5 +241,6 @@ export {
   connectApprove, connectComplete, connectDel,
   contactPost, contactGet, contactPut, contactDel, 
   organizationPost, organizationGet, organizationDel, 
-  organizationApplyPost, organizationAuditGet, organizationAuditPut, organizationQuitDel
+  organizationInGet,organizationMemberGet,
+  organizationApplyPost, organizationApplyGet, organizationAuditGet, organizationAuditPut, organizationQuitDel
   };

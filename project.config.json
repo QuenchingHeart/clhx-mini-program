@@ -115,7 +115,35 @@
 					"id": 9,
 					"name": "pages/organization/makeOrganization/makeOrganization",
 					"pathName": "pages/organization/makeOrganization/makeOrganization",
-					"query": "type=check&keyword=组织名称",
+					"query": "type=add&keyword=组织名称",
+					"scene": null
+				},
+				{
+					"id": 10,
+					"name": "pages/organization/makeApplyOrganization/makeApplyOrganization",
+					"pathName": "pages/organization/makeApplyOrganization/makeApplyOrganization",
+					"query": "type=add&organizationID=42",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "pages/organization/organizations/organizations",
+					"pathName": "pages/organization/organizations/organizations",
+					"query": "type=search",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "pages/organization/myOrganizations/myOrganizations",
+					"pathName": "pages/organization/myOrganizations/myOrganizations",
+					"query": "type=search",
+					"scene": null
+				},
+				{
+					"id": 13,
+					"name": "pages/organization/organization/organization",
+					"pathName": "pages/organization/organization/organization",
+					"query": "type=search&organizationID=37",
 					"scene": null
 				}
 			]
