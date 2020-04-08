@@ -149,6 +149,65 @@ function contactDel(data) {
   })
 }
 
+function organizationPost(data) {
+  return http({
+    url: '/organization',
+    method: 'POST',
+    data: data
+  })
+}
+
+function organizationGet(data) {
+  return http({
+    url: '/organization',
+    method: 'GET',
+    data: data
+  })
+}
+// function organizationPut(data) {
+//   return http({
+//     url: '/organization',
+//     method: 'PUT',
+//     data: data
+//   })
+// }
+function organizationDel(data) {
+  return http({
+    url: '/organization?organizationID='+data.organizationID +'&userID='+data.userID,
+    method: 'DELETE',
+    data: data
+  })
+}
+
+function organizationApplyPost(data) {
+  return http({
+    url: '/organization/apply',
+    method: 'POST',
+    data: data
+  })
+}
+
+function organizationAuditGet(data) {
+  return http({
+    url: '/organization/audit',
+    method: 'GET',
+    data: data
+  })
+}
+function organizationAuditPut(data) {
+  return http({
+    url: '/organization/audit',
+    method: 'PUT',
+    data: data
+  })
+}
+function organizationQuitDel(data) {
+  return http({
+    url: '/organization/quit?organizationID ='+data.organizationID +'&userID='+data.userID,
+    method: 'DELETE',
+    data: data
+  })
+}
 
 export { 
   login,
@@ -156,4 +215,6 @@ export {
   applyPost, applyGet, applyPut, applyDel, 
   connectApprove, connectComplete, connectDel,
   contactPost, contactGet, contactPut, contactDel, 
+  organizationPost, organizationGet, organizationDel, 
+  organizationApplyPost, organizationAuditGet, organizationAuditPut, organizationQuitDel
   };
