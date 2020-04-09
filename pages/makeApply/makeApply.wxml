@@ -1,13 +1,20 @@
 <form models="{{formData}}" bindsubmit="submitForm">
   <view class="cu-form-group">
     <view class="title">对接方</view>
-    <picker mode="selector" bindchange="bindPickerChange" name="applyer" range="{{applyer}}" value="{{applyerIndex}}" disabled="{{disabled}}">
+    <picker mode="selector" bindchange="bindPickerChange" data-field="applyerIndex" name="applyer" range="{{applyer}}" value="{{applyerIndex}}" disabled="{{disabled}}">
       <view class="picker">
         {{applyer[applyerIndex]}}
       </view>
     </picker>
   </view>
-
+  <view wx:if="{{applyerIndex==1}}" class="cu-form-group">
+    <view class="title">我的组织</view>
+    <picker mode="selector" name="org" data-field="organizationsIndex" bindchange="bindPickerChange" range="{{orgsPicker}}" value="{{organizationsIndex}}" disabled="{{type!='add'}}">
+      <view class="picker">
+        {{orgsPicker[organizationsIndex]}}
+      </view>
+    </picker>
+  </view>
   <view class="cu-form-group">
     <view class="title">联系人</view>
     <input disabled="{{disabled}}" name="contactName" data-field="contactName" bindinput="formInputChange" placeholder="请输入联系人" value="{{formData.contactName}}" />

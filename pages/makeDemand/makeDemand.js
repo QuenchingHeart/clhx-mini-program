@@ -41,9 +41,12 @@ Page({
       ["物资援助", "防控宣传", "精准排查", "复工咨询", "感人故事"]
     ],
     demander: [
-      "个人"
+      "个人",
+      "组织"
     ],
     organizations: [],
+    orgsPicker: [],
+    organizationsIndex:0,
     countryCodes: ["+86", "+80", "+84", "+87"],
     countryCodeIndex: 0,
     demanderIndex: 0,
@@ -108,10 +111,13 @@ Page({
   },
   bindPickerChange: function(e) {
     console.log('picker发送选择改变，携带值为', e.detail.value)
+    const {
+      field
+    } = e.currentTarget.dataset
     this.setData({
-      "demanderIndex": e.detail.value,
-      "formData.isOrganization": e.detail.value == 0 ? false : true
+      [`${field}`]: e.detail.value
     })
+
   },
   bindMultiPickerChange(e) {
     console.log('change multipicker')
@@ -165,11 +171,13 @@ Page({
       let formData = that.data.formData;
       let orgs = that.data.organizations;
       let demanderIndex = that.data.demanderIndex;
+      let organizationsIndex = that.data.organizationsIndex;
+      formData.isOrganization = demanderIndex==1?true:false;
       let demandDetail = {
         "demandID": that.data.demandDetail.demandID,
         "createdBy": {
-          "publishUserID": formData.isOrganization ? orgs[demanderIndex - 1].orgID : app.globalData.userID,
-          "publishUserName": formData.isOrganization ? orgs[demanderIndex - 1].name : "",
+          "publishUserID": formData.isOrganization ? orgs[organizationsIndex].orgID : app.globalData.userID,
+          "publishUserName": formData.isOrganization ? orgs[organizationsIndex].name : "",
           "isOrganization": formData.isOrganization
         },
         "contactName": formData.contactName,
@@ -239,7 +247,8 @@ Page({
       getLocal(demandDetail.location.latitude, demandDetail.location.longitude).then(res => {
         that.setData({
           demandDetail,
-          demander: [demandDetail.createdBy.isOrganization ? demandDetail.createdBy.publishUserName : "个人"],
+          // demander: [demandDetail.createdBy.isOrganization ? demandDetail.createdBy.publishUserName : "个人"],
+          demanderIndex:demandDetail.createdBy.isOrganization?1:0,
           formData: {
             isOrganization: demandDetail.createdBy.isOrganization,
             title: demandDetail.title,
@@ -265,6 +274,10 @@ Page({
           }]
         })
         that.moveToLocation();
+        console.log(demandDetail)
+        if(demandDetail.createdBy.isOrganization){
+          that.getOrganizations(options);
+        }
 
         // if (options.type === "check") {
         //   that.setData({
@@ -280,19 +293,21 @@ Page({
   getOrganizations: function (options) {
     let that = this;
     organizationInGet({ userID: app.globalData.userID }).then(orgs => {
-      let demander = ["个人"];
+      // let demander = ["个人"];
       // let demanderIndex = 0;
       // console.log(res)
+      let orgsPicker = [];
+      let organizationsIndex = 0;
       for (let i = 0; i < orgs.length; i++) {
-        demander = demander.concat(orgs[i].name);
-        // if (options.type === "edit" && orgs[i].name === that.demandDetail.publishUserName) {
-        //   demanderIndex = 1 + i;
-        // }
+        orgsPicker = orgsPicker.concat(orgs[i].name);
+        if (options.type === "edit" && orgs[i].name === that.data.demandDetail.createdBy.publishUserName) {
+          organizationsIndex =  i;
+        }
       }
       that.setData({
-        demander,
-        demanderIndex: 0,
-        organizations: orgs
+        organizations: orgs,
+        orgsPicker: orgsPicker,
+        organizationsIndex: organizationsIndex
       })
     })
   },
@@ -327,14 +342,16 @@ Page({
         this.getOnedemand(options);
         applyGet({
           demandID: options.demandID,
-          userID: app.globalData.userID
+          // userID: app.globalData.userID
         }).then(res => {
           // console.log(res.length, res[0])
           if (res.length > 0) {
             applied = true
             console.log('pppp')
             that.setData({
-              applyID: res[0].applyID
+              // applyID: res[0].applyID,
+              myApplies:res
+              // applies:res
             })
           }
           that.setData({

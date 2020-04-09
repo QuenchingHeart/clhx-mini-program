@@ -24,10 +24,20 @@
   </view>
 
   <view class="cu-form-group">
+  <!-- 需求方和组织只有添加的时候才有权限选择 -->
     <view class="title">需求方</view>
-    <picker mode="selector" name="demander" bindchange="bindPickerChange" range="{{demander}}" value="{{demanderIndex}}" disabled="{{disabled}}">
+    <picker mode="selector" name="demander" data-field="demanderIndex" bindchange="bindPickerChange" range="{{demander}}" value="{{demanderIndex}}" disabled="{{type!='add'}}">
       <view class="picker">
         {{demander[demanderIndex]}}
+      </view>
+    </picker>
+  </view>
+
+    <view wx:if="{{demanderIndex==1}}" class="cu-form-group">
+    <view class="title">我的组织</view>
+    <picker mode="selector" name="org" data-field="organizationsIndex" bindchange="bindPickerChange" range="{{orgsPicker}}" value="{{organizationsIndex}}" disabled="{{type!='add'}}">
+      <view class="picker">
+        {{orgsPicker[organizationsIndex]}}
       </view>
     </picker>
   </view>
@@ -141,11 +151,16 @@
   </view>
 </view>
 
-<view class="flex solid-bottom padding justify-around" wx:if="{{ type=='check' }}">
-  <view wx:if="{{!applied&userID!=demandDetail.createdBy.publishUserID}}" class="cu-btn bg-orange lg padding-sm margin-xs radius">
+<view class="padding flex flex-direction" wx:if="{{ type=='check' }}">
+  <view wx:if="{{!applied}}" class="cu-btn bg-orange lg padding-sm margin-xs radius">
     <button class="cu-btn bg-orange lg" bindtap="apply" data-demandid="{{demandDetail.demandID}}">申请对接</button>
   </view>
-  <view wx:if="{{applied}}" class="cu-btn bg-cyan lg padding-sm margin-xs radius">
-    <button class="cu-btn bg-cyan lg" bindtap="toMyapply" data-applyid="{{applyID}}" data-demandid="{{demandDetail.demandID}}">查看对接详情</button>
+ 
+  <block wx:if="{{applied}}" >
+   <view wx:for="{{myApplies}}" wx:key="{{index}}" class="cu-btn bg-cyan lg padding-sm margin-xs radius">
+    <button class="cu-btn bg-cyan lg" bindtap="toMyapply" data-applyid="{{item.applyID}}" data-demandid="{{demandDetail.demandID}}">查看对接详情({{item.createdBy.applyerName}})</button>
+      
   </view>
+  </block>
+
 </view>
