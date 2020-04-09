@@ -25,9 +25,9 @@
 
   <view class="cu-form-group">
     <view class="title">需求方</view>
-    <picker mode="selector" name="personorandganization" bindchange="bindPickerChange" range="{{personorandganization}}" value="{{personorandganizationIndex}}" disabled="{{disabled}}">
+    <picker mode="selector" name="demander" bindchange="bindPickerChange" range="{{demander}}" value="{{demanderIndex}}" disabled="{{disabled}}">
       <view class="picker">
-        {{personorandganization[personorandganizationIndex]}}
+        {{demander[demanderIndex]}}
       </view>
     </picker>
   </view>

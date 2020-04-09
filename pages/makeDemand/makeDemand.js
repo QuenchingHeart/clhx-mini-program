@@ -5,7 +5,8 @@ import {
   demandOne,
   demandPut,
   demandDel,
-  applyGet
+  applyGet,
+  organizationInGet
 } from '../../utils/api.js'
 import {
   getLocal,
@@ -40,13 +41,13 @@ Page({
       ['防疫特区', '党建宣传', '社区服务', '特殊困难', '项目策划', '为小为老'],
       ["物资援助", "防控宣传", "精准排查", "复工咨询", "感人故事"]
     ],
-    personorandganization: [
-      '个人',
-      '组织'
+    demander: [
+      "个人"
     ],
+    organizations: [],
     countryCodes: ["+86", "+80", "+84", "+87"],
     countryCodeIndex: 0,
-    personorandganizationIndex: 0,
+    demanderIndex: 0,
     demandDetail: {
       "demandID": 0,
       "createdAt": 0,
@@ -109,8 +110,8 @@ Page({
   bindPickerChange: function(e) {
     console.log('picker发送选择改变，携带值为', e.detail.value)
     this.setData({
-      "personorandganizationIndex": e.detail.value,
-      "formData.isOrganization": e.detail.value
+      "demanderIndex": e.detail.value,
+      "formData.isOrganization": e.detail.value == 0 ? false : true
     })
   },
   bindMultiPickerChange(e) {
@@ -133,7 +134,6 @@ Page({
   },
   chooseLocation: function() {
     var that = this
-    var location = {}
     wx.chooseLocation({
       success: function(loc) {
         // console.log("****chooseLocation")
@@ -161,14 +161,16 @@ Page({
     var checkRes = formUtil.checkNullForm(e);
     if(checkRes){
       console.log("调用工具结果：", checkRes)
-      var that = this
+      let that = this
       console.log(this.data.formData)
-      var formData = that.data.formData
-      var demandDetail = {
+      let formData = that.data.formData;
+      let orgs = that.data.organizations;
+      let demanderIndex = that.data.demanderIndex;
+      let demandDetail = {
         "demandID": that.data.demandDetail.demandID,
         "createdBy": {
-          "publishUserID": app.globalData.userID,
-          "publishUserName": "userName",
+          "publishUserID": formData.isOrganization ? orgs[demanderIndex - 1].orgID : app.globalData.userID,
+          "publishUserName": formData.isOrganization ? orgs[demanderIndex - 1].name : "",
           "isOrganization": formData.isOrganization
         },
         "contactName": formData.contactName,
@@ -230,15 +232,15 @@ Page({
       [`formData.${field}`]: e.detail.value
     })
   },
-  getOnedemand(demandID) {
+
+  getOnedemand(options) {
     var that = this;
-    demandOne({
-      demandID
-    }).then(demandDetail => {
-      // console.log("****getOne")
+    demandOne({ demandID: options.demandID }).then(demandDetail => {
+      console.log(demandDetail)
       getLocal(demandDetail.location.latitude, demandDetail.location.longitude).then(res => {
         that.setData({
           demandDetail,
+          demander: [demandDetail.createdBy.publishUserName],
           formData: {
             isOrganization: demandDetail.createdBy.isOrganization,
             title: demandDetail.title,
@@ -264,12 +266,38 @@ Page({
           }]
         })
         that.moveToLocation();
-      })
 
-
-    })
-
+        // if (options.type === "check") {
+        //   that.setData({
+        //     demander: [demandDetail.createdBy.publishUserName]
+        //   })
+        // } else if (options.type === "edit" && demandDetail) {
+        //   that.getOrganizations(options);
+        // }
+      });
+    });
   },
+
+  getOrganizations: function (options) {
+    let that = this;
+    organizationInGet({ userID: app.globalData.userID }).then(orgs => {
+      let demander = ["个人"];
+      // let demanderIndex = 0;
+      // console.log(res)
+      for (let i = 0; i < orgs.length; i++) {
+        demander = demander.concat(orgs[i].name);
+        // if (options.type === "edit" && orgs[i].name === that.demandDetail.publishUserName) {
+        //   demanderIndex = 1 + i;
+        // }
+      }
+      that.setData({
+        demander,
+        demanderIndex: 0,
+        organizations: orgs
+      })
+    })
+  },
+
   handleOp(options) {
     var disabled = false;
     var applies = []
@@ -282,9 +310,10 @@ Page({
     switch (options.type) {
       case 'add':
         that.getCurrentLocation();
+        that.getOrganizations(options);
         break
       case 'edit':
-        this.getOnedemand(options.demandID);
+        this.getOnedemand(options);
         applyGet({
           demandID: options.demandID
         }).then(res => {
@@ -297,7 +326,7 @@ Page({
         break;
       case 'check':
         disabled = true;
-        this.getOnedemand(options.demandID);
+        this.getOnedemand(options);
         applyGet({
           demandID: options.demandID,
           userID: app.globalData.userID
@@ -403,7 +432,6 @@ Page({
     });
 
   },
-
 
   moveToLocation: function() {
     var that = this;
