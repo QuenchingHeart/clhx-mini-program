@@ -24,7 +24,7 @@ Page({
     console.log(e)
     if(e.currentTarget.dataset.type=='edit'){
       wx.navigateTo({
-        url: '/pages/organization/makeOrganization/makeOrganization?type=edit&id=' + e.currentTarget.dataset.id +'&organizationDetail='+JSON.stringify(e.currentTarget.dataset.organizationdetail)
+        url: '/pages/organization/makeOrganization/makeOrganization?type=edit&organizationid=' + e.currentTarget.dataset.organizationid +'&organizationDetail='+JSON.stringify(e.currentTarget.dataset.organizationdetail)
       })
     }else if(e.currentTarget.dataset.type=='add'){
       wx.navigateTo({
@@ -32,7 +32,7 @@ Page({
       })
     }else if(e.currentTarget.dataset.type=='check'){
       wx.navigateTo({
-        url: '/pages/organization/makeOrganization/makeOrganization?type=check&id='+ e.currentTarget.dataset.id
+        url: '/pages/organization/makeOrganization/makeOrganization?type=check&organizationid='+ e.currentTarget.dataset.organizationid
       })
     }
 

@@ -151,9 +151,6 @@ Page({
 
   handleOp(options) {
     var disabled = false;
-    var applies = []
-    var applied = false
-    var myid = 0
     var that = this
     console.log(options)
     switch (options.type) {
@@ -161,8 +158,7 @@ Page({
         that.initData(options)
         break;
       case 'edit':
-        organizationGet({ orgID: app.globalData.userID }).then(res => {
-          console.log(res)
+        organizationGet({ orgID: options.organizationid }).then(res => {
           that.setData({
             formData: res[0],
             markers: [{
@@ -178,8 +174,7 @@ Page({
 
         break;
       case 'check':
-        organizationGet({ orgID: app.globalData.userID }).then(res => {
-          console.log(app.globalData.userID)
+        organizationGet({ orgID: options.organizationid }).then(res => {
           that.setData({
             formData: res[0],
             markers: [{

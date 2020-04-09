@@ -1,6 +1,6 @@
 <template name="organizations">
   <view class="cu-list menu  margin-bottom-xl shadow-lg radius">
-    <view class="cu-item arrow" wx:for="{{organizations}}" data-name="{{item.name}}" data-type="check" wx:key="index" bindtap="navigateToContactDatail">
+    <view class="cu-item arrow" wx:for="{{organizations}}" data-name="{{item.name}}" data-type="check" data-organizationID="{{item.orgID}}" wx:key="index" bindtap="navigateToContactDatail">
       <!-- <view class="content">
         <view class="text-gray text-sm flex">
           <text class="text-cut text-grey">

@@ -10,6 +10,12 @@
     bindtap="{{disabled==false?'chooseLocation':''}}"
     scale="18">
   </map> -->
+	
+  <view class="cu-form-group">
+  	<view class="title">组织名称</view>
+  	<input disabled="{{disabled}}" placeholder="组织名称" name="name" data-field="name" bindinput="formInputChange" value="{{formData.name}}" />
+  </view>
+	
   <view class="cu-form-group">
   	<view class="title">地点</view>
   	<input disabled="{{disabled}}" bindtap="{{disabled==false?'chooseLocation':''}}" placeholder="请选择地点" name="district" data-field="district" bindinput="formInputChange" value="{{formData.address}}" />
@@ -32,10 +38,6 @@
   	<view class="cu-tag line-orange">
   		中国大陆
   	</view>
-  </view>
-  <view class="cu-form-group">
-  	<view class="title">组织名称</view>
-  	<input disabled="{{disabled}}" placeholder="组织名称" name="name" data-field="name" bindinput="formInputChange" value="{{formData.name}}" />
   </view>
 
   <!-- <view class="button-sp-area" wx:if="{{type=='add'}}">
