@@ -150,7 +150,7 @@ Page({
     let demand = this.data.demands[e.markerId - 1];
     let type = 'check';
     this.data.reload = false;
-    if (demand.createdBy.publishUserID == app.globalData.userID) {
+    if (demand.createdBy.publishUserID == app.globalData.userID || demand.inOrg) {
       type = 'edit';
       this.data.reload = true;
     }
@@ -312,11 +312,7 @@ Page({
     })
     console.log('setPosition2', that.data.longitude, that.data.latitude, that.mapCtxMain)
   },
-  NavToMakeDemand() {
-    wx.navigateTo({
-      url: '/pages/makeDemand/makeDemand',
-    })
-  },
+
   setPosition: function (longitude, latitude) {
     app.globalData.position = {
       latitude: latitude,
