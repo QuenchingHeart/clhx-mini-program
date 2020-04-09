@@ -7,12 +7,27 @@ Page({
    * 页面的初始数据
    */
   data: {
+    formData:{
+      keyword:''
+    },
     organizations:[],
     reload: false
   },
-  getOrganizations:function(){
+  formInputChange:function(e) {
+    const {
+      field
+    } = e.currentTarget.dataset
+    this.setData({
+      [`formData.${field}`]: e.detail.value
+    })
+  },
+  searchOrganizations:function(){
+    console.log(this.data.formData)
+    this.getOrganizations(this.data.formData.keyword)
+  },
+  getOrganizations:function(keyword=''){
     var that = this
-    organizationGet({ userID:app.globalData.userID }).then( res => {
+    organizationGet({ userID:app.globalData.userID,keyword:'%'+keyword+'%' }).then( res => {
       that.setData({
         organizations: res
       })

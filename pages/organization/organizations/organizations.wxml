@@ -1,4 +1,13 @@
 <template name="organizations">
+  <view class="cu-bar search bg-white">
+    <view class="search-form round">
+      <text class="cuIcon-search"></text>
+      <input type="text" placeholder="" data-field="keyword" value="{{formData.keyword}}"  bindinput="formInputChange" confirm-type="search"></input>
+    </view>
+    <view class="action">
+      <button class="cu-btn bg-orange shadow-blur round" bindtap="searchOrganizations">搜索</button>
+    </view>
+  </view>
   <view class="cu-list menu  margin-bottom-xl shadow-lg radius">
     <view class="cu-item arrow" wx:for="{{organizations}}" data-name="{{item.name}}" data-type="check" data-organizationID="{{item.orgID}}" wx:key="index" bindtap="navigateToContactDatail">
       <!-- <view class="content">

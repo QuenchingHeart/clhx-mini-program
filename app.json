@@ -11,7 +11,10 @@
     "pages/myApply/myApply",
     "pages/contact/makeContact/makeContact",
     "pages/contact/contacts/contacts",
-    "pages/organization/makeOrganization/makeOrganization"
+    "pages/organization/makeOrganization/makeOrganization",
+    "pages/organization/organizations/organizations",
+    "pages/organization/myOrganizations/myOrganizations",
+    "pages/organization/organization/organization"
   ],
   "tabBar": {
     "custom": true,
