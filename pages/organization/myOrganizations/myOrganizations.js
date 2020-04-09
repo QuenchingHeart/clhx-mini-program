@@ -20,7 +20,6 @@ Page({
     })
   },
   navigateToOrgDatail: function (e) {
-    console.log(e.currentTarget.dataset.applyid)
     this.data.reload = true;
     if (e.currentTarget.dataset.type == 'check') {
       wx.navigateTo({

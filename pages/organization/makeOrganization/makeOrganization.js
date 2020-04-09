@@ -41,6 +41,7 @@ Page({
       }
     });
   },
+
   onLoad: function (options) {
     var that = this
     this.mapCtx = wx.createMapContext('myMapMakeOrganization')
@@ -160,19 +161,35 @@ Page({
         that.initData(options)
         break;
       case 'edit':
-        organizationGet({ userID: app.globalData.userID }).then(res => {
+        organizationGet({ orgID: app.globalData.userID }).then(res => {
           console.log(res)
           that.setData({
             formData: res[0],
+            markers: [{
+              latitude: res[0].latitude,
+              longitude: res[0].longitude,
+              iconPath: '/image/location.png',
+              width: '34px',
+              height: '34px',
+              id: 1
+            }]
           })
         })
 
         break;
       case 'check':
-        organizationGet({ keyword: options.keyword }).then(res => {
-          console.log(res)
+        organizationGet({ orgID: app.globalData.userID }).then(res => {
+          console.log(app.globalData.userID)
           that.setData({
             formData: res[0],
+            markers: [{
+              latitude: res[0].latitude,
+              longitude: res[0].longitude,
+              iconPath: '/image/location.png',
+              width: '34px',
+              height: '34px',
+              id: 1
+            }]
           })
         })
 
