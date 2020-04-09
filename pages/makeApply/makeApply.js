@@ -1,7 +1,7 @@
 const app = getApp();
 const util = require("../../utils/util.js");
 const formUtil = require('../../utils/formUtil.js')
-import { applyPost, applyGet, applyPut, applyDel, connectApprove, connectComplete, connectDel} from "../../utils/api.js";
+import { applyPost, applyGet, applyPut, applyDel, connectApprove, connectComplete, connectDel, organizationInGet } from "../../utils/api.js";
 Page({
   data:{
     formData: {
@@ -24,13 +24,29 @@ Page({
       '对接中':[{'完成对接':'complete'},{'撤销对接':'delete'}],
     },
     //切换对接状态！！！
-    personorandganization: [
+    applyer: [
       '个人',
       '组织'
     ],
-
-    personorandganizationIndex: 0,
+    organizations: [],
+    applyerIndex: 0,
   },
+  
+  getOrganizations: function (options) {
+    let that = this;
+    organizationInGet({ userID: app.globalData.userID }).then(orgs => {
+      let applyer = ["个人"];
+      for (let i = 0; i < orgs.length; i++) {
+        applyer = applyer.concat(orgs[i].name);
+      }
+      that.setData({
+        applyer,
+        applyerIndex: 0,
+        organizations: orgs
+      })
+    })
+  },
+
   initData: function (options) {
     var that = this
     that.setData({
@@ -60,11 +76,14 @@ Page({
   },
   bindPickerChange: function (e) {
     console.log('picker发送选择改变，携带值为', e.detail.value)
+    let index = e.detail.value;
     this.setData({
-      personorandganizationIndex: e.detail.value,
-      "formData.isOrganization": e.detail.value
+      applyerIndex: index,
+      'formData.createdBy.applyerID': index === 0 ? app.globalData.userID : this.data.organizations[index - 1].orgID,
+      "formData.createdBy.isOrganization": index === 0 ? false : true
     })
   },
+
   formInputChange(e) {
     const { field } = e.currentTarget.dataset
     this.setData({
@@ -140,6 +159,7 @@ Page({
     switch (options.type) {
       case 'add':
         that.initData(options)
+        that.getOrganizations(options);
         break;
       case 'edit':
         var params = { applyID: options.applyID, demandID: options.demandID, userID: app.globalData.userID}

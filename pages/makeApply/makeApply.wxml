@@ -1,9 +1,9 @@
 <form models="{{formData}}" bindsubmit="submitForm">
   <view class="cu-form-group">
     <view class="title">对接方</view>
-    <picker mode="selector" bindchange="bindPickerChange" name="personorandganization" range="{{personorandganization}}" value="{{personorandganizationIndex}}" disabled="{{disabled}}">
+    <picker mode="selector" bindchange="bindPickerChange" name="applyer" range="{{applyer}}" value="{{applyerIndex}}" disabled="{{disabled}}">
       <view class="picker">
-        {{personorandganization[personorandganizationIndex]}}
+        {{applyer[applyerIndex]}}
       </view>
     </picker>
   </view>
