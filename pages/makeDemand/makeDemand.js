@@ -10,8 +10,7 @@ import {
 } from '../../utils/api.js'
 import {
   getLocal,
-  formatTimeTwo,
-  regFilter
+  formatTimeTwo
 } from '../../utils/util.js'
 const app = getApp()
 // const regeneratorRuntime = require('../../libs/regenerator-runtime/runtime')
@@ -236,11 +235,11 @@ Page({
   getOnedemand(options) {
     var that = this;
     demandOne({ demandID: options.demandID }).then(demandDetail => {
-      console.log(demandDetail)
+      // console.log(demandDetail)
       getLocal(demandDetail.location.latitude, demandDetail.location.longitude).then(res => {
         that.setData({
           demandDetail,
-          demander: [demandDetail.createdBy.publishUserName],
+          demander: [demandDetail.createdBy.isOrganization ? demandDetail.createdBy.publishUserName : "个人"],
           formData: {
             isOrganization: demandDetail.createdBy.isOrganization,
             title: demandDetail.title,
@@ -300,7 +299,6 @@ Page({
 
   handleOp(options) {
     var disabled = false;
-    var applies = []
     var applied = false
     var that = this
     console.log(options)
@@ -365,6 +363,7 @@ Page({
     })
     console.log(this.data)
   },
+
   apply: function(e) {
     console.log(e.target.dataset.demandid)
     var demandID = e.target.dataset.demandid

@@ -315,7 +315,7 @@ Component({
     navigateToDemandDatail: function(e) {
       console.log(e)
       var type = 'check'
-      if (e.currentTarget.dataset.publisherid == app.globalData.userID) {
+      if (e.currentTarget.dataset.publisherid == app.globalData.userID || e.currentTarget.dataset.inorg) {
         type = 'edit'
       }
       wx.navigateTo({
