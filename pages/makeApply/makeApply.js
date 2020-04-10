@@ -128,7 +128,9 @@ Page({
           that.toastAndBack()
         })
       } else if (that.data.type == 'edit') {
-        applyPut(this.data.formData).then(res => {
+        var formData = that.data.formData
+        delete formData.inOrg
+        applyPut(formData).then(res => {
           console.log(res)
           that.setData({
             formData: res
@@ -185,13 +187,23 @@ Page({
         that.getOrganizations(options);
         break;
       case 'edit':
-        var params = { applyID: options.applyID, demandID: options.demandID, userID: app.globalData.userID}
+        var params = { applyID: options.applyID, demandID: options.demandID}
+        if(!options.isOrganization){
+          params.userID = app.globalData.userID
+        }
         applyGet(params).then(res => {
+          console.log(res)
+          that.getOrganizations(options);
           that.setData({
             formData: res[0],
+            applyerIndex:res[0].createdBy.isOrganization?1:0,
+
 
           })
-          console.log(res[0])
+          if(res[0].createdBy.isOrganization){
+            applyerIndex = 1
+          }
+       
         })
 
         break;

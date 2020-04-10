@@ -392,9 +392,10 @@ Page({
   toMyapply: function(e) {
     var demandID = e.target.dataset.demandid
     var applyID = e.target.dataset.applyid
+    var isorganization = e.target.dataset.isorganization
     this.data.returnFromApply = true;
     wx.navigateTo({
-      url: '/pages/makeApply/makeApply?type=edit&demandID=' + demandID + '&applyID=' + applyID,
+      url: '/pages/makeApply/makeApply?type=edit&demandID=' + demandID + '&applyID=' + applyID+'&isOrganization='+isorganization,
     })
   },
   cancelDemand: function() {

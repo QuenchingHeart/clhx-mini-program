@@ -158,7 +158,7 @@
  
   <block wx:if="{{applied}}" >
    <view wx:for="{{myApplies}}" wx:key="{{index}}" class="cu-btn bg-cyan lg padding-sm margin-xs radius">
-    <button class="cu-btn bg-cyan lg" bindtap="toMyapply" data-applyid="{{item.applyID}}" data-demandid="{{demandDetail.demandID}}">查看对接详情({{item.createdBy.applyerName}})</button>
+    <button class="cu-btn bg-cyan lg" bindtap="toMyapply" data-applyid="{{item.applyID}}" data-demandid="{{demandDetail.demandID}}" data-isorganization="{{item.createdBy.isOrganization}}">查看对接详情({{item.createdBy.applyerName}})</button>
       
   </view>
   </block>
