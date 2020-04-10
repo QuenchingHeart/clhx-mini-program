@@ -17,13 +17,13 @@
   </view>
   <view class="cu-form-group">
     <view class="title">联系人</view>
-    <input disabled="{{disabled}}" name="contactName" data-field="contactName" bindinput="formInputChange" placeholder="请输入联系人" value="{{formData.contactName}}" />
+    <input bindtap="chooseContact" name="contactName" data-field="contactName" bindinput="formInputChange" placeholder="请输入联系人" value="{{formData.contactName}}" />
     <text class="cuIcon-peoplefill text-orange" bindtap="chooseContact"></text>
   </view>
 
   <view class="cu-form-group">
     <view class="title">手机号码</view>
-    <input name="contactPhone" type="number" data-field="contactPhone" disabled="{{disabled}}" bindinput="formInputChange" value="{{formData.contactPhone}}" placeholder="请输入号码" />
+    <input name="contactPhone" type="number" data-field="contactPhone" bindtap="chooseContact" bindinput="formInputChange" value="{{formData.contactPhone}}" placeholder="请输入号码" />
     <view class="cu-capsule radius">
       <view class="cu-tag bg-orange">
         +86

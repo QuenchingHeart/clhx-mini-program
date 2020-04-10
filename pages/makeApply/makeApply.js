@@ -200,9 +200,6 @@ Page({
 
 
           })
-          if(res[0].createdBy.isOrganization){
-            applyerIndex = 1
-          }
        
         })
 
