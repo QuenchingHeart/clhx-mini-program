@@ -9,7 +9,7 @@
   show-location
   show-compass
   show-scale
-  bindtap="chooseContact"
+  bindtap="{{disabled?'':chooseContact}}"
   scale="18">
 </map>
 <form models="{{formData}}" id="form" bindsubmit="submitForm">
@@ -66,19 +66,19 @@
 
   <view class="cu-form-group">
     <view class="title">联系人</view>
-    <input  disabled name="contactName" bindtap="chooseContact" data-field="contactName" bindinput="formInputChange" placeholder="请输入联系人" value="{{formData.contactName}}" />
-    <text class="cuIcon-peoplefill text-orange" bindtap="chooseContact"></text>
+    <input  disabled name="contactName" bindtap="{{disabled?'':chooseContact}}" data-field="contactName" bindinput="formInputChange" placeholder="请输入联系人" value="{{formData.contactName}}" />
+    <text class="cuIcon-peoplefill text-orange" bindtap="{{disabled?'':chooseContact}}"></text>
   </view>
 
   <view class="cu-form-group">
     <view class="title">地点</view>
-    <input disabled bindtap="chooseContact"  placeholder="请选择地点" name="district" data-field="district" bindinput="formInputChange" value="{{formData.address}}" />
+    <input disabled bindtap="{{disabled?'':chooseContact}}"  placeholder="请选择地点" name="district" data-field="district" bindinput="formInputChange" value="{{formData.address}}" />
     <text class="cuIcon-locationfill text-orange"></text>
   </view>
 
   <view class="cu-form-group">
     <view class="title">手机号码</view>
-    <input name="contactPhone" type="number" bindtap="chooseContact" data-field="contactPhone" disabled bindinput="formInputChange" value="{{formData.contactPhone}}" placeholder="请输入号码" />
+    <input name="contactPhone" type="number" bindtap="{{disabled?'':chooseContact}}" data-field="contactPhone" disabled bindinput="formInputChange" value="{{formData.contactPhone}}" placeholder="请输入号码" />
     <view class="cu-capsule radius">
       <view class="cu-tag bg-orange">
         +86
