@@ -61,7 +61,6 @@ Page({
           wx.getUserInfo({
             success: (userInfo) => {
               let json = {
-                jsoncode: loginRes.code,
                 jsonCode: loginRes.code,
                 nickName: userInfo.userInfo.nickName,
                 avatarUrl: userInfo.userInfo.avatarUrl

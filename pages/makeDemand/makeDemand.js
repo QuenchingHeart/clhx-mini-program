@@ -73,6 +73,8 @@ Page({
       "category": "大类:小类",
       "title": "【XX社区】紧缺口罩",
       "detail": "本社区紧缺口罩......",
+      "imagePaths":[],
+      "url":[],
       "status": "已发布"
     },
     formData: {
@@ -88,7 +90,9 @@ Page({
       contactPhone: "",
       startTime: formatTimeTwo(Math.round(new Date().getTime() / 1000).toString(), 'Y-M-D'),
       endTime: formatTimeTwo((Math.round(new Date().getTime() / 1000) + 86400).toString(), 'Y-M-D'),
-      status: "已发布"
+      status: "已发布",
+      imagePaths: [],
+      url:[]
     },
     rules: [{
       name: 'district',
@@ -196,6 +200,7 @@ Page({
         "category": formData.demandCategory,
         "title": formData.title,
         "detail": formData.detail,
+        "imagePaths": formData.imagePaths
       }
       that.setData({
         demandDetail: demandDetail
@@ -262,7 +267,9 @@ Page({
             longitude: demandDetail.location.longitude,
             district: res.province + ":" + res.city + ":" + res.district + ":" + (res.business_area == null ? '' : res.business_area),
             address: demandDetail.location.address,
-            status: demandDetail.status
+            status: demandDetail.status,
+            imagePaths: demandDetail.imagePaths,
+            url: demandDetail.url
           },
           markers: [{
             latitude: res.latitude,
@@ -530,7 +537,72 @@ Page({
       }
     })
   },
+// --- images start
 
+ChooseImage() {
+  var that = this
+  wx.chooseImage({
+    count: 6, //默认9
+    sizeType: ['original', 'compressed'], //可以指定是原图还是压缩图，默认二者都有
+    sourceType: ['album'], //从相册选择
+    success: (res) => {
+      res.tempFilePaths.forEach(filepath => {
+        wx.uploadFile({
+          filePath: filepath,
+          name: filepath,
+          header: { 
+            'Content-Type': 'multipart/form-data',
+            "Authorization": "Bearer " + app.globalData.token
+          },
+          success:function(res){
+            let dataRes = JSON.parse(res.data)
+            console.log(dataRes)
+            if (that.data.formData.imagePaths.length != 0) {
+              that.setData({
+                "formData.imagePaths": that.data.formData.imagePaths.concat(dataRes['imagePaths'][0]),
+                "formData.url": that.data.formData.url.concat(dataRes['url'][0])
+              })
+            } else {
+              that.setData({
+               "formData.imagePaths": dataRes['imagePaths'],
+               "formData.url":dataRes['url']
+              })
+            }
+          },  
+          url: 'https://api.smartcommunity.mrdrivingduck.cn:8081/demand/file',
+        })
+      });
+
+    }
+  });
+},
+ViewImage(e) {
+    wx.previewImage({
+      urls: [e.currentTarget.dataset.url],
+      current: e.currentTarget.dataset.url
+    });
+
+},
+DelImg(e) {
+  wx.showModal({
+    title: '再次确认',
+    content: '确定要删除这张图片吗？',
+    cancelText: '取消',
+    confirmText: '删除',
+    success: res => {
+      if (res.confirm) {
+        this.data.formData.imagePaths.splice(e.currentTarget.dataset.index, 1);
+        this.data.formData.url.splice(e.currentTarget.dataset.index, 1);
+        this.setData({
+          "formData.imagePaths": this.data.formData.imagePaths,
+          "formData.url": this.data.formData.url
+        })
+      }
+    }
+  })
+},
+
+// --- images end
   /**
    * 生命周期函数--监听页面隐藏
    */
