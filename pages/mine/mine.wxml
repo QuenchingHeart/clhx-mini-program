@@ -1,12 +1,12 @@
 <!--pages/mine/mine.wxml-->
 <scroll-view scroll-y class="scrollPage">
-  <view class="UCenter-bg">
-    <view class="flex solid-bottom padding align-center">
-      <view class="padding-lg margin-xs radius" bindtap="toMakeUserInfo">
-        <image class="cu-avatar round lg" src="{{userInfo.avatarUrl}}" background-size="cover"></image>
-        <view class="cu-tag margin-xs bg-red">{{nickname}}</view>
+
+  <view class="flex padding align-center">
+    <view class="padding radius" bindtap="toMakeUserInfo">
+      <image class="cu-avatar round lg" src="{{userInfo.avatarUrl}}" background-size="cover"></image>
+      <view class="lg text-black text-center margin" style="display: inline-flex">{{nickname}}</view>
     </view>
-    </view>
+
     <!-- <view class="text-xl">青云之上社区云公益服务中心
       <text class="text-df">v0.1</text>
     </view>
