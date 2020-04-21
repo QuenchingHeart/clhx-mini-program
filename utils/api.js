@@ -233,7 +233,13 @@ function organizationInGet(data) {
     data: data
   })
 }
-
+function nicknameUpdate(data) {
+  return http({
+    url: '/user/nickname?nickname='+data.nickname+'&userID='+data.userID,
+    method: 'PUT',
+    data: data
+  })
+}
 export { 
   login,
   demandsAll, demandsLocation, demandsCount, demandsPost, demandOne, demandPut, demandDel, 
@@ -242,5 +248,6 @@ export {
   contactPost, contactGet, contactPut, contactDel, 
   organizationPost, organizationGet, organizationDel, 
   organizationInGet,organizationMemberGet,
-  organizationApplyPost, organizationApplyGet, organizationAuditGet, organizationAuditPut, organizationQuitDel
+  organizationApplyPost, organizationApplyGet, organizationAuditGet, organizationAuditPut, organizationQuitDel,
+  nicknameUpdate
   };

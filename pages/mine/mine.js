@@ -15,7 +15,8 @@ Component({
   data:{
     userInfo:{
 
-    }
+    },
+    nickname:''
   },
   /**
  * 生命周期函数--监听页面加载
@@ -23,9 +24,7 @@ Component({
   lifetimes: {
     // 生命周期函数，可以为函数，或一个在methods段中定义的方法名
     attached: function () {
-      this.setData({
-        userInfo: app.globalData.userInfo
-      })
+
     },
     moved: function () { },
     detached: function () { },
@@ -41,8 +40,17 @@ Component({
     show: function () {
       app.editTabbar(); 
       this.setData({
-        icon: base64.icon20
+        icon: base64.icon20,
+        userInfo: app.globalData.userInfo,
+        nickname: app.globalData.nickname
       });
     }
   },
+  methods:{
+    toMakeUserInfo:function(){
+      wx.navigateTo({
+        url: '/pages/userInfo/makeUserInfo/makeUserInfo',
+      })
+    }
+  }
 })

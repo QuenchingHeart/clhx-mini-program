@@ -9,7 +9,7 @@
   overflow: hidden;
   position: relative;
   flex-direction: column;
-  align-items: center;
+  align-items: left;
   color: #fff;
   font-weight: 300;
   text-shadow: 0 0 3px rgba(0, 0, 0, 0.3);

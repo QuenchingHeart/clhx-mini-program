@@ -14,7 +14,8 @@
     "pages/organization/makeOrganization/makeOrganization",
     "pages/organization/organizations/organizations",
     "pages/organization/myOrganizations/myOrganizations",
-    "pages/organization/organization/organization"
+    "pages/organization/organization/organization",
+    "pages/userInfo/makeUserInfo/makeUserInfo"
   ],
   "tabBar": {
     "custom": true,

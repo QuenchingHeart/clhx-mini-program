@@ -69,6 +69,7 @@ Page({
               login(json).then(backEndRes => {
                 app.globalData.token = backEndRes.token;
                 app.globalData.userID = backEndRes.userID;
+                app.globalData.nickname =  backEndRes.nickname;
                 wx.getSetting({
                   success: (settingRes) => {
                     wx.switchTab({
