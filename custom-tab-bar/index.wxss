@@ -52,7 +52,7 @@
     height: 56rpx;
 }
 .special-wrapper{
-  background-color: #75c142 !important;
+  background-color: #E94730 !important;
   position: absolute;
   left: 27rpx;
   top: -26rpx;

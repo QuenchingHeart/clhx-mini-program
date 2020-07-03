@@ -10,7 +10,7 @@ Component({
       value: {
         "backgroundColor": "#ffffff",
         "color": "#979795",
-        "selectedColor": "#3cc51f",
+        "selectedColor": "#E94730",
         "list": [
           {
             "pagePath": "/pages/main/main",
