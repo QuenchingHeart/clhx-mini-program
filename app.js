@@ -87,6 +87,8 @@ App({
         {
           "pagePath":"/pages/makeDemand/makeDemand?type=add",
           "spanClass":"RectangleCopy4",
+          "iconPath": "../pages/images/helpicon/RectangleCopy_4.png",
+          "selectedIconPath": "../pages/images/helpicon/RectangleCopy_4.png",
           "text": "发布",
           "isSpecial": true
         },
