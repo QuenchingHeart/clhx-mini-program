@@ -68,42 +68,37 @@ App({
     "tabBar": {
       "custom": true,
       "color": "#7A7E83",
-      "selectedColor": "#3cc51f",
+      "selectedColor": "#EB4630",
       "borderStyle": "black",
       "backgroundColor": "#ffffff",
       "list": [
         {
           "pagePath": "/pages/main/main",
-          "iconPath": "../pages/images/helpicon/RectangleCopy_6.png",
-          "selectedIconPath": "../pages/images/helpicon/RectangleCopy_6.png",
+          "spanClass":"RectangleCopy6",
           "text": "首页",
           "isSpecial": false
         },
         {
           "pagePath": "/pages/demands/demands",
-          "iconPath": "../pages/images/tabbar/component.png",
-          "selectedIconPath": "../pages/images/tabbar/component_cur.png",
+          "spanClass":"RectangleCopy2",
           "text": "需求",
           "isSpecial": false
         },
         {
           "pagePath":"/pages/makeDemand/makeDemand?type=add",
-          "iconPath": "../pages/images/helpicon/RectangleCopy_4.png",
-          "selectedIconPath": "../pages/images/helpicon/RectangleCopy_4.png",
+          "spanClass":"RectangleCopy4",
           "text": "发布",
           "isSpecial": true
         },
          {
           "pagePath": "/pages/source/source",
-          "iconPath": "../pages/images/tabbar/plugin.png",
-          "selectedIconPath": "../pages/images/tabbar/plugin_cur.png",
+          "spanClass":"RectangleCopy5",
           "text": "资源",
           "isSpecial": false
         },
         {
           "pagePath": "/pages/mine/mine",
-          "iconPath": "../pages/images/tabbar/about.png",
-          "selectedIconPath": "../pages/images/tabbar/about_cur.png",
+          "spanClass":"RectangleCopy1",
           "text": "我的",
           "isSpecial": false
         }
