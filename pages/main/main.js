@@ -191,7 +191,7 @@ Page({
           longitude: demands[i].longitude,
           iconPath: demands[i].status == '已发布' ? '/image/demand_published.png' :
             demands[i].status == '对接中' ? '/image/demand_connecting.png' :
-            '/image/demand_completed.png',
+            '/image/心.png',
           width: '34px',
           height: '34px',
           id: 1 + i,

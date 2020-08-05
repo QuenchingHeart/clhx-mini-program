@@ -56,7 +56,6 @@ Page({
   },
   formInputChange(e) {
     const { field } = e.currentTarget.dataset
-    console.log(field, e.detail.value, e)
     this.setData({
       [`formData.${field}`]: e.detail.value
     })

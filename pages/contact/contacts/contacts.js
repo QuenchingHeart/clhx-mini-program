@@ -1,4 +1,4 @@
-// pages/myApply/myApply.js
+
 import { contactGet } from '../../../utils/api.js'
 const app = getApp()
 Page({
