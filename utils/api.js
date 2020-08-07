@@ -1,5 +1,4 @@
 import http from 'http.js'
-const app = getApp();
 //登录
 function login(data) {
   return http({

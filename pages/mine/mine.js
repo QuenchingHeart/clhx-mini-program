@@ -1,6 +1,7 @@
 // pages/mine/mine.js
 const app = getApp();
 var base64 = require("../images/base64");
+import { Login } from '../../utils/service.js'
 Page({
 
   /**
@@ -12,12 +13,18 @@ Page({
 
     },
     nickname:'',
-    tabbar:{}
+    tabbar:{},
+    alreadyLogin:false
   },
   /**
  * 生命周期函数--监听页面加载
  */
   onLoad:function(){
+    if(app.globalData.token!=''){
+      this.setData({
+        alreadyLogin: true
+      })
+    }
 
   },
 
@@ -34,6 +41,13 @@ Page({
     wx.navigateTo({
       url: '/pages/userInfo/makeUserInfo/makeUserInfo',
     })
-  }
+  },
+
+  login:function(){
+    Login()
+    this.setData({
+      alreadyLogin:true
+    })
+  },
   
 })

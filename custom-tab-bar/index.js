@@ -56,7 +56,7 @@ Component({
    * 组件的初始数据
    */
   data: {
-    isIphoneX: app.globalData.systemInfo.model.includes('iPhone X'),
+    isIphoneX: app.globalData.systemInfo.model.includes('iPhone X')||app.globalData.systemInfo.model.includes('iPhone 11'),
     isHUAWEI: app.globalData.systemInfo.model.includes('HUAWEI')
   },
 

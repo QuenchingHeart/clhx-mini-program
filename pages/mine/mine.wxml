@@ -2,9 +2,12 @@
 <scroll-view scroll-y class="scrollPage">
 
   <view class="flex padding align-center">
-    <view class="padding radius" bindtap="toMakeUserInfo">
+    <view class="padding radius"  bindtap="{{alreadyLogin?'toMakeUserInfo':'login'}}">
       <image class="cu-avatar round lg" src="{{userInfo.avatarUrl}}" background-size="cover"></image>
       <view class="lg text-black text-center margin" style="display: inline-flex">{{nickname}}</view>
+      <view class="solid-bottom text-xl padding" wx:if="{{!alreadyLogin}}" style="display: inline-flex">
+        <text class="text-black text-bold">点击登陆账户</text>
+      </view>
     </view>
 
     <!-- <view class="text-xl">青云之上社区云公益服务中心

@@ -2,7 +2,7 @@
 .safe-area{
   position: fixed;
   bottom: 0;
-  height: 28rpx;
+  height: 36rpx;
   width: 100%;
   background: white;
 }
@@ -22,7 +22,7 @@
     padding-bottom: 66rpx;
 } */
 .iphoneX-height{
-  height: 120rpx;
+  height: 126rpx;
 }
 .middle-wrapper{
   position: absolute;

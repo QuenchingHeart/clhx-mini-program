@@ -7,13 +7,6 @@ App({
     wx.setStorageSync("logs", logs);
     this.getSystemInfo()
     
-
-    // 登录
-    wx.login({
-      success: res => {
-        // 发送 res.code 到后台换取 openId, sessionKey, unionId
-      }
-    });
     // 获取用户信息
     wx.getSetting({
       success: res => {
@@ -36,7 +29,6 @@ App({
     });
 
   },
-
   getSystemInfo: function() {
     let t = this;
     wx.getSystemInfo({
@@ -104,8 +96,8 @@ App({
           "text": "我的",
           "isSpecial": false
         }
-    ]
-  },
+      ]
+    },
     userInfo: null,
     token:'',
     // token:'eyJhbGciOiJSUzI1NiJ9.eyJleHAiOjE1ODU1NzkyMzcsInVzZXIiOjE0fQ.cAKSDLiwuktVShjilZTnEifLEdTw1lIK57BoovveFBbuCy8GqtDnlzAjO4Iur04Rv9FXiWzyUbC_0DVDI1Q9bAvEga-PBUikTPFfbPISyQz-KUqWQaUdNHPTP0uuaOV2RZi3DcfOxhPkgHEWcvQSkYkxVh2vpBCPpOeJ6I5QHu11OOmUveA0_mjxrQYKeRwllfI6Q4nMX7JDL80CuNZhhtfnG9cObEj5oIRKaaT7DLi6kVW8RSkTUZd7upppT59gLgD1TRKrcEPBkfKEYkDb8hkcoYNl_GQRhTTOOrVRhud6_R9hJNEJzdsVO5sxRFP51_xKBXx3gVCdxWYYQ66cJQ',
