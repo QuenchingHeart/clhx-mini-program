@@ -21,7 +21,7 @@
     <text>{{item.txt}}</text>
   </view>
 </view>
-<view class="VerticalBox margin-top">
+<view class="VerticalBox">
   <scroll-view class="VerticalNav nav" scroll-y scroll-with-animation scroll-top="{{VerticalNavTop}}" style="height:calc(100vh - 375rpx);font-size:24rpx;">
     <view class="cu-item {{index==TabCur?'text-orange cur':''}}" data-id="{{index}}" wx:for="{{list}}" bindtap="bindCategoryBChange" wx:key="index">
 

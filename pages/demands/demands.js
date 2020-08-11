@@ -31,22 +31,21 @@ Component({
     },
     gridCol: {
       type: Number,
-      value: 6
+      value: 5
     },
     categories: {
       type: Array,
       value: [
-        ["全部", "物资援助", "防控宣传", "精准排查", "复工咨询", "感人故事"],
-        ["全部", ],
-        ["全部", "志愿服务", "物资需求", "心理关怀", "文化科教", "卫键服务", "创业就业", "便民通道", "法律援助", "社工帮助"],
-        ["全部", "特殊群体", '家庭困难', '组织困难', '物业扶贫'],
-        ["全部", '活动策划', '项目评估', '资金链接'],
-        ["全部", "关爱儿童", "社区养老"],
+        ["全部","红心说政","寻找社区英雄","党团共建"],
+        ["全部","物资需求","卫健服务","创业就业","法律援助","物业纠纷处理","关爱儿童","社区养老","志愿者招募"],
+        ["全部","无人机服务","社工培训","社科试验田","社区实验室","儿童编程","手绘社区","金牌家教","飞行员之家","国学讲堂","三航科普"],
+        ["全部","特殊群体","家庭困难","组织困难","物业扶贫"],
+        ["全部","防疫课程","防控宣传","物资援助","精准排查","复工咨询"]
       ]
     },
     categoryArray: {
       type: Array,
-      value: ['防疫特区', '党建宣传', '社区服务', '特殊困难', '项目策划', '为小为老']
+      value: ["党建宣传","社区服务","文化科技","特殊困难","防疫特区"]
     },
     curCategoryA: {
       type: Number,
@@ -55,7 +54,7 @@ Component({
     categoryA: {
       type: Array,
       value: [{
-          txt: "防疫特区",
+          txt: "党建宣传",
           url: '../../image/demands.png',
           selected_url: '../../image/selected_demands.png',
           icon: 'upstagefill',
@@ -64,20 +63,20 @@ Component({
 
         },
         {
-          txt: "党建宣传",
+          txt: "社区服务",
           url: '../../image/demands.png',
           selected_url: '../../image/selected_demands.png',
           icon: 'camerafill',
-          color: 'orange',
+          color: 'red',
           badge: 120,
 
         },
         {
-          txt: "社区服务",
+          txt: "文化科技",
           url: '../../image/demands.png',
           selected_url: '../../image/selected_demands.png',
           icon: 'servicefill',
-          color: 'yellow',
+          color: 'red',
           badge: 120,
 
         },
@@ -86,39 +85,27 @@ Component({
           url: '../../image/demands.png',
           selected_url: '../../image/selected_demands.png',
           icon: 'wefill',
-          color: 'olive',
+          color: 'red',
           badge: 120,
 
         },
         {
-          txt: "项目策划",
+          txt: "防疫特区",
           url: '../../image/demands.png',
           selected_url: '../../image/selected_demands.png',
           icon: 'writefill',
-          color: 'cyan',
+          color: 'red',
           badge: 120,
 
         },
-        {
-          txt: "为小为老",
-          url: '../../image/demands.png',
-          selected_url: '../../image/selected_demands.png',
-          icon: 'babyfill',
-          color: 'blue',
-          badge: 120,
-
-        }
       ]
     },
     categoryB: {
       type: Array,
       value: [
-        "志愿服务",
-        "物资需求",
-        "心理关怀",
-        "文化科教",
-        "卫生健康",
-        "创业就业",
+        "红心说政",
+        "寻找社区英雄",
+        "党团共建"
       ]
     },
     region: {

@@ -2,7 +2,7 @@
 
 
 .VerticalNav.nav {
-  width: 200rpx;
+  width: 235rpx;
   white-space: initial;
 }
 
@@ -46,7 +46,7 @@
 }
 
 .cu-list.menu-avatar>.cu-item .action {
-	width: 200rpx;
+	width: 235rpx;
 
 }
 

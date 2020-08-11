@@ -56,7 +56,13 @@ Component({
    * 组件的初始数据
    */
   data: {
-    isIphoneX: app.globalData.systemInfo.model.includes('iPhone X')||app.globalData.systemInfo.model.includes('iPhone 11'),
+    isIphoneX: app.globalData.systemInfo.model.includes('iPhone X')
+                ||app.globalData.systemInfo.model.includes('iPhone XR')
+                ||app.globalData.systemInfo.model.includes('iPhone XS Max')
+                ||app.globalData.systemInfo.model.includes('iPhone XS')
+                ||app.globalData.systemInfo.model.includes('iPhone 11')
+                ||app.globalData.systemInfo.model.includes('iPhone 11 Pro Max')
+                ||app.globalData.systemInfo.model.includes('iPhone 11 Pro'),
     isHUAWEI: app.globalData.systemInfo.model.includes('HUAWEI')
   },
 

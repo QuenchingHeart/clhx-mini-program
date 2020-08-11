@@ -191,9 +191,13 @@ Page({
           longitude: demands[i].longitude,
           iconPath: demands[i].status == '已发布' ? '/image/demand_published.png' :
             demands[i].status == '对接中' ? '/image/demand_connecting.png' :
-            '/image/心.png',
-          width: '34px',
-          height: '34px',
+            '/image/红心.png',
+          width: demands[i].status == '已发布' ? '34px' :
+          demands[i].status == '对接中' ? '34px' :
+          '20px',
+          height: demands[i].status == '已发布' ? '34px' :
+          demands[i].status == '对接中' ? '34px' :
+          '20px',
           id: 1 + i,
           callout: {
             ...INIT_CALLOUT,
